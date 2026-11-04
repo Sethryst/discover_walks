@@ -31,10 +31,13 @@ function rainTimingText(periods = [], timeZone = null) {
   if (!rainPeriod) return '';
   const start = Date.parse(rainPeriod.startTime || '');
   if (!Number.isFinite(start)) return ' · Rain timing unavailable';
-  if (start <= Date.now()) return ' · Rain possible now';
   try {
-    const label = new Intl.DateTimeFormat([], { timeZone: timeZone || undefined, hour: 'numeric', minute: '2-digit' }).format(new Date(start));
-    return ` · Rain possible from ${label}`;
+    const formatter = new Intl.DateTimeFormat([], { timeZone: timeZone || undefined, hour: 'numeric', minute: '2-digit' });
+    const startLabel = formatter.format(new Date(start));
+    const end = Date.parse(rainPeriod.endTime || '');
+    const endLabel = Number.isFinite(end) ? formatter.format(new Date(end)) : null;
+    if (start <= Date.now()) return endLabel && end > Date.now() ? ` · Rain possible now through ${endLabel}` : ' · Rain possible now';
+    return endLabel && end > start ? ` · Rain possible ${startLabel}–${endLabel}` : ` · Rain possible from ${startLabel}`;
   } catch { return ' · Rain timing unavailable'; }
 }
 
