@@ -32,9 +32,10 @@ import { initBiodiversity } from './biodiversity.js?v=20261103-live-biodiversity
 import { initRegionalNavigation } from './regional-navigation.js?v=20261101-conditional-menu-1';
 import { initStorageDiagnostics } from './storage-diagnostics.js';
 import { initStorageHealth } from './storage-health.js';
-import { loadWorkspaceState, initWorkspaceRuntime, seedWorkspaceDemo } from './workspace.js?v=workspace-tabs-20261104-min-save-3-1';
+import { loadWorkspaceState, initWorkspaceRuntime, seedWorkspaceDemo } from './workspace.js?v=20261104-experiences-1';
 import { normalizeSavedRoute } from './saved-routes.js';
 import { initMapSettings } from './map-settings.js';
+import { initRegionalRoutingPackagesUI } from './regional-routing-packages-ui.js?v=20261104-valhalla-packages-ui-1';
 
 export async function init() {
   const telemetry = (stage, details = {}) => globalThis.__MOTHERBIRD_STARTUP_MARK__?.(stage, details);
@@ -93,6 +94,7 @@ export async function init() {
   const removePrimaryControlFallbacks = initPrimaryControls();
   initStorageDiagnostics();
   initStorageHealth();
+  initRegionalRoutingPackagesUI();
   const deferRegionalDataForBoot = true;
   try {
     setSplashStatus('Opening your journal…');
@@ -160,7 +162,7 @@ export async function init() {
   // whose core controls are still waiting behind optional enrichment.
   await initMapPaint().catch((error) => console.warn('Map paint unavailable:', error.message));
   await initLayerSystem().catch((error) => console.warn('Layer system unavailable:', error.message));
-  await import('./events.js?v=gesture-actions-20261104-2')
+  await import('./events.js?v=local-mip-duckdb-20261104-1')
     .then(({ initEvents }) => initEvents())
     .catch((error) => console.warn('Core controls unavailable:', error.message));
   const refreshMapLayout = () => state.map?.invalidateSize({ pan: false });

@@ -10,7 +10,8 @@ import db from './storage.js';
 import { isVisiblePoi, selectImportantPois } from './poi.js';
 import { placeLight, publicPlaceSource, walkerDetails } from './place-details.js';
 import { installedPackBounds } from './offline-view.js';
-import { isHistorySite, renderLearnHistory, setLearnView, setLearnScreen, setActiveWatershed, setBattlefieldEra, setBattlefieldYear, setBattlefieldSite, stepBattlefieldBack, setActiveLensItem, paintHistoricalTopo, stopHistoricalTopo, setLearnNearbyOnly } from './learn-history.js?v=20261102-learn-tabs-1';
+import { isHistorySite, renderLearnHistory, setLearnView, setLearnScreen, setActiveWatershed, setBattlefieldEra, setBattlefieldYear, setBattlefieldSite, stepBattlefieldBack, setActiveLensItem, paintHistoricalTopo, stopHistoricalTopo, setLearnNearbyOnly } from './learn-history.js?v=20261104-experiences-1';
+import { unlockExperienceMilestone } from './experiences.js?v=20261104-experiences-1';
 import { setPoiVisited } from './poi-visit-tracking.js';
 import { addWalkWaypoint, startWalk } from './walk.js';
 import { initMapsFolders, renderMapsLibrary } from './maps-folders.js';
@@ -460,6 +461,18 @@ export function initFieldGuideFilters() {
     if (lensItem) { setActiveLensItem(lensItem.dataset.learnLensItem); void renderFieldGuide('learn'); return; }
     const openLearn = event.target.closest('[data-learn-open]');
     if (openLearn) { setLearnScreen(openLearn.dataset.learnOpen); void renderFieldGuide('learn'); return; }
+    const unlockExperience = event.target.closest('[data-experience-unlock]');
+    if (unlockExperience) {
+      unlockExperience.setAttribute('disabled', '');
+      void unlockExperienceMilestone(unlockExperience.dataset.experienceUnlock, unlockExperience.dataset.experienceMilestone).then((result) => {
+        if (result.status === 'unlocked') toast(`Milestone unlocked. ${result.balance.toLocaleString()} steps remain.`);
+        else if (result.status === 'already-unlocked') toast('That milestone is already unlocked.');
+        else if (result.status === 'previous-milestone-required') toast('Complete the previous milestone first.');
+        else toast(`You need ${Math.max(0, Number(result.required || 0) - Number(result.balance || 0)).toLocaleString()} more measured steps.`);
+        void renderFieldGuide('learn');
+      }).catch((error) => { unlockExperience.removeAttribute('disabled'); toast(error?.message || 'The milestone could not be unlocked.'); });
+      return;
+    }
     const learnByMe = event.target.closest('[data-learn-by-me]');
     if (learnByMe) { setLearnNearbyOnly(true); void renderFieldGuide('learn'); return; }
     const learnAll = event.target.closest('[data-learn-all]');

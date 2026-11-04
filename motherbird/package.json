@@ -8,6 +8,7 @@
     "build": "node tools/build-pages.mjs",
     "serve:test": "node tools/serve-test.mjs",
     "test:pages-smoke": "playwright test tests/pages-smoke.spec.mjs",
+    "qualify:release": "node tools/qualify-release.mjs",
     "test:storage-contract": "node --test tests/storage-contract.test.mjs tests/storage-cache-contract.test.mjs tests/outbox-runtime.test.mjs tests/workspace.test.mjs tests/workspace-persistence.test.mjs tests/workspace-header-css.test.mjs",
     "verify:deployed-build": "node tools/verify-deployed-build.mjs",
     "build:kpi": "node tools/build-kpi-index.mjs",
@@ -95,10 +96,12 @@
   },
   "homepage": "https://github.com/Sethryst/walk-wildlife#readme",
   "dependencies": {
+    "@duckdb/duckdb-wasm": "1.32.0",
     "@geoman-io/leaflet-geoman-free": "^2.20.1",
     "@turf/turf": "^7.4.0",
     "flatbush": "4.6.2",
-    "rbush": "4.0.1"
+    "rbush": "4.0.1",
+    "valhalla-browser": "0.2.1"
   },
   "devDependencies": {
     "@playwright/test": "^1.63.0"

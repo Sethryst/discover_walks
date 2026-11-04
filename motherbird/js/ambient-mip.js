@@ -12,22 +12,30 @@ const DEFAULT_WEIGHTS = Object.freeze({
 
 /** Route a bounded set of candidates. Every candidate is verified by the
  * supplied routing function before it can be ranked or explained. */
-export async function generateAmbientOptions({ origin, destination, routeOnFoot, context = {}, memory = {}, discoveryStops = [], quietStops = [], sidecar = null, poiRecords = [], corridorCatalogue = [] } = {}) {
+export async function generateAmbientOptions({ origin, destination, routeOnFoot, context = {}, memory = {}, discoveryStops = [], quietStops = [], sidecar = null, poiRecords = [], corridorCatalogue = [], evidenceLoader = null } = {}) {
   if (typeof routeOnFoot !== 'function' || !origin || !destination) return { primary: null, alternatives: [], routes: [] };
+  const defaultProfile = context.routingProfile || 'ordinary_walking_beta';
   const routeOptions = (profile) => ({ profile, avoidEdges: [...(context.avoidEdges || [])], graphVersion: context.graphVersion || null, cellRelease: context.cellRelease || null });
-  const direct = await safeRoute(routeOnFoot, [origin, destination], routeOptions('ordinary_walking_beta'));
+  const direct = await safeRoute(routeOnFoot, [origin, destination], routeOptions(defaultProfile));
   const directMinutes = direct.ok ? Number(direct.durationSeconds || 0) / 60 : 0;
-  const routes = direct.ok ? [enrichAmbientRoute({ ...direct, avoidEdges: routeOptions('ordinary_walking_beta').avoidEdges, id: 'ambient-direct', archetype: 'direct', directDurationMinutes: directMinutes, facts: { extraMinutes: 0 } }, sidecar, poiRecords, corridorCatalogue)] : [];
+  let evidence = { sidecar, corridorCatalogue };
+  if (direct.ok && typeof evidenceLoader === 'function') {
+    try {
+      const loaded = await evidenceLoader(direct);
+      if (loaded?.available) evidence = { sidecar: loaded.sidecar, corridorCatalogue: loaded.corridorCatalogue || [] };
+    } catch { /* evidence is optional; verified routing still works without it */ }
+  }
+  const routes = direct.ok ? [enrichAmbientRoute({ ...direct, avoidEdges: routeOptions(defaultProfile).avoidEdges, id: 'ambient-direct', archetype: 'direct', directDurationMinutes: directMinutes, facts: { extraMinutes: 0 } }, evidence.sidecar, poiRecords, evidence.corridorCatalogue)] : [];
   const candidateStops = [
     ...discoveryStops.filter(Boolean).slice(0, 3).map((stop) => ({ stop, archetype: 'discovery' })),
     ...quietStops.filter(Boolean).slice(0, 3).map((stop) => ({ stop, archetype: 'quiet' }))
   ];
   for (const { stop, archetype } of candidateStops) {
     if (routes.some((route) => route.archetype === archetype)) continue;
-    const profile = archetype === 'quiet' && context.stepFreeRequested === true ? 'accessible_verified' : 'ordinary_walking_beta';
+    const profile = archetype === 'quiet' && context.stepFreeRequested === true && defaultProfile === 'ordinary_walking_beta' ? 'accessible_verified' : defaultProfile;
     const result = await safeRoute(routeOnFoot, [origin, stop, destination], routeOptions(profile));
     if (!result.ok || (profile === 'accessible_verified' && result.accessibilityVerified !== true && result.accessibilityEvidence !== 'verified')) continue;
-    routes.push(enrichAmbientRoute({ ...result, avoidEdges: routeOptions(profile).avoidEdges, id: `ambient-${archetype}-${stop.id || stop.name || routes.length}`, archetype, directDurationMinutes: directMinutes, stops: [stop], facts: { discoveryFocus: archetype === 'discovery' ? discoveryFocus(stop) : null, poiCount: archetype === 'discovery' && isTrustedPoi(stop) ? 1 : 0, mappedPlaceCount: archetype === 'discovery' ? 1 : 0, extraMinutes: Math.max(0, Number(result.durationSeconds || 0) / 60 - directMinutes) } }, sidecar, poiRecords, corridorCatalogue));
+    routes.push(enrichAmbientRoute({ ...result, avoidEdges: routeOptions(profile).avoidEdges, id: `ambient-${archetype}-${stop.id || stop.name || routes.length}`, archetype, directDurationMinutes: directMinutes, stops: [stop], facts: { discoveryFocus: archetype === 'discovery' ? discoveryFocus(stop) : null, poiCount: archetype === 'discovery' && isTrustedPoi(stop) ? 1 : 0, mappedPlaceCount: archetype === 'discovery' ? 1 : 0, extraMinutes: Math.max(0, Number(result.durationSeconds || 0) / 60 - directMinutes) } }, evidence.sidecar, poiRecords, evidence.corridorCatalogue));
   }
   const intention = inferWalkingIntention({ ...context, destination }, memoryScores(memory));
   const ranked = rankAmbientRoutes(routes, { intention: intention.primary, memory, maxMinutes: context.availableMinutes || Infinity });

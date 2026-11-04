@@ -10,9 +10,9 @@ import { localSearchHits, searchRowHtml, emptySearchHtml } from './search.js';
 import { initRegionalNavigation } from './regional-navigation.js?v=20261101-conditional-menu-1';
 import { switchCity } from './city.js';
 import { generateTimeBasedPlan, lockSelectedPlanOnMap, changePlan, setPlanningMode } from './planner.js?v=20261014-single-composed-walk-1';
-import { routeOnFoot, routeFailureMessage } from './routing.js?v=20261011-cross-cell-stitch-3';
+import { routeOnFoot, routeFailureMessage } from './routing.js?v=20261104-valhalla-wasm-1';
 import { coordinateLabel, resolveRoutePlaceLabel } from './route-place-labels.js?v=20261006-route-labels-1';
-import { paintWalkPlan, paintCard, previewCard, sendCurrentWalkPlan } from './field-guide.js?v=140-live-learn-by-me';
+import { paintWalkPlan, paintCard, previewCard, sendCurrentWalkPlan } from './field-guide.js?v=20261104-experiences-1';
 import { wordCount } from './reflection.js';
 import { refreshCompanionState } from './companion.js';
 import db from './storage.js';
@@ -29,7 +29,7 @@ import { addPlaceToJournalRoom, addJournalNoteToJournalRoom } from './journal-ro
 import { buildInWalkSuggestion } from './ambient-mip.js?v=20261007-walk-moods-1';
 import { renderPersonalPlacesPanel } from './personal-places.js';
 import { explainWalkPlan } from './walk-plan.js';
-import { initOutingComposer } from './outing-composer.js?v=20261103-compose-panel-viewport-1';
+import { initOutingComposer } from './outing-composer.js?v=20261104-duckdb-mip-1';
 import { completeOutingForWalk } from './outing-draft.js';
 
 const COSTUMES = ['Inky', 'Fox', 'Cloud', 'Compass'];

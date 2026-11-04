@@ -17,7 +17,7 @@ startupTelemetry('document');
 globalThis.__MOTHERBIRD_STARTUP_MARK__ = startupTelemetry;
 startupTelemetry('app.js');
 
-import('./js/loader.js?v=20261103-header-repair-3').then(({ init }) => {
+import('./js/loader.js?v=20261104-local-mip-duckdb-1').then(({ init }) => {
   startupTelemetry('loader imported');
   return init();
 }).catch((error) => {

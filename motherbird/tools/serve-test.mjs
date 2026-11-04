@@ -13,6 +13,7 @@ const types = {
   '.json': 'application/json; charset=utf-8',
   '.mjs': 'text/javascript; charset=utf-8',
   '.svg': 'image/svg+xml',
+  '.wasm': 'application/wasm',
 };
 
 const server = http.createServer((request, response) => {

@@ -2,7 +2,7 @@ import db from './storage.js';
 import { state } from './state.js';
 import { escapeHtml, uid } from './utils.js';
 import { generateTimeBasedPlan } from './planner.js';
-import { renderFieldGuide } from './field-guide.js';
+import { renderFieldGuide } from './field-guide.js?v=20261104-experiences-1';
 import { isBiodiversitySupported } from './biodiversity.js?v=20261103-live-biodiversity-clusters-2';
 import { startWalk } from './walk.js';
 import { openJournal, syncJournalTitle } from './ui.js?v=20261103-goal-batch-2';

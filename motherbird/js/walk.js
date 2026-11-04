@@ -15,6 +15,7 @@ import db from './storage.js';
 import { linkSavedRecord } from './workspace.js';
 import { startWalkSession } from './walk-plan.js';
 import { updateProfile } from './profile.js';
+import { stepCreditForWalk } from './step-wallet.js?v=20261104-step-wallet-1';
 import { renderArchive } from './archive.js';
 import { refreshLiveConditions } from './weather.js?v=20261104-time-weather-1';
 import {
@@ -169,7 +170,9 @@ async function reconstructRouteGap(previous, current) {
   if (!walk || walk.paused || walk.recordingStatus !== 'recording') return false;
   try {
     const { routeOnFoot } = await import('./routing.js');
-    const profile = walk.transportMode === 'driving' ? 'driving_beta' : 'ordinary_walking_beta';
+    const profile = walk.transportMode === 'driving'
+      ? 'driving_beta'
+      : walk.transportMode === 'cycling' ? 'cycling_beta' : 'ordinary_walking_beta';
     const routed = await routeOnFoot([
       { lat: previous.lat, lng: previous.lng },
       { lat: current.lat, lng: current.lng }
@@ -378,11 +381,12 @@ export async function saveWalk() {
   });
   finished.pointsAwarded = 0;
   finished.events = finished.events.map((event) => ({ ...event, state: 'historical', immutable: true, metadata: { ...(event.metadata || {}), priorState: event.state } }));
-  await Promise.all([
-    db.put('walks', finished),
-    ...finished.events.map((event) => db.put('walk_events', event)),
-    db.remove('walk_drafts', DRAFT_ID)
-  ]);
+  const stepCredit = stepCreditForWalk(finished);
+  await db.putMany({
+    walks: [finished],
+    walk_events: finished.events,
+    ...(stepCredit ? { step_ledger: [stepCredit] } : {})
+  }, { walk_drafts: [DRAFT_ID] });
   await updatePersonalPlaceCandidates(finished);
   state.walks = [...state.walks.filter((item) => item.id !== finished.id), finished];
   await linkSavedRecord('walk', finished.id);

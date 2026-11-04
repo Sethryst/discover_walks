@@ -1,10 +1,11 @@
 // Keep the whole module graph with the shell. Caching only app.js leaves an
 // offline (or briefly disconnected) reload with a blank app when any imported
 // module was not already in the runtime cache.
-const APP_CACHE = 'walk-wildlife-shell-v691-weather-learn-spacing'; // Keep large regional enrichment out of startup
+const APP_CACHE = 'walk-wildlife-shell-v709-local-mip-duckdb'; // Keep large regional enrichment out of startup
 const TILE_CACHE = 'walk-wildlife-map-tiles-v2';
 const LIBRARY_CACHE = 'walk-wildlife-library-v2';
 const COMPANION_CACHE = 'walk-wildlife-companion-media-v2';
+const VALHALLA_PACKAGE_CACHE = 'walk-wildlife-valhalla-packages-v1';
 const CACHE_ENTRY_BUDGETS = Object.freeze({ [TILE_CACHE]: 250, [LIBRARY_CACHE]: 120, [COMPANION_CACHE]: 24 });
 async function trimCache(cache, name) { const budget = CACHE_ENTRY_BUDGETS[name]; if (!budget) return; const keys = await cache.keys(); for (const key of keys.slice(0, Math.max(0, keys.length - budget))) await cache.delete(key); }
 const libraryPath = new URL('./vendor/', self.registration.scope).pathname;
@@ -24,9 +25,9 @@ const shell = [
   './js/neighborhoods.js', './js/spatial-index.js', './js/spatial-index-providers.js', './js/spatial-overlay.js', './js/spatial-package-loader.js', './js/spatial-closure-reporting.js', './js/text-to-walk.js',
   './js/quiet-places.js', './js/source-adapters.js', './js/acquisition-package-runtime.js', './js/outbox-runtime.js', './js/region-api.js', './js/region-installer.js', './js/region-manager.js', './js/region-package.js', './js/osm-release.js',
   './js/osm-regions.js', './js/national-poi-map.js', './js/national-osm-layers.js', './js/offline-routing-package.mjs', './js/opfs-range-source.js', './js/walking-cell-registry.js', './js/walking-cell-cache.js', './js/walking-cell-runtime.js', './js/personal-edge-scores.js', './js/room-runtime.js', './js/room-renderers.js', './js/spatial-query.js', './js/spatial-model.js',
-  './js/region-ui.js', './js/routes.js', './js/stories.js', './js/routing.js', './js/route-place-labels.js', './js/routing-feedback.js', './js/runtime-router.mjs', './js/offline-router-worker.js', './js/seasonal-awareness.js', './js/state.js', './js/storage.js', './js/storage-diagnostics.js', './js/saved-routes.js', './js/workspace.js?v=my-paths-default-20261104-1', './js/journal-room.js', './js/map-settings.js',
-  './js/ui.js', './js/utils.js', './js/walk.js', './js/walk-artifact.js', './js/outing-draft.js', './js/outing-composer.js?v=20261103-compose-panel-viewport-1', './js/ambient-mip.js', './js/mip-features.js', './js/walk-context.js', './js/walk-state.js', './js/companion.js', './js/revisit.js', './js/journal-transfer.js', './js/journal-capture.js', './js/map-paint.js', './js/county-additions.js', './js/installed-region-runtime.js', './js/watch-session.js', './js/watch-app.js', './js/device-entry.js', './js/observation-model.js', './js/weather.js', './js/journal-pane.js', './js/quote-context.js', './js/icon-loader.js', './js/poi-icons.js', './js/poi-filter-rules.js', './js/layer-system.js', './js/personal-places.js', './js/planner-selection.js', './js/storage-health.js',
-  './icons/mic.svg', './icons/pencil.svg', './icons/camera.svg', './icons/target.svg', './icons/share-2.svg', './icons/map-pin.svg', './icons/trash-2.svg', './icons/water-fountain.svg', './icons/bench.svg', './icons/parking.svg', './icons/bike.svg', './icons/building.svg', './icons/utensils.svg', './icons/home.svg', './icons/activity.svg', './icons/route.svg', './icons/alert-circle.svg', './icons/layers.svg', './icons/bird.svg', './icons/bird-map.svg', './icons/paw-print.svg', './icons/paw-print-taxonomy.svg', './icons/bug.svg', './icons/bug-taxonomy.svg', './icons/leaf-taxonomy.svg', './icons/mushroom.svg', './icons/mushroom-taxonomy.svg', './icons/turtle.svg', './icons/turtle-taxonomy.svg', './icons/microscope.svg', './icons/microscope-taxonomy.svg', './icons/tree.svg', './icons/tree-fall.svg', './icons/tree-taxonomy.svg', './icons/coffee-map.svg', './icons/utensils-taxonomy.svg',
+  './js/region-ui.js', './js/regional-routing-packages-ui.js', './js/routes.js', './js/stories.js', './js/routing.js', './js/local-routing-engine.js', './js/compact-graph-routing-engine.js', './js/valhalla-wasm-routing-engine.js', './js/valhalla-package-store.js', './js/route-place-labels.js', './js/routing-feedback.js', './js/runtime-router.mjs', './js/offline-router-worker.js', './js/seasonal-awareness.js', './js/state.js', './js/storage.js', './js/storage-diagnostics.js', './js/saved-routes.js', './js/workspace.js?v=20261104-experiences-1', './js/journal-room.js', './js/map-settings.js',
+  './js/ui.js', './js/utils.js', './js/walk.js', './js/walk-artifact.js', './js/step-wallet.js', './js/experiences.js', './js/experience-library-view.js', './js/outing-draft.js', './js/outing-composer.js?v=20261104-duckdb-mip-1', './js/ambient-mip.js', './js/mip-features.js', './js/mip-package-loader.js', './js/mip-discovery.js', './js/mip-duckdb.js', './js/walk-context.js', './js/walk-state.js', './js/companion.js', './js/revisit.js', './js/journal-transfer.js', './js/journal-capture.js', './js/map-paint.js', './js/county-additions.js', './js/installed-region-runtime.js', './js/watch-session.js', './js/watch-app.js', './js/device-entry.js', './js/observation-model.js', './js/weather.js', './js/journal-pane.js', './js/quote-context.js', './js/icon-loader.js', './js/poi-icons.js', './js/poi-filter-rules.js', './js/layer-system.js', './js/personal-places.js', './js/planner-selection.js', './js/storage-health.js',
+  './icons/mic.svg', './icons/pencil.svg', './icons/camera.svg', './icons/target.svg', './icons/share-2.svg', './icons/map-pin.svg', './icons/trash-2.svg', './icons/water-fountain.svg', './icons/bench.svg', './icons/parking.svg', './icons/bike.svg', './icons/building.svg', './icons/utensils.svg', './icons/home.svg', './icons/activity.svg', './icons/route.svg', './icons/alert-circle.svg', './icons/layers.svg', './icons/bird.svg', './icons/bird-map.svg', './icons/paw-print.svg', './icons/paw-print-taxonomy.svg', './icons/bug.svg', './icons/bug-taxonomy.svg', './icons/leaf-taxonomy.svg', './icons/mushroom.svg', './icons/mushroom-taxonomy.svg', './icons/turtle.svg', './icons/turtle-taxonomy.svg', './icons/microscope.svg', './icons/microscope-taxonomy.svg', './icons/tree-fall.svg', './icons/tree-taxonomy.svg', './icons/coffee-map.svg', './icons/utensils-taxonomy.svg',
   './data/anchorage-poi.json', './data/baltimore-poi.json', './data/boise-meridian-idaho-poi.json', './data/columbus-poi.json', './data/corpus-christi-poi.json',
   './data/dc-poi.json', './data/detroit-poi.json', './data/fort-worth-poi.json', './data/keystone-colorado-poi.json', './data/los-angeles-poi.json',
   './data/newyork-poi.json', './data/norfolk-poi.json', './data/pgcounty-poi.json', './data/philadelphia-poi.json', './data/pittsburgh-poi.json',
@@ -74,7 +75,14 @@ const libraryAssets = [
   './vendor/flatbush/flatbush.js',
   './vendor/flatbush/flatqueue.js',
   './vendor/rbush/rbush.js',
-  './vendor/rbush/quickselect.js'
+  './vendor/rbush/quickselect.js',
+  './vendor/valhalla-browser/0.2.1/index.js',
+  './vendor/valhalla-browser/0.2.1/worker.js',
+  './vendor/valhalla-browser/0.2.1/valhalla-browser.wasm',
+  './vendor/valhalla-browser/0.2.1/runtime.json',
+  './vendor/duckdb-wasm/1.32.0/duckdb-browser.bundle.mjs',
+  './vendor/duckdb-wasm/1.32.0/duckdb-browser-mvp.worker.js',
+  './vendor/duckdb-wasm/1.32.0/duckdb-mvp.wasm'
 ];
 
 
@@ -110,12 +118,9 @@ self.addEventListener('activate', (event) => event.waitUntil(
     )),
     self.clients.claim(),
     self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then((windows) => {
-      // Post first for current builds; navigate is the compatibility fallback
-      // for tabs running an older app.js that does not know FORCE_RELOAD.
-      return Promise.all(windows.map((client) => {
-        client.postMessage({ type: 'FORCE_RELOAD', reason: 'new-app-cache' });
-        return client.navigate(client.url).catch(() => null);
-      }));
+      // Navigation cannot be awaited from activate: a navigation can itself
+      // wait for activation and deadlock the worker in the "activating" state.
+      for (const client of windows) client.postMessage({ type: 'FORCE_RELOAD', reason: 'new-app-cache' });
     })
   ])
 ));
@@ -128,6 +133,14 @@ self.addEventListener('fetch', (event) => {
   // response (partial or complete) in a service-worker cache.
   if (/\.pmtiles$/i.test(url.pathname)) {
     event.respondWith(fetch(event.request));
+    return;
+  }
+
+  if (url.origin === self.location.origin && url.pathname.includes('/__valhalla_offline__/')) {
+    event.respondWith(caches.open(VALHALLA_PACKAGE_CACHE).then(async (cache) => (
+      await cache.match(event.request, { ignoreVary: true })
+      || new Response('Offline Valhalla package object not found.', { status: 404 })
+    )));
     return;
   }
 
@@ -171,14 +184,14 @@ self.addEventListener('fetch', (event) => {
     // activation cleanup provide the update boundary. HTML and data remain
     // network-first below so fresh content is still preferred.
     if (staticAssetPattern.test(url.pathname)) {
-      event.respondWith(caches.match(event.request).then(async (cached) => {
+      event.respondWith(caches.match(event.request, { ignoreSearch: true }).then(async (cached) => {
         if (cached) return cached;
         const response = await fetch(event.request);
         if (response.ok) {
           event.waitUntil(caches.open(APP_CACHE).then((cache) => cache.put(event.request, response.clone())));
         }
         return response;
-      }).catch(() => caches.match(event.request)));
+      }).catch(() => caches.match(event.request, { ignoreSearch: true })));
       return;
     }
     event.respondWith(

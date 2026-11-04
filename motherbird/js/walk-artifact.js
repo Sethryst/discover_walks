@@ -1,6 +1,6 @@
 import { distanceMeters } from './geo.js';
 
-export const WALK_SCHEMA_VERSION = 3;
+export const WALK_SCHEMA_VERSION = 4;
 export const WALK_EVENT_TYPES = Object.freeze([
   'pause',
   'return',
@@ -23,6 +23,11 @@ export function createWalkArtifact({ id, city, startedAt = new Date().toISOStrin
     durationSeconds: 0,
     movingDurationSeconds: 0,
     distanceMeters: 0,
+    // Null means no pedometer/health source supplied a real count. Distance
+    // is never converted into "actual" steps.
+    actualSteps: null,
+    stepCountSource: null,
+    stepsMeasuredAt: null,
     points: [],
     startLocation: null,
     endLocation: null,
@@ -30,7 +35,7 @@ export function createWalkArtifact({ id, city, startedAt = new Date().toISOStrin
     saved: false,
     savedAt: null,
     routeMode,
-    transportMode: transportMode === 'driving' ? 'driving' : 'walking',
+    transportMode: ['walking', 'cycling', 'driving'].includes(transportMode) ? transportMode : 'walking',
     plannedRouteId,
     outingDraftId,
     events: [],
@@ -64,6 +69,8 @@ export function normalizeWalkArtifact(walk = {}) {
     elapsedDurationSeconds: elapsed,
     durationSeconds: elapsed,
     movingDurationSeconds: Number(walk.movingDurationSeconds) || 0,
+    actualSteps: Number.isSafeInteger(walk.actualSteps) && walk.actualSteps >= 0 ? walk.actualSteps : null,
+    stepCountSource: typeof walk.stepCountSource === 'string' ? walk.stepCountSource : null,
     points: Array.isArray(walk.points) ? walk.points : [],
     inferredSegments: Array.isArray(walk.inferredSegments) ? walk.inferredSegments : [],
     events: Array.isArray(walk.events) ? walk.events : [],

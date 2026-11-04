@@ -20,6 +20,12 @@ The map artifact is PMTiles v3 with `walk_network` and `barriers` vector layers.
 The graph is `motherbird-runtime-graph-v1`. Both must come from the same immutable
 Gremlin Lab source build.
 
+A cell may instead declare `routingEngine: "valhalla-wasm"` with
+`artifacts.valhalla_manifest` and `artifacts.valhalla_tiles`. That pair is a
+complete Valhalla 3.8.3 regional release, not a remote routing endpoint. See
+[valhalla-on-device.md](valhalla-on-device.md) for its compatibility, offline
+installation, privacy, and device-qualification contract.
+
 Before graph compilation, `scripts/build-national-pedestrian-routing-stage3.sh`
 creates `walking-cell-plan.json`. Its globally anchored Web Mercator quadtree
 IDs are reproducible across runs. Cells subdivide until their intersecting land

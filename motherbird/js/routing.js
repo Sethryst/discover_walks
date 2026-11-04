@@ -1,10 +1,11 @@
 import { activateWalkingCellAt, getWalkingCellRegistry } from './walking-cell-runtime.js?v=20261006-routing-hardening-4';
+import { compactGraphRoutingEngine } from './compact-graph-routing-engine.js?v=20261104-local-engine-1';
+import { valhallaWasmRoutingEngine } from './valhalla-wasm-routing-engine.js?v=20261104-valhalla-wasm-1';
+import { registerLocalRoutingEngine, routeLocalLeg } from './local-routing-engine.js?v=20261104-local-engine-1';
 
-let worker = null;
-let sequence = 0;
-const pending = new Map();
+registerLocalRoutingEngine(compactGraphRoutingEngine, { preferred: true });
+registerLocalRoutingEngine(valhallaWasmRoutingEngine);
 let activeWalkingCell = null;
-let workerReady = false;
 
 if (typeof window !== 'undefined') window.addEventListener('walking-cell-ready', ({ detail }) => { activeWalkingCell = detail; });
 
@@ -21,6 +22,7 @@ export const ROUTE_FAILURE_MESSAGES = {
   ACCESS_POLICY_BLOCKED: 'That route is not available with the selected walking settings.',
   ACCESSIBILITY_DATA_INSUFFICIENT: 'There is not enough accessibility information to verify that route.',
   GRAPH_VERSION_UNAVAILABLE: 'The route is not ready yet. Try again in a moment.',
+  LOCAL_ROUTING_ENGINE_UNAVAILABLE: 'This region does not have a compatible on-device routing engine installed.',
   NO_CELL_FOR_COORDINATE: 'Choose points inside the mapped area or move them a little closer together.',
   CROSS_CELL_UNAVAILABLE: 'Try a shorter walk or choose points inside the same mapped area.',
   BOUNDARY_STITCH_FAILED: 'Try a slightly different crossing or choose points a little closer together.',
@@ -96,6 +98,8 @@ export async function routeOnFoot(points, {
     cellRelease: activeWalkingCell.release,
     warnings: [...new Set(legs.flatMap((leg) => leg.warnings))],
     instructions: mergeInstructions(legs),
+    routingEngine: legs[0].routing_engine,
+    routingExecution: 'device',
     graphVersion: legs[0].graph_version,
     policyVersion: legs[0].policy_version,
     confidence: { minimum: Math.min(...legs.map((leg) => leg.confidence.minimum)), average: legs.reduce((sum, leg) => sum + leg.confidence.average, 0) / legs.length }
@@ -103,12 +107,12 @@ export async function routeOnFoot(points, {
 }
 
 async function requestRouteWithRetry(payload) {
-  let result = await requestRoute(payload);
+  let result = await routeLocalLeg(payload);
   if (result.ok || !['ROUTING_WORKER_ERROR', 'ROUTING_TIMEOUT', 'GRAPH_VERSION_UNAVAILABLE'].includes(result.status)) return result;
   // A worker can die during a large graph decode or transient cache read. The
   // request layer resets it; one retry makes the next route attempt useful
   // without allowing an infinite loop of expensive graph loads.
-  result = await requestRoute(payload);
+  result = await routeLocalLeg(payload);
   if (result.ok || !['ROUTING_WORKER_ERROR', 'ROUTING_TIMEOUT', 'GRAPH_VERSION_UNAVAILABLE'].includes(result.status)) return result;
   return failure('ROUTING_GRAPH_UNAVAILABLE', result.failure?.reason || result.failure?.message);
 }
@@ -204,38 +208,6 @@ function mergeInstructions(legs) {
     }
   });
   return merged;
-}
-
-function requestRoute(payload) {
-  if (typeof Worker === 'undefined') return Promise.resolve(failure('GRAPH_VERSION_UNAVAILABLE'));
-  if (!worker) {
-    worker = new Worker('./js/offline-router-worker.js?v=20261011-routing-candidates-1', { type: 'module' });
-    worker.onmessage = ({ data }) => {
-      if (data.type === 'progress') { window.dispatchEvent(new CustomEvent('routing-progress', { detail: data })); return; }
-      if (data.type === 'worker-ready') { workerReady = true; window.dispatchEvent(new CustomEvent('routing-worker-ready', { detail: data })); return; }
-      if (data.type === 'worker-error') { for (const entry of pending.values()) { clearTimeout(entry.timer); entry.resolve(failure('ROUTING_WORKER_ERROR', `${data.message} [phase=${data.phase || 'unknown'}]`)); } pending.clear(); return; }
-      const callback = pending.get(data.requestId);
-      if (!callback) return;
-      pending.delete(data.requestId); clearTimeout(callback.timer); callback.resolve(data.result);
-    };
-    worker.onerror = (event) => {
-      const reason = event.message || event.error?.message || event.error?.stack || `${event.filename || 'worker'}:${event.lineno || 0}:${event.colno || 0} [ready=${workerReady}]`;
-      for (const entry of pending.values()) { clearTimeout(entry.timer); entry.resolve(failure('ROUTING_WORKER_ERROR', reason)); }
-      pending.clear(); worker = null; workerReady = false;
-    };
-  }
-  const requestId = ++sequence;
-  return new Promise((resolve) => {
-    const timer = setTimeout(() => {
-      const reason = 'Routing worker exceeded 120 seconds and was cancelled.';
-      const cancelled = worker;
-      worker = null;
-      cancelled?.terminate();
-      for (const entry of pending.values()) { clearTimeout(entry.timer); entry.resolve(failure('ROUTING_TIMEOUT', reason)); }
-      pending.clear();
-    }, 120000);
-    pending.set(requestId, { resolve, timer }); worker.postMessage({ type: 'route', requestId, ...payload });
-  });
 }
 
 function failure(type, reason = null) { const result = { ok: false, status: type, failure: { type, message: ROUTE_FAILURE_MESSAGES[type] || 'Offline routing failed.', reason } }; console.error('routing-failure', JSON.stringify(result)); return result; }

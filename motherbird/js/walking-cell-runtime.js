@@ -44,6 +44,7 @@ export async function activateWalkingCellAt(point, { manifestUrl = walkingCellMa
       bounds: cell.bounds,
       availability: cell.availability || 'routing_available',
       routingNeighbors: Array.isArray(cell.routingNeighbors) ? [...cell.routingNeighbors] : [],
+      routingEngine: cell.routingEngine || null,
       artifacts: cell.artifacts,
       files: {}
       ,lockOn: Boolean(nearest && !cellMatch)

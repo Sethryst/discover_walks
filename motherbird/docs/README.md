@@ -22,6 +22,8 @@ This folder is the short handoff package for people or AI agents changing the pr
 16. [DeliveryModules.md](DeliveryModules.md) is the release handoff for the spatial platform, Federal/DC Core, and product/research commits.
 17. [GeoCypher.md](GeoCypher.md) documents Audio Notes (the former Geo Cypher implementation), signed lineage, Bird Note sharing, and the Field Edition boundary.
 18. [`../ideas/`](../ideas/) is the working notebook for unfinished product and architecture ideas, including anonymous attribution and just-in-time geographic artifacts.
+19. [valhalla-on-device.md](valhalla-on-device.md) defines the bundled Valhalla WASM adapter, compatible regional graph package, offline installation path, and physical-device qualification gate.
+20. [local-first-journeys.md](local-first-journeys.md) traces the device-only Valhalla + DuckDB-Wasm MIP flow through activity, steps, experiences, learning, and the journal boundary.
 
 The original [automation branch specification](../archive/automation.md) is archived as historical context; keep this index and the focused documents current when implementation changes.
 

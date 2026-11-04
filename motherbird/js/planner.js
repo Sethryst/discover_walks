@@ -2,10 +2,11 @@ import { state } from './state.js';
 import { setPlannerSelecting } from './planner-selection.js?v=20261004-planner-selection-1';
 import { CITIES } from './constants.js';
 import { poiTags } from './poi.js';
-import { routeOnFoot, routeFailureMessage } from './routing.js?v=20261011-cross-cell-stitch-3';
+import { routeOnFoot, routeFailureMessage } from './routing.js?v=20261104-valhalla-wasm-1';
 import { escapeHtml } from './utils.js';
 import { toast } from './ui.js';
-import { buildAmbientExplanation, generateAmbientOptions, installAmbientLearningListener, readAmbientMemory } from './ambient-mip.js?v=20261007-walk-moods-1';
+import { buildAmbientExplanation, generateAmbientOptions, installAmbientLearningListener, readAmbientMemory } from './ambient-mip.js?v=20261104-local-mip-1';
+import { loadMIPPackageForRoute } from './mip-package-loader.js?v=20261104-local-mip-1';
 import { createWalkPlan, saveWalkPlan } from './walk-plan.js';
 import { recipeFromDocument, recipeCandidateAllowed, recipeRequest } from './walk-recipes.js';
 
@@ -275,7 +276,7 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
     const quietStops = nearby.filter((stop) => poiTags(stop).some((tag) => ['park', 'trail', 'nature', 'quiet'].includes(tag))).slice(0, 2);
     let ambient = { routes: [] };
     try {
-      ambient = await generateAmbientOptions({ origin: routeOrigin, destination: state.plannerEnd, routeOnFoot, context: { availableMinutes, destination: state.plannerEnd, currentPaceMps: state.walk?.paceMps, routeHistoryCount: state.walks?.length || 0, rememberedPlaceCount: state.personalPlaces?.length || 0, avoidEdges: state.routingConstraints?.avoidEdges || state.avoidEdges || [], graphVersion: state.routingConstraints?.graphVersion || null, cellRelease: state.routingConstraints?.cellRelease || null }, memory: localMemory, discoveryStops, quietStops });
+      ambient = await generateAmbientOptions({ origin: routeOrigin, destination: state.plannerEnd, routeOnFoot, context: { availableMinutes, destination: state.plannerEnd, currentPaceMps: state.walk?.paceMps, routeHistoryCount: state.walks?.length || 0, rememberedPlaceCount: state.personalPlaces?.length || 0, avoidEdges: state.routingConstraints?.avoidEdges || state.avoidEdges || [], graphVersion: state.routingConstraints?.graphVersion || null, cellRelease: state.routingConstraints?.cellRelease || null }, memory: localMemory, discoveryStops, quietStops, poiRecords: nearby, evidenceLoader: loadMIPPackageForRoute });
     } catch (error) {
       console.warn('Ambient route options unavailable; falling back to direct routing:', error);
     }

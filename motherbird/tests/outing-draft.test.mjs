@@ -23,6 +23,7 @@ test('an empty outing draft is durable and keeps one identity through place edit
   const empty = await ensureOutingDraft({ city: 'arlington' });
   assert.equal(empty.id, ACTIVE_OUTING_DRAFT_ID);
   assert.deepEqual(empty.items, []);
+  assert.equal(empty.travelMode, 'walking');
 
   const withPlace = await addOutingItem({ placeId: 'park-1', name: 'Small Park', lat: 38.89, lng: -77.08 }, 'possible-stop', empty);
   const rerolled = await setOutingItemRole(withPlace.items[0].id, 'destination', withPlace);

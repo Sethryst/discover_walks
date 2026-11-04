@@ -31,7 +31,7 @@ function normalizeItem(item, index = 0) {
   };
 }
 
-export function createOutingDraft({ id = ACTIVE_OUTING_DRAFT_ID, city = state.activeCity || null, branchOf = null, items = [], recipeId = null, timePreferenceMinutes = null } = {}) {
+export function createOutingDraft({ id = ACTIVE_OUTING_DRAFT_ID, city = state.activeCity || null, branchOf = null, items = [], recipeId = null, timePreferenceMinutes = null, travelMode = 'walking' } = {}) {
   const createdAt = now();
   return normalizeOutingDraft({
     schema: OUTING_DRAFT_SCHEMA,
@@ -41,6 +41,7 @@ export function createOutingDraft({ id = ACTIVE_OUTING_DRAFT_ID, city = state.ac
     branchOf,
     items,
     recipeId,
+    travelMode,
     timePreferenceMinutes,
     routePreview: { status: 'idle', coordinates: [], distanceMeters: 0, durationSeconds: 0, message: 'Add places when you want the route to emerge.' },
     status: 'draft',
@@ -61,6 +62,7 @@ export function normalizeOutingDraft(input = {}) {
     branchOf: input.branchOf || null,
     items,
     recipeId: input.recipeId || null,
+    travelMode: ['walking', 'cycling', 'driving'].includes(input.travelMode) ? input.travelMode : 'walking',
     timePreferenceMinutes: Number.isFinite(Number(input.timePreferenceMinutes)) ? Number(input.timePreferenceMinutes) : null,
     routePreview: {
       status: input.routePreview?.status || 'idle',
@@ -142,6 +144,7 @@ export async function updateOutingPreferences(patch = {}, draft = state.outingDr
   return saveOutingDraft({
     ...current,
     recipeId: Object.hasOwn(patch, 'recipeId') ? patch.recipeId || null : current.recipeId,
+    travelMode: Object.hasOwn(patch, 'travelMode') && ['walking', 'cycling', 'driving'].includes(patch.travelMode) ? patch.travelMode : current.travelMode,
     timePreferenceMinutes: Object.hasOwn(patch, 'timePreferenceMinutes') ? (Number(patch.timePreferenceMinutes) || null) : current.timePreferenceMinutes
   });
 }

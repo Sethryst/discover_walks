@@ -1,6 +1,6 @@
 const DATABASE_NAME = 'walk-wildlife-journal';
-const DATABASE_VERSION = 23;
-const STORES = ['walks','observations','moments','profile','settings','points_of_interest','poi_metadata','regions','region_pois','region_buckets','field_editions','civic_witnesses','neighborhood_discoveries','walk_drafts','walk_events','personal_places','personal_place_categories','layer_settings','voice_notes','journal_audio','county_additions','notification_state','spatial_local_operations','geo_cyphers','geo_cypher_keys','geo_cypher_events','saved_routes','biodiversity_preferences','geo_cypher_manifests','geo_cypher_audio','radio_manifests','radio_playback_state','radio_saved_tracks','radio_transition_assets','spatial_queries','rooms','radio_playlists','walk_soundtracks','walking_cell_metadata','outbox','workspaces','workspace_links','walk_plans','sidecar_contributions','walk_sessions'];
+const DATABASE_VERSION = 24;
+const STORES = ['walks','observations','moments','profile','settings','points_of_interest','poi_metadata','regions','region_pois','region_buckets','field_editions','civic_witnesses','neighborhood_discoveries','walk_drafts','walk_events','personal_places','personal_place_categories','layer_settings','voice_notes','journal_audio','county_additions','notification_state','spatial_local_operations','geo_cyphers','geo_cypher_keys','geo_cypher_events','saved_routes','biodiversity_preferences','geo_cypher_manifests','geo_cypher_audio','radio_manifests','radio_playback_state','radio_saved_tracks','radio_transition_assets','spatial_queries','rooms','radio_playlists','walk_soundtracks','walking_cell_metadata','outbox','workspaces','workspace_links','walk_plans','sidecar_contributions','walk_sessions','step_ledger','experience_progress'];
 const sessionId = globalThis.crypto?.randomUUID?.() || `session-${Date.now()}-${Math.random().toString(16).slice(2)}`;
 const memoryStores = new Map(); const listeners = new Set(); const transitions = [];
 let database = null; let openPromise = null; let state = 'checking'; let transitionAt = performance.now?.() || Date.now();
@@ -22,7 +22,47 @@ function remove(name, id) { if (!database) { memoryStore(name).delete(id); retur
 function putMany(recordsByStore, removals = {}) { const names = [...new Set([...Object.keys(recordsByStore), ...Object.keys(removals)])]; if (!database) { for (const name of names) { for (const id of removals[name] || []) memoryStore(name).delete(id); for (const record of recordsByStore[name] || []) { const value = { ...record, updatedAt: record.updatedAt || Date.now() }; memoryStore(name).set(value.id, value); } } return Promise.resolve(); } const tx = database.transaction(names, 'readwrite'); for (const name of names) { for (const id of removals[name] || []) tx.objectStore(name).delete(id); for (const record of recordsByStore[name] || []) tx.objectStore(name).put({ ...record, updatedAt: record.updatedAt || Date.now() }); } return whenComplete(tx).catch((error) => { transition(error?.name === 'QuotaExceededError' ? 'quota-exceeded' : 'failed', { reason: 'batch-write-error', error }); throw error; }); }
 function replaceMany(recordsByStore) { const names = Object.keys(recordsByStore); if (!database) { for (const name of names) { const store = memoryStore(name); store.clear(); for (const record of recordsByStore[name] || []) store.set(record.id, { ...record, updatedAt: record.updatedAt || Date.now() }); } return Promise.resolve(); } const tx = database.transaction(names, 'readwrite'); for (const name of names) { const store = tx.objectStore(name); store.clear(); for (const record of recordsByStore[name] || []) store.put({ ...record, updatedAt: record.updatedAt || Date.now() }); } return whenComplete(tx); }
 function clearAll() { return Promise.all(STORES.map((name) => database ? result(database.transaction(name, 'readwrite').objectStore(name).clear()) : Promise.resolve(memoryStore(name).clear()))); }
-function migrationPlan(fromVersion = 0) { return fromVersion < DATABASE_VERSION ? [{ version: DATABASE_VERSION, risk: 'additive', description: 'Ensure all local-first stores, including walking-cell metadata and outbox, exist.' }] : []; }
+function migrationPlan(fromVersion = 0) { return fromVersion < DATABASE_VERSION ? [{ version: DATABASE_VERSION, risk: 'additive', description: 'Ensure all local-first stores, including the step ledger and experience progress, exist.' }] : []; }
+function spendSteps({ experienceId, milestoneId, steps, badge, title, prerequisiteMilestoneId = null, at = new Date().toISOString() } = {}) {
+  if (!experienceId || !milestoneId || !Number.isSafeInteger(steps) || steps <= 0) return Promise.reject(new TypeError('A valid experience milestone and positive integer step cost are required.'));
+  const debitId = `experience:${experienceId}:${milestoneId}`;
+  const apply = (entries, previous = null) => {
+    if (entries.some((entry) => entry.id === debitId)) return { status: 'already-unlocked', balance: stepBalance(entries), progress: previous };
+    const balance = stepBalance(entries);
+    if (prerequisiteMilestoneId && !(previous?.unlockedMilestoneIds || []).includes(prerequisiteMilestoneId)) return { status: 'previous-milestone-required', balance, requiredMilestoneId: prerequisiteMilestoneId, progress: previous };
+    if (balance < steps) return { status: 'insufficient-steps', balance, required: steps, progress: previous };
+    const progress = {
+      ...(previous || {}), id: experienceId, localOnly: true,
+      unlockedMilestoneIds: [...new Set([...(previous?.unlockedMilestoneIds || []), milestoneId])],
+      badges: [...(previous?.badges || []).filter((item) => item.milestoneId !== milestoneId), { milestoneId, name: badge, earnedAt: at }],
+      updatedAt: at
+    };
+    const debit = { id: debitId, type: 'debit', steps, sourceType: 'experience-milestone', sourceId: experienceId, milestoneId, title, createdAt: at, localOnly: true };
+    return { status: 'unlocked', balance: balance - steps, progress, debit };
+  };
+  if (!database) {
+    const ledger = [...memoryStore('step_ledger').values()];
+    const outcome = apply(ledger, memoryStore('experience_progress').get(experienceId));
+    if (outcome.debit) { memoryStore('step_ledger').set(outcome.debit.id, outcome.debit); memoryStore('experience_progress').set(experienceId, outcome.progress); }
+    return Promise.resolve(withoutDebit(outcome));
+  }
+  return new Promise((resolve, reject) => {
+    const tx = database.transaction(['step_ledger', 'experience_progress'], 'readwrite');
+    const ledgerStore = tx.objectStore('step_ledger'); const progressStore = tx.objectStore('experience_progress');
+    const ledgerRequest = ledgerStore.getAll(); const progressRequest = progressStore.get(experienceId);
+    let ready = 0; let outcome = null;
+    const maybeApply = () => {
+      if (++ready < 2) return;
+      outcome = apply(ledgerRequest.result || [], progressRequest.result || null);
+      if (outcome.debit) { ledgerStore.put(outcome.debit); progressStore.put(outcome.progress); }
+    };
+    ledgerRequest.onsuccess = maybeApply; progressRequest.onsuccess = maybeApply;
+    tx.oncomplete = () => resolve(withoutDebit(outcome));
+    tx.onerror = () => reject(tx.error); tx.onabort = () => reject(tx.error);
+  });
+}
+function stepBalance(entries) { return entries.reduce((total, entry) => total + (entry.type === 'credit' ? Number(entry.steps) || 0 : entry.type === 'debit' ? -(Number(entry.steps) || 0) : 0), 0); }
+function withoutDebit(outcome) { if (!outcome) return null; const { debit: _debit, ...publicOutcome } = outcome; return publicOutcome; }
 async function enqueueOutbox(operation) { if (!operation?.id) throw new TypeError('Outbox operations require a stable id.'); const existing = await get('outbox', operation.id); if (existing) return existing; return put('outbox', { ...operation, status: operation.status || 'queued', retryCount: Number(operation.retryCount || 0), createdAt: operation.createdAt || new Date().toISOString(), updatedAt: operation.updatedAt || Date.now(), conflictState: operation.conflictState || null }); }
 async function updateOutbox(id, patch) { const existing = await get('outbox', id); if (!existing) throw new Error(`Unknown outbox operation: ${id}`); return put('outbox', { ...existing, ...patch, id, updatedAt: Date.now() }); }
 async function claimOutbox(id, leaseMs = 30000, now = Date.now()) { const leaseUntil = now + Math.max(1000, Number(leaseMs) || 30000); if (!database) { const current = memoryStore('outbox').get(id); if (!current || (current.status === 'processing' && Number(current.leaseUntil || 0) > now) || (current.status !== 'queued' && current.status !== 'processing')) return null; const claimed = { ...current, status: 'processing', leaseOwner: sessionId, leaseUntil, updatedAt: now }; memoryStore('outbox').set(id, claimed); return claimed; } return new Promise((resolve, reject) => { const tx = database.transaction('outbox', 'readwrite'); const store = tx.objectStore('outbox'); const request = store.get(id); let claimed = null; request.onsuccess = () => { const current = request.result; const activeLease = current?.status === 'processing' && Number(current.leaseUntil || 0) > now; if (!current || activeLease || (current.status !== 'queued' && current.status !== 'processing')) return; claimed = { ...current, status: 'processing', leaseOwner: sessionId, leaseUntil, updatedAt: now }; store.put(claimed); }; tx.oncomplete = () => resolve(claimed); tx.onerror = () => reject(tx.error); tx.onabort = () => reject(tx.error); }); }
@@ -40,5 +80,5 @@ if (typeof window !== 'undefined') { window.addEventListener('pagehide', () => {
 channel?.addEventListener('message', (event) => { if (event.data?.type === 'release-for-upgrade' && database) { database.close(); database = null; } });
 // The loader may request a user-controlled backup before future risky migrations.
 const beforeRiskyMigration = true;
-export const db = { open, put, putMany, replaceMany, get, all, remove, clearAll, migrationPlan, enqueueOutbox, claimOutbox, updateOutbox, createPreMigrationBackup, restoreBackup, beforeRiskyMigration, version: DATABASE_VERSION, databaseName: DATABASE_NAME, sessionId, diagnostics, isDurable: () => Boolean(database), persistenceState: () => state, onPersistenceState: (listener) => { listeners.add(listener); return () => listeners.delete(listener); } };
+export const db = { open, put, putMany, replaceMany, get, all, remove, clearAll, migrationPlan, spendSteps, enqueueOutbox, claimOutbox, updateOutbox, createPreMigrationBackup, restoreBackup, beforeRiskyMigration, version: DATABASE_VERSION, databaseName: DATABASE_NAME, sessionId, diagnostics, isDurable: () => Boolean(database), persistenceState: () => state, onPersistenceState: (listener) => { listeners.add(listener); return () => listeners.delete(listener); } };
 export default db;

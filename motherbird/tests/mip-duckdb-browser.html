@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>MIP DuckDB-Wasm browser proof</title>
+<body>
+  <main>
+    <h1>MIP local corridor query</h1>
+    <output id="result">Running local query…</output>
+  </main>
+  <script type="module">
+    import { queryRouteCorridor } from '../js/mip-duckdb.js?v=browser-proof-1';
+    const output = document.getElementById('result');
+    try {
+      const result = await queryRouteCorridor({
+        coordinates: [{ lat: 38.9, lng: -77.04 }, { lat: 38.905, lng: -77.03 }, { lat: 38.91, lng: -77.02 }],
+        pois: [
+          { id: 'bridge', name: 'Historic bridge', lat: 38.9051, lng: -77.0301, category: 'historic bridge' },
+          { id: 'distant', name: 'Distant place', lat: 39.2, lng: -77.4, category: 'park' }
+        ],
+        corridorMeters: 500,
+        limit: 5
+      });
+      const passed = result.engine === 'duckdb-wasm' && result.matches.length === 1 && result.matches[0].id === 'bridge';
+      output.dataset.status = passed ? 'passed' : 'failed';
+      output.textContent = `${passed ? 'PASS' : 'FAIL'} · ${result.engine} · ${result.matches.length} corridor match · ${result.matches[0]?.name || 'none'}${result.warning ? ` · ${result.warning}` : ''}`;
+    } catch (error) {
+      output.dataset.status = 'failed';
+      output.textContent = `FAIL · ${error.message}`;
+    }
+  </script>
+</body>
+</html>

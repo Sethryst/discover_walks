@@ -44,7 +44,7 @@
   <title>Walk & Wildlife</title>
 </head>
 <body>
-  <label class="transport-mode-control">Record as <select name="transportMode" aria-label="Travel mode"><option value="walking">On foot</option><option value="driving">By car</option></select></label>
+  <label class="transport-mode-control">Record as <select name="transportMode" aria-label="Travel mode"><option value="walking">On foot</option><option value="cycling">By bicycle</option><option value="driving">By car</option></select></label>
   <div class="app-splash" id="appSplash" aria-hidden="true"><img src="./assets/splash-screen.jpeg" alt="" /><div class="app-splash-status" role="status" aria-live="polite"><span class="app-splash-status-dot" aria-hidden="true"></span><span id="appSplashStatus">Unfolding your journal…</span></div></div>
   <script>setTimeout(() => document.getElementById('appSplash')?.classList.add('app-splash--done'), 900);</script>
   <main class="app-shell">
@@ -144,12 +144,23 @@
             <label class="secondary-button import-label">Import journal<input id="importDataInput" type="file" accept="application/json,.json" /></label>
           </div>
           <section class="cloud-backup-controls" aria-labelledby="cloudBackupTitle">
-            <strong id="cloudBackupTitle">Encrypted backup</strong>
-            <p id="cloudBackupStatus">Checking Field Edition access…</p>
-            <label>Backup passphrase <input id="cloudBackupPassphrase" type="password" autocomplete="off" minlength="8" placeholder="Not sent to the server" /></label>
+            <strong id="cloudBackupTitle">Device-only journal</strong>
+            <p id="cloudBackupStatus">Journal and activity stay on this device. Export a backup when you want a copy you control.</p>
+            <div hidden>
+              <input id="cloudBackupPassphrase" type="password" />
+              <button id="saveCloudBackupButton" type="button">Cloud backup disabled</button>
+              <button id="restoreCloudBackupButton" type="button">Cloud restore disabled</button>
+            </div>
+          </section>
+          <section class="cloud-backup-controls" id="regionalRoutingPackagePanel" aria-labelledby="regionalRoutingPackageTitle">
+            <strong id="regionalRoutingPackageTitle">Offline routing area</strong>
+            <p><span id="regionalRoutingPackageName">Selected area</span> · route calculations always stay on this device.</p>
+            <p id="regionalRoutingPackageStatus" aria-live="polite">Checking available regional routing data…</p>
             <div class="backup-actions">
-              <button class="secondary-button" id="saveCloudBackupButton" type="button">Replace encrypted backup</button>
-              <button class="secondary-button" id="restoreCloudBackupButton" type="button">Preview encrypted restore</button>
+              <button class="secondary-button" id="downloadRegionalRoutingButton" type="button" disabled>Download this area</button>
+              <button class="secondary-button" id="exportRegionalRoutingButton" type="button" disabled>Export routing package</button>
+              <button class="secondary-button" id="removeRegionalRoutingButton" type="button" disabled>Remove from device</button>
+              <label class="secondary-button import-label">Import routing package<input id="importRegionalRoutingInput" type="file" accept=".walkvalhalla,application/vnd.walk-wildlife.valhalla+json,application/json" /></label>
             </div>
           </section>
           <section class="journal-import-preview hidden" id="journalImportPreview" aria-live="polite"></section>

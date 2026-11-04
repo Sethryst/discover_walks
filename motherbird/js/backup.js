@@ -23,6 +23,7 @@ import {
 } from './cloud-journal.js';
 
 let pendingImport = null;
+const JOURNAL_NETWORK_POLICY = 'device-only';
 
 async function readLocalTransferData() {
   const entries = await Promise.all(JOURNAL_TRANSFER_STORES.map(async (store) => {
@@ -126,7 +127,8 @@ async function stageJournalImport(backup, fileName) {
 }
 
 function cloudBackupReady() {
-  return Boolean(state.online.client && state.online.session && state.online.fieldEditionVerified && state.settings?.entitlements?.cloudJournalBackup);
+  return JOURNAL_NETWORK_POLICY !== 'device-only'
+    && Boolean(state.online.client && state.online.session && state.online.fieldEditionVerified && state.settings?.entitlements?.cloudJournalBackup);
 }
 
 function cloudPassphrase() {
@@ -146,12 +148,12 @@ export function renderCloudBackupControls() {
   const ready = cloudBackupReady();
   status.textContent = ready
     ? (state.online.cloudBackupCreatedAt ? `Field Edition active · backup saved ${new Date(state.online.cloudBackupCreatedAt).toLocaleString()}` : 'Field Edition active · ready for an encrypted backup')
-    : 'Sign in with an active Field Edition subscription to use encrypted cloud backup.';
+    : 'Journal and activity stay on this device. Use an export when you want a backup you control.';
   setCloudBackupBusy(false);
 }
 
 export async function saveCloudJournalBackup() {
-  if (!cloudBackupReady()) throw new Error('Cloud backup requires a signed-in Field Edition subscription.');
+  if (!cloudBackupReady()) throw new Error('Cloud journal backup is disabled by the device-only privacy policy.');
   const passphrase = cloudPassphrase();
   setCloudBackupBusy(true);
   try {
@@ -174,7 +176,7 @@ export async function saveCloudJournalBackup() {
 }
 
 export async function restoreCloudJournalBackup() {
-  if (!cloudBackupReady()) throw new Error('Cloud backup requires a signed-in Field Edition subscription.');
+  if (!cloudBackupReady()) throw new Error('Cloud journal backup is disabled by the device-only privacy policy.');
   const passphrase = cloudPassphrase();
   setCloudBackupBusy(true);
   try {
@@ -197,14 +199,11 @@ export async function restoreCloudJournalBackup() {
 
 export function initBackupControls() {
   const panel = document.createElement('div'); panel.className = 'backup-controls';
-  panel.innerHTML = '<p class="sheet-kicker">YOUR BACKUP</p><p>Export a complete private device backup or a readable journal CSV. Journal imports are previewed; storage backups restore local records and offline assets.</p><div class="backup-actions"><button class="secondary-button" id="exportDataButton" type="button">Export journal JSON</button><button class="secondary-button" id="exportStorageButton" type="button">Export full device</button><button class="secondary-button" id="exportCsvButton" type="button">Export CSV</button><label class="secondary-button import-label">Import backup<input id="importDataInput" type="file" accept="application/json,.json" /></label></div><section class="cloud-backup-controls" aria-labelledby="cloudBackupTitle"><strong id="cloudBackupTitle">Field Edition cloud backup</strong><p id="cloudBackupStatus">Checking Field Edition access…</p><label>Backup passphrase <input id="cloudBackupPassphrase" type="password" autocomplete="off" minlength="8" placeholder="Not sent to the server" /></label><small>One encrypted snapshot is stored. The server cannot read it, and the passphrase cannot be recovered.</small><div class="backup-actions"><button class="secondary-button" id="saveCloudBackupButton" type="button">Replace cloud backup</button><button class="secondary-button" id="restoreCloudBackupButton" type="button">Preview cloud restore</button></div></section><section class="journal-import-preview hidden" id="journalImportPreview" aria-live="polite"></section>';
+  panel.innerHTML = '<p class="sheet-kicker">YOUR BACKUP</p><p>Export a complete private device backup or a readable journal CSV. Journal imports are previewed; storage backups restore local records and offline assets.</p><div class="backup-actions"><button class="secondary-button" id="exportDataButton" type="button">Export journal JSON</button><button class="secondary-button" id="exportStorageButton" type="button">Export full device</button><button class="secondary-button" id="exportCsvButton" type="button">Export CSV</button><label class="secondary-button import-label">Import backup<input id="importDataInput" type="file" accept="application/json,.json" /></label></div><section class="cloud-backup-controls" aria-labelledby="cloudBackupTitle"><strong id="cloudBackupTitle">Device-only journal</strong><p id="cloudBackupStatus">Journal and activity stay on this device.</p><div hidden><input id="cloudBackupPassphrase" type="password" /><button id="saveCloudBackupButton" type="button">Cloud backup disabled</button><button id="restoreCloudBackupButton" type="button">Cloud restore disabled</button></div></section><section class="journal-import-preview hidden" id="journalImportPreview" aria-live="polite"></section>';
   el('clearDataButton').before(panel);
   el('exportDataButton').textContent = 'Export journal (JSON)';
   el('exportCsvButton').textContent = 'Export journal (CSV)';
   el('importDataInput').closest('.import-label').childNodes[0].textContent = 'Import journal';
-  el('cloudBackupTitle').textContent = 'Encrypted backup';
-  el('saveCloudBackupButton').textContent = 'Replace encrypted backup';
-  el('restoreCloudBackupButton').textContent = 'Preview encrypted restore';
   el('exportDataButton').addEventListener('click', () => void exportJournal('json'));
   el('exportStorageButton').addEventListener('click', () => void exportStorageBackup().catch((error) => toast(error.message || 'Could not create the device backup.')));
   el('exportCsvButton').addEventListener('click', () => void exportJournal('csv'));
