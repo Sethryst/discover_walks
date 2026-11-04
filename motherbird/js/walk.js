@@ -17,7 +17,7 @@ import { startWalkSession } from './walk-plan.js';
 import { updateProfile } from './profile.js';
 import { stepCreditForWalk } from './step-wallet.js?v=20261104-step-wallet-1';
 import { renderArchive } from './archive.js';
-import { refreshLiveConditions } from './weather.js?v=20261104-time-weather-2';
+import { refreshLiveConditions } from './weather.js?v=20261104-rain-timing-1';
 import {
   addEventToWalk,
   completeWalkEvent,

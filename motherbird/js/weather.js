@@ -12,7 +12,8 @@ export function liveConditionsText(weather, sun, nwsPeriod = null) {
   return parts.join(' · ') || 'Live conditions unavailable';
 }
 
-function weatherIcon(text = '') {
+function weatherIcon(text = '', night = false) {
+  if (night) return './icons/moon.svg';
   const value = String(text).toLowerCase();
   if (/snow|blizzard|ice/.test(value)) return './icons/cloud-snow.svg';
   if (/rain|shower|drizzle/.test(value)) return './icons/cloud-drizzle.svg';
@@ -27,8 +28,20 @@ function localTimeLabel(timeZone = null) {
   } catch { return new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }); }
 }
 
-function weatherBriefHtml(text, timeZone = null) {
-  return `<img class="weather-brief-icon" src="${weatherIcon(text)}" alt="" aria-hidden="true"><span>${escapeHtml(text)}</span><time class="weather-brief-time" datetime="${new Date().toISOString()}">${escapeHtml(localTimeLabel(timeZone))}</time>`;
+function weatherBriefHtml(text, timeZone = null, night = false) {
+  return `<img class="weather-brief-icon" src="${weatherIcon(text, night)}" alt="" aria-hidden="true"><span>${escapeHtml(text)}</span><time class="weather-brief-time" datetime="${new Date().toISOString()}">${escapeHtml(localTimeLabel(timeZone))}</time>`;
+}
+
+function rainTimingText(periods = [], timeZone = null) {
+  const rainPeriod = periods.find((period) => /rain|shower|drizzle|storm/i.test(String(period?.shortForecast || '')));
+  if (!rainPeriod) return '';
+  const start = Date.parse(rainPeriod.startTime || '');
+  if (!Number.isFinite(start)) return ' · Rain timing unavailable';
+  if (start <= Date.now()) return ' · Rain possible now';
+  try {
+    const label = new Intl.DateTimeFormat([], { timeZone: timeZone || undefined, hour: 'numeric', minute: '2-digit' }).format(new Date(start));
+    return ` · Rain possible from ${label}`;
+  } catch { return ' · Rain timing unavailable'; }
 }
 
 function nightAdjustedText(text, sun = null, period = null) {
@@ -39,7 +52,7 @@ function nightAdjustedText(text, sun = null, period = null) {
   return { text: String(text).replace(/\bsunny\b|\bclear\b/gi, 'clear tonight'), night: true };
 }
 
-async function loadNwsPeriod(lat, lng) {
+async function loadNwsPeriods(lat, lng) {
   try {
     const pointResponse = await fetch(`https://api.weather.gov/points/${encodeURIComponent(lat)},${encodeURIComponent(lng)}`);
     const point = pointResponse.ok ? await pointResponse.json() : null;
@@ -47,8 +60,8 @@ async function loadNwsPeriod(lat, lng) {
     if (!forecastUrl) return null;
     const forecastResponse = await fetch(forecastUrl);
     const forecast = forecastResponse.ok ? await forecastResponse.json() : null;
-    return forecast?.properties?.periods?.[0] || null;
-  } catch { return null; }
+    return forecast?.properties?.periods || [];
+  } catch { return []; }
 }
 
 async function loadNwsObservation(lat, lng) {
@@ -81,16 +94,17 @@ export async function refreshLiveConditions() {
   try {
     const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${encodeURIComponent(lat)}&longitude=${encodeURIComponent(lng)}&current=temperature_2m,apparent_temperature,uv_index,precipitation&timezone=auto`;
     const sunUrl = `https://api.sunrise-sunset.org/json?lat=${encodeURIComponent(lat)}&lng=${encodeURIComponent(lng)}&formatted=0`;
-    const [weatherResponse, sunResponse, nwsPeriod, nwsObservation] = await Promise.all([fetch(weatherUrl), fetch(sunUrl), loadNwsPeriod(lat, lng), loadNwsObservation(lat, lng)]);
+    const [weatherResponse, sunResponse, nwsPeriods, nwsObservation] = await Promise.all([fetch(weatherUrl), fetch(sunUrl), loadNwsPeriods(lat, lng), loadNwsObservation(lat, lng)]);
+    const nwsPeriod = nwsPeriods[0] || null;
     const weather = weatherResponse.ok ? await weatherResponse.json() : null;
     const sunPayload = sunResponse.ok ? await sunResponse.json() : null;
     const sun = sunPayload?.results || sunPayload;
     const forecastText = String(nwsPeriod?.shortForecast || '');
     const rain = nwsObservation ? observationIsWet(nwsObservation) : Number(weather?.current?.precipitation) > 0 || /rain|shower|storm/i.test(forecastText);
     setCompanionEnvironment({ rain, sunny: /sunny|clear/i.test(`${forecastText} ${nwsObservation?.textDescription || ''}`) });
-    const adjusted = nightAdjustedText(liveConditionsText(weather, sun, nwsPeriod), sun, nwsPeriod);
+    const adjusted = nightAdjustedText(`${liveConditionsText(weather, sun, nwsPeriod)}${rainTimingText(nwsPeriods, weather?.timezone)}`, sun, nwsPeriod);
     target.classList.toggle('is-night', adjusted.night);
-    target.innerHTML = weatherBriefHtml(adjusted.text, weather?.timezone);
+    target.innerHTML = weatherBriefHtml(adjusted.text, weather?.timezone, adjusted.night);
   } catch {
     target.innerHTML = weatherBriefHtml('Weather unavailable');
   }
@@ -109,7 +123,7 @@ export async function renderWeatherBrief() {
     if (!weather || Date.now() >= Date.parse(weather.freshnessExpiresAt || '')) { await refreshLiveConditions(); return; }
     const period = weather.forecast?.[0];
     const alert = weather.activeAlerts?.[0];
-    const text = alert?.headline || alert?.event || (period ? `${period.name}: ${period.shortForecast}${period.temperature != null ? ` · ${period.temperature}°${period.temperatureUnit || ''}` : ''}` : 'Forecast available');
+    const text = alert?.headline || alert?.event || (period ? `${period.name}: ${period.shortForecast}${period.temperature != null ? ` · ${period.temperature}°${period.temperatureUnit || ''}` : ''}${rainTimingText(weather.forecast || [period], weather?.timezone)}` : 'Forecast available');
     const sunResponse = await fetch(`https://api.sunrise-sunset.org/json?lat=${encodeURIComponent(CITIES[state.activeCity].center.lat)}&lng=${encodeURIComponent(CITIES[state.activeCity].center.lng)}&formatted=0`);
     const sunPayload = sunResponse.ok ? await sunResponse.json() : null;
     const sun = sunPayload?.results || sunPayload;
@@ -118,7 +132,7 @@ export async function renderWeatherBrief() {
     setCompanionEnvironment({ rain: observation ? observationIsWet(observation) : /rain|shower|storm/i.test(forecastText), sunny: /sunny|clear/i.test(`${forecastText} ${observation?.textDescription || ''}`) });
     const adjusted = nightAdjustedText(text, sun, period);
     target.classList.toggle('is-night', adjusted.night);
-    target.innerHTML = weatherBriefHtml(adjusted.text, weather?.timezone);
+    target.innerHTML = weatherBriefHtml(adjusted.text, weather?.timezone, adjusted.night);
     target.classList.remove('hidden');
   } catch { target.innerHTML = weatherBriefHtml('Weather unavailable'); target.classList.remove('hidden'); }
 }
