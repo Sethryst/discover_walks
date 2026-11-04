@@ -9,7 +9,7 @@ import { SEAL_DEFAULTS, SEALED_STORES, buildSelectedBackup, mergeSubset } from '
 import { openOfflinePreview, closeOfflinePreview, saveOfflineView, validateViewConditions } from './offline-view.js';
 import { normalizeCountyAddition } from './county-additions.js';
 import { renderArchive } from './archive.js';
-import { renderPersonalPlacesPanel, renderPersonalPlacesOnMap, normalizePersonalCategory, normalizePersonalPlace } from './personal-places.js';
+import { renderPersonalPlacesPanel, renderPersonalPlacesOnMap, normalizePersonalCategory, normalizePersonalPlace, saveLoginFirstStop } from './personal-places.js';
 
 export const SEALED_SCHEMA = 'walk-wildlife-personal-seal/1';
 let unlocked = null;
@@ -147,7 +147,11 @@ export async function initOnlinePane() {
   document.querySelectorAll('[data-avatar-icon]').forEach((button) => button.addEventListener('click', () => void setProfileAvatar({ icon: button.dataset.avatarIcon })));
   el('profileAvatarInput')?.addEventListener('change', (event) => { const file = event.target.files?.[0]; if (!file) return; const reader = new FileReader(); reader.onload = () => void setProfileAvatar({ image: String(reader.result || '') }); reader.readAsDataURL(file); });
   window.addEventListener('online-panel-render-requested', renderOnlinePane);
-  window.addEventListener('online-profile-changed', () => { if (unlocked && unlocked.ownerId !== state.online.session?.user.id) { unlocked = null; clearInterval(timer); timer = null; } renderOnlinePane(); });
+  window.addEventListener('online-profile-changed', () => {
+    if (unlocked && unlocked.ownerId !== state.online.session?.user.id) { unlocked = null; clearInterval(timer); timer = null; }
+    if (state.online.session) void saveLoginFirstStop().catch((error) => console.warn('Login stop could not be saved:', error));
+    renderOnlinePane();
+  });
   const { initOpenControls } = await import('./open-payload.js'); initOpenControls();
   const { initFriendWalk } = await import('./friend-walk.js'); initFriendWalk();
   renderOnlinePane();

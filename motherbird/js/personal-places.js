@@ -9,6 +9,7 @@ import { requestCompanionContext } from './companion.js';
 import { updateSavedRoute, deleteSavedRoute, savedRouteEditorHtml } from './saved-routes.js';
 import { renderWorkspacePanel, createWorkspace } from './workspace.js';
 import { addPlaceToJournalRoom } from './journal-room.js';
+import { generateTimeBasedPlan } from './planner.js?v=20261014-single-composed-walk-1';
 import {
   postPublicMarker,
   publicMarkerIdentityReady,
@@ -154,6 +155,47 @@ export async function initPersonalPlaces() {
   bindPersonalPlaceControls();
   renderPersonalPlacesPanel();
   renderPersonalPlacesOnMap();
+}
+
+// Sign-in remembers the current place locally without requiring a second form.
+// The first two sign-ins become the endpoints for the automatic My Paths route.
+export async function saveLoginFirstStop() {
+  const point = state.currentPosition || state.lastPosition;
+  if (!point || !Number.isFinite(Number(point.lat)) || !Number.isFinite(Number(point.lng))) return null;
+  const category = await ensureDefaultPersonalCategory();
+  const stops = curatedPersonalPlaces()
+    .filter((place) => place.source === 'login_first_stop')
+    .sort((a, b) => String(a.added).localeCompare(String(b.added)));
+  const existing = stops.find((place) => samePersonalPlace(place, { location: point }));
+  const place = existing || normalizePersonalPlace({
+    id: uid('login-stop'),
+    name: stops.length ? `Stop ${stops.length + 1}` : 'First stop',
+    location: point,
+    categoryId: category.id,
+    personalCategoryLabel: category.name,
+    visibility: 'private',
+    source: 'login_first_stop',
+    notes: 'Saved automatically when this account signed in on this device.'
+  });
+  if (!existing) {
+    await db.put('personal_places', place);
+    state.personalPlaces = [...state.personalPlaces, place];
+    state.layerFilters.personal[category.id] = true;
+    state.layerLights.personal = true;
+    personalDataChanged();
+  }
+  const endpoints = [...stops.filter((item) => item.id !== place.id), place].slice(-2);
+  if (endpoints.length === 2) {
+    state.plannerStart = { ...endpoints[0].location, label: endpoints[0].name };
+    state.plannerEnd = { ...endpoints[1].location, label: endpoints[1].name };
+    const routeMode = document.querySelector('input[name="routeMode"][value="point-to-point"]');
+    if (routeMode) { routeMode.checked = true; routeMode.dispatchEvent(new Event('change', { bubbles: true })); }
+    await generateTimeBasedPlan();
+    toast(`Saved ${place.name} and plotted the path between your stops.`);
+  } else {
+    toast('Saved your first stop to My Maps.');
+  }
+  return place;
 }
 
 function markerChipEnabled(marker) {
