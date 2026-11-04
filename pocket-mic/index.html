@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#10151b">
+  <title>Pocket Mic</title>
+  <link rel="stylesheet" href="./styles.css?v=1">
+</head>
+<body>
+  <main class="shell">
+    <header>
+      <p class="eyebrow">PRIVATE AUDIO BRIDGE</p>
+      <h1>Pocket Mic</h1>
+      <p class="lede">Use an iPhone as a nearby microphone and speaker for a remote computer.</p>
+    </header>
+
+    <section class="card setup" aria-labelledby="connection-heading">
+      <h2 id="connection-heading">Connection</h2>
+      <div class="field-row">
+        <label for="role">This device</label>
+        <select id="role">
+          <option value="phone">Phone / Safari</option>
+          <option value="receiver">Remote computer</option>
+        </select>
+      </div>
+      <div class="field-row">
+        <label for="room">Room code</label>
+        <input id="room" inputmode="text" autocomplete="off" maxlength="32" placeholder="e.g. cedar-7" value="cedar-7">
+      </div>
+      <label class="check-row receiver-only">
+        <input id="share-audio" type="checkbox" checked>
+        <span>Share computer or browser audio back to the phone</span>
+      </label>
+      <div class="field-row receiver-only">
+        <label for="audio-sink">Phone microphone output on this computer</label>
+        <select id="audio-sink"><option value="default">Default computer speakers</option></select>
+      </div>
+      <button id="start" class="primary">Start bridge</button>
+      <button id="stop" class="secondary" disabled>Stop</button>
+      <p id="status" class="status" role="status" aria-live="polite">Ready. Use the same room code on both devices.</p>
+    </section>
+
+    <section class="card meters" aria-labelledby="audio-heading">
+      <h2 id="audio-heading">Audio</h2>
+      <div class="audio-state"><span class="dot" id="phone-dot"></span><span>Phone microphone → receiver</span></div>
+      <audio id="phone-audio" autoplay playsinline controls></audio>
+      <div class="audio-state"><span class="dot" id="return-dot"></span><span>Computer audio → phone</span></div>
+      <audio id="return-audio" autoplay playsinline controls></audio>
+    </section>
+
+    <section class="card notes">
+      <h2>Scope</h2>
+      <p>Audio only. No captions, transcription, chat text, or RustDesk audio.</p>
+      <p class="small">The receiver page proves the browser media path. A separate host audio adapter is still needed before desktop ChatGPT can select the phone as a system microphone.</p>
+    </section>
+  </main>
+  <script type="module" src="./app.js?v=1"></script>
+</body>
+</html>
