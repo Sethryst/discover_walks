@@ -2596,12 +2596,14 @@ body.location-available .top-cluster > .locate-stack .location-help {
   .top-cluster {
     position: relative !important;
     padding-bottom: 42px !important;
+    flex-wrap: nowrap !important;
+    align-items: flex-start !important;
   }
   .top-cluster > .regional-navigation {
     position: absolute !important;
     left: auto !important;
     right: 0 !important;
-    top: 42px !important;
+    top: 40px !important;
     width: 112px !important;
     max-width: 112px !important;
     min-height: 40px !important;
