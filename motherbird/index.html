@@ -32,7 +32,7 @@
   <link rel="stylesheet" href="./vendor/leaflet-geoman/leaflet-geoman.css" />
   <link rel="stylesheet" href="./vendor/maplibre-gl.css" />
   <link rel="stylesheet" href="./styles.css?v=topbar-region-below-weather-20261104-6" />
-  <link rel="stylesheet" href="./css/topbar-and-marker-overrides.css?v=20261104-47" />
+  <link rel="stylesheet" href="./css/topbar-and-marker-overrides.css?v=20261104-49" />
     <link rel="stylesheet" href="./radio.css?v=20261101-radio-condensed-1" />
   <link rel="stylesheet" href="./shell.css?v=explore-filter-layout-20261103-1" />
   <link rel="stylesheet" href="./map-customization.css?v=20261012-map-studio-2" />
@@ -42,7 +42,7 @@
   <style>.top-cluster .profile-control{order:-1}@media(max-width:720px){.top-cluster{grid-template-columns:40px 40px minmax(0,1fr)}.top-cluster .profile-control{grid-column:1;grid-row:1}.top-cluster .locate-stack{grid-column:2;grid-row:1}.top-cluster .map-search{grid-column:3;grid-row:1}}</style>
   <style>#radialRouteOptionsButton{display:none!important}.planner-start-walk{width:100%;justify-content:center;margin-bottom:8px}.top-cluster>.start-panel:not(.hidden){display:block!important;position:fixed!important;top:58px!important;left:12px!important;right:auto!important;z-index:2000!important}@media(max-width:720px){.top-cluster{grid-template-columns:40px minmax(0,1fr) 40px max-content!important}.top-cluster .profile-control{grid-column:1;grid-row:1}.top-cluster>.map-search{grid-column:2;grid-row:1;grid-area:auto;width:100%!important}.top-cluster .locate-stack{grid-column:3;grid-row:1}.top-cluster>.regional-navigation{position:static!important;left:auto!important;top:auto!important;grid-column:4;grid-row:1;grid-area:auto}.top-cluster>.start-panel:not(.hidden){top:auto!important;left:8px!important;right:8px!important;bottom:calc(64px + env(safe-area-inset-bottom))!important}}</style>
   <style>
-    .top-cluster{height:auto!important;grid-template-columns:38px 30px max-content 38px 38px 112px!important;grid-template-rows:38px 38px!important;gap:0!important}
+    .top-cluster{height:auto!important;grid-template-columns:38px 30px 64px 38px 38px 112px!important;grid-template-rows:38px 38px!important;gap:0!important}
     .top-cluster>.profile-control{grid-column:1!important;grid-row:1!important}
     .top-cluster>.map-search{grid-column:2!important;grid-row:1!important;width:30px!important}
     .top-cluster>.locate-stack{grid-column:3!important;grid-row:1!important}
@@ -55,8 +55,113 @@
     .top-cluster>.locate-stack .ink-control{padding-inline:8px!important}
     .top-cluster>.map-search{border-left:1px solid #c5dce8!important;border-right:1px solid #c5dce8!important}
     .top-cluster>.map-search::after{display:none!important}
+    .top-cluster>.map-search{border:0!important;box-shadow:none!important;position:relative!important;overflow:visible!important;background:linear-gradient(to right,#fff 0%,#fff calc(100% - 1px),#173c35 calc(100% - 1px),#173c35 100%)!important}
+    .top-cluster>.map-search>button{transform:translateX(-3px)!important}
+    .top-cluster>.locate-stack{margin-left:-6px!important;margin-right:-6px!important;border:0!important;background:linear-gradient(to right,#173c35 0,#173c35 1px,transparent 1px)!important}
+    .top-cluster>#quickRadioButton{transform:translateX(-2px)!important}
+    .top-cluster>.map-search::before,.top-cluster>.map-search::after{content:''!important;display:block!important;position:absolute!important;top:0!important;width:1px!important;height:38px!important;background:#173c35!important;z-index:2000!important;pointer-events:none!important}
+    .top-cluster>.map-search::before{left:0!important}
+    .top-cluster>.map-search::after{right:-1px!important}
+    .top-cluster>#quickDrawButton{border:0!important;box-shadow:inset 1px 0 #173c35!important;transform:translateX(-1px)!important}
+    .top-cluster>.locate-stack{margin-left:0!important;margin-right:-2px!important}
+    .top-cluster>.map-search::after{right:4px!important}
+    .top-cluster>#quickRadioButton{transform:none!important}
+    .top-cluster>#quickDrawButton{transform:translateX(-1px)!important;margin-left:-1px!important}
+    .top-cluster>.weather-brief{margin-left:-1px!important}
+    /* Canonical top-bar geometry: one grid, fixed control cells, no nudges. */
+    .top-cluster{display:grid!important;grid-template-columns:38px 30px 64px 38px 38px 112px!important;grid-template-rows:38px 38px!important;gap:0!important;width:320px!important;height:76px!important;align-items:stretch!important}
+    .top-cluster>.profile-control{grid-column:1!important;grid-row:1!important;width:38px!important;margin:0!important}
+    .top-cluster>.map-search{grid-column:2!important;grid-row:1!important;width:30px!important;margin:0!important;padding:0!important;border:0!important;box-shadow:none!important;background:#fff!important;position:relative!important;overflow:visible!important}
+    .top-cluster>.map-search>button{width:30px!important;height:38px!important;margin:0!important;padding:0!important;transform:none!important}
+    .top-cluster>.map-search>button img{transform:translateX(-3px)!important}
+    .top-cluster>.map-search::before,.top-cluster>.map-search::after{content:''!important;display:block!important;position:absolute!important;top:0!important;width:1px!important;height:38px!important;background:#173c35!important;z-index:5!important;pointer-events:none!important}
+    .top-cluster>.map-search::before{left:0!important}.top-cluster>.map-search::after{right:0!important}
+    .top-cluster>.map-search.is-open{border:0!important;box-shadow:none!important;background:#fff!important}
+    .top-cluster>.map-search.is-open::before,.top-cluster>.map-search.is-open::after{width:1px!important;background:#173c35!important}
+    .top-cluster>.map-search.is-open::before{left:0!important}.top-cluster>.map-search.is-open::after{right:0!important}
+    .top-cluster>.locate-stack{border-left:0!important}
+    .top-cluster>.map-search.is-open>input{outline:none!important;border:1px solid #173c35!important;box-shadow:none!important}
+    .top-cluster>.map-search:not(.is-open){background:#fff!important;border:0!important;box-shadow:none!important}
+    .top-cluster>.map-search:not(.is-open)::before,.top-cluster>.map-search:not(.is-open)::after{width:1px!important;height:38px!important;background:#173c35!important}
+    .top-cluster>.map-search,.top-cluster>.map-search.is-open{background:#fff!important;border:0!important;box-shadow:none!important;transform:none!important}
+    .top-cluster>.map-search>button,.top-cluster>.map-search>button img,.top-cluster>#quickRadioButton,.top-cluster>#quickDrawButton{transform:none!important}
+    .top-cluster>.map-search::before,.top-cluster>.map-search::after,.top-cluster>.map-search.is-open::before,.top-cluster>.map-search.is-open::after{width:1px!important;height:38px!important;background:#173c35!important}
+    .top-cluster>.locate-stack{background:#fff!important;box-shadow:none!important;border:0!important}
+    .top-cluster>.locate-stack .control-row,.top-cluster>.locate-stack .ink-control{border:0!important;box-shadow:none!important}
+    .top-cluster>.map-search::before,.top-cluster>.map-search::after{display:none!important}
+    .top-cluster>.map-search>button{border-left:1px solid #173c35!important;border-right:1px solid #173c35!important;border-radius:0!important;background:#fff!important;box-sizing:border-box!important}
+    .top-cluster>.map-search>button{border:0!important}
+    .top-cluster>.locate-stack{background:linear-gradient(to right,#173c35 0,#173c35 1px,#fff 1px,#fff 100%)!important}
+    .top-cluster>.map-search{z-index:3!important;margin:0!important;transform:none!important}
+    .top-cluster>.locate-stack{z-index:1!important;margin:0!important;background:#fff!important}
+    .top-cluster>.map-search::after{display:block!important;right:0!important;width:1px!important;background:#173c35!important}
+    .top-cluster>.map-search{border-right:1px solid #173c35!important;border-left:0!important;box-shadow:none!important}
+    .top-cluster>.map-search::before,.top-cluster>.map-search::after{display:none!important}
+    .top-cluster>.map-search>button{border:0!important;box-shadow:none!important}
+    /* Swap locate and search; keep the expanded search below both rows. */
+    .top-cluster>.locate-stack{grid-column:2!important;grid-row:1!important;width:64px!important}
+    .top-cluster>.map-search{grid-column:3!important;grid-row:1!important;width:30px!important}
+    .top-cluster>.map-search.is-open>input{top:calc(100% + 16px)!important}
+    .top-cluster>.map-search-results{top:84px!important}
+    /* Final left-aligned bar geometry. */
+    .viewfinder-frame{padding-left:8px!important;padding-right:8px!important}
+    .top-cluster{margin-left:0!important;margin-right:auto!important;width:410px!important;height:76px!important;grid-template-columns:38px 90px 30px 38px 38px 176px!important;grid-template-rows:38px 38px!important;gap:0!important}
+    .top-cluster>.profile-control{grid-column:1!important;grid-row:1!important;width:38px!important}
+    .top-cluster>.locate-stack{grid-column:2!important;grid-row:1!important;width:90px!important;margin:0!important}
+    .top-cluster>.locate-stack .control-row,.top-cluster>.locate-stack .ink-control{width:90px!important}
+    .top-cluster>.map-search{grid-column:3!important;grid-row:1!important;width:30px!important;margin:0!important}
+    .top-cluster>#quickRadioButton{grid-column:4!important;grid-row:1!important;width:38px!important;min-width:38px!important;max-width:38px!important;margin:0!important}
+    .top-cluster>#quickDrawButton{grid-column:5!important;grid-row:1!important;width:38px!important;min-width:38px!important;max-width:38px!important;margin:0!important}
+    .top-cluster>.weather-brief,.top-cluster>#weatherBrief{grid-column:6!important;grid-row:1!important;width:176px!important;margin:0!important}
+    .top-cluster>.regional-navigation{grid-column:6!important;grid-row:2!important;width:176px!important;margin:0!important}
+    .top-cluster>.regional-navigation .regional-navigation-button{width:176px!important}
+    .top-cluster>.map-search.is-open>input{top:calc(100% + 16px)!important;left:0!important;width:176px!important}
+    .top-cluster>.map-search-results{top:84px!important;left:0!important;width:176px!important}
+    .top-cluster>.profile-control{grid-column:1!important;grid-row:1!important;margin:0!important}
+    .top-cluster>.locate-stack{grid-column:2!important;grid-row:1!important;width:90px!important;margin:0!important;z-index:4!important}
+    .top-cluster>.locate-stack .control-row,.top-cluster>.locate-stack .ink-control{width:90px!important;margin:0!important}
+    .top-cluster>.locate-stack .ink-control{justify-content:flex-start!important;text-align:left!important;padding-left:4px!important;padding-right:0!important}
+    .top-cluster>.map-search{grid-column:3!important;grid-row:1!important;margin:0!important;z-index:3!important}
+    .top-cluster>.locate-stack{grid-column:3!important;grid-row:1!important;width:64px!important;margin:0!important;padding:0!important;border:0!important;background:#fff!important;box-shadow:none!important}
+    .top-cluster>.locate-stack .control-row{width:64px!important;margin:0!important;gap:0!important}
+    .top-cluster>.locate-stack .ink-control{width:64px!important;margin:0!important;padding:0 8px!important}
+    .top-cluster>#quickRadioButton,.top-cluster>#quickDrawButton{grid-row:1!important;width:38px!important;height:38px!important;min-width:38px!important;max-width:38px!important;margin:0!important;padding:0!important;transform:none!important;box-sizing:border-box!important}
+    .top-cluster>#quickRadioButton{grid-column:4!important}.top-cluster>#quickDrawButton{grid-column:5!important;box-shadow:inset 1px 0 #173c35!important}
+    .top-cluster>.weather-brief,.top-cluster>#weatherBrief{grid-column:6!important;grid-row:1!important;width:112px!important;height:38px!important;margin:0!important;padding-inline:8px!important;box-sizing:border-box!important}
+    .top-cluster>.regional-navigation{grid-column:6!important;grid-row:2!important;width:112px!important;height:38px!important;margin:0!important;padding:0!important}
+    .top-cluster>.regional-navigation .regional-navigation-button{width:112px!important;height:38px!important;margin:0!important;box-sizing:border-box!important}
     .top-cluster>.weather-brief,.top-cluster>#weatherBrief,.top-cluster>.regional-navigation{width:112px!important}
-    @media(max-width:520px){.top-cluster{grid-template-columns:38px 30px max-content 38px 38px 112px!important}}
+    @media(max-width:520px){.top-cluster{grid-template-columns:38px 30px 64px 38px 38px 112px!important}}
+  </style>
+  <link rel="stylesheet" href="./css/topbar-clean.css?v=20261104-clean-4" />
+  <style id="topbar-final-local">
+    .top-cluster{display:flex!important;position:relative!important;align-items:stretch!important;gap:0!important;width:410px!important;max-width:410px!important;height:38px!important;margin:0!important;padding:0!important;overflow:visible!important}
+    .top-cluster>.profile-control{order:1!important;flex:0 0 38px!important;width:38px!important;margin:0!important}
+    .top-cluster>.locate-stack{order:2!important;flex:0 0 90px!important;width:90px!important;margin:0!important;position:relative!important;z-index:3!important;border-right:1px solid #173c35!important}
+    .top-cluster>.locate-stack .control-row,.top-cluster>.locate-stack .ink-control{width:90px!important;margin:0!important;justify-content:flex-start!important;padding:0 4px!important;transform:none!important}
+    .top-cluster>.map-search{order:3!important;flex:0 0 28px!important;width:28px!important;margin:0!important;position:relative!important;z-index:4!important}
+    .top-cluster>#quickRadioButton,.top-cluster>#quickDrawButton{flex:0 0 38px!important;width:38px!important;min-width:38px!important;max-width:38px!important;height:38px!important;margin:0!important;padding:0!important;transform:none!important}
+    .top-cluster>#quickRadioButton{order:4!important}.top-cluster>#quickDrawButton{order:5!important}
+    .top-cluster>.weather-brief{order:6!important;flex:0 0 240px!important;width:240px!important;min-width:240px!important;max-width:240px!important;margin:0!important;overflow:visible!important;white-space:nowrap!important}
+    .top-cluster>.weather-brief>span{display:inline!important;max-width:none!important;overflow:visible!important;text-overflow:clip!important;white-space:nowrap!important}
+    .top-cluster>.regional-navigation{order:7!important;position:absolute!important;left:234px!important;right:auto!important;top:38px!important;width:240px!important;min-width:240px!important;max-width:240px!important;margin:0!important;z-index:5!important}
+    .top-cluster>.regional-navigation .regional-navigation-button{width:240px!important;max-width:240px!important;margin:0!important}
+    .top-cluster>.regional-navigation .regional-navigation-menu{left:auto!important;right:0!important;top:38px!important}
+    .top-cluster>.map-search.is-open{position:relative!important;left:auto!important;top:auto!important;width:28px!important;height:38px!important;flex:0 0 28px!important}
+    .top-cluster>.map-search.is-open>input{position:absolute!important;width:240px!important;max-width:240px!important;top:54px!important;left:0!important}
+    /* Final two-row mobile bar: Locate is framed only by its two stack
+       dividers; Search and the compact tools remain flush beside it. */
+    .top-cluster{flex-wrap:wrap!important;width:calc(100vw - 16px)!important;max-width:none!important;height:auto!important;margin:0 8px!important;gap:0!important;border:0!important;box-shadow:none!important}
+    .top-cluster>.profile-control{order:1!important;flex:0 0 38px!important;width:38px!important}
+    .top-cluster>.locate-stack{order:2!important;flex:0 0 max-content!important;width:max-content!important;border-left:1px solid #173c35!important;border-right:1px solid #173c35!important}
+    .top-cluster>.locate-stack .control-row{width:max-content!important;gap:0!important}
+    .top-cluster>.locate-stack .ink-control{width:max-content!important;min-width:0!important;padding-inline:2px!important;border:0!important;box-shadow:none!important}
+    .top-cluster>.map-search{order:3!important;flex:0 0 30px!important;width:30px!important;border:0!important;box-shadow:none!important}
+    .top-cluster>#quickRadioButton,.top-cluster>#quickDrawButton{flex:0 0 30px!important;width:30px!important;min-width:30px!important;max-width:30px!important;height:38px!important;border:0!important;box-shadow:none!important}
+    .top-cluster>#quickRadioButton{order:4!important}.top-cluster>#quickDrawButton{order:5!important}
+    .top-cluster>.regional-navigation{order:6!important;position:static!important;left:auto!important;right:auto!important;top:auto!important;width:112px!important;min-width:112px!important;max-width:112px!important;margin:0!important}
+    .top-cluster>.regional-navigation .regional-navigation-button{width:112px!important;max-width:112px!important}
+    .top-cluster>.weather-brief{order:7!important;flex:0 0 100%!important;width:100%!important;min-width:100%!important;max-width:none!important;height:30px!important;margin:0!important}
   </style>
   <title>Walk & Wildlife</title>
 </head>
