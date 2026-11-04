@@ -32,7 +32,7 @@
   <link rel="stylesheet" href="./vendor/leaflet-geoman/leaflet-geoman.css" />
   <link rel="stylesheet" href="./vendor/maplibre-gl.css" />
   <link rel="stylesheet" href="./styles.css?v=topbar-region-below-weather-20261104-4" />
-  <link rel="stylesheet" href="./css/topbar-and-marker-overrides.css?v=20261104-44" />
+  <link rel="stylesheet" href="./css/topbar-and-marker-overrides.css?v=20261104-45" />
     <link rel="stylesheet" href="./radio.css?v=20261101-radio-condensed-1" />
   <link rel="stylesheet" href="./shell.css?v=explore-filter-layout-20261103-1" />
   <link rel="stylesheet" href="./map-customization.css?v=20261012-map-studio-2" />
@@ -42,7 +42,7 @@
   <style>.top-cluster .profile-control{order:-1}@media(max-width:720px){.top-cluster{grid-template-columns:40px 40px minmax(0,1fr)}.top-cluster .profile-control{grid-column:1;grid-row:1}.top-cluster .locate-stack{grid-column:2;grid-row:1}.top-cluster .map-search{grid-column:3;grid-row:1}}</style>
   <style>#radialRouteOptionsButton{display:none!important}.planner-start-walk{width:100%;justify-content:center;margin-bottom:8px}.top-cluster>.start-panel:not(.hidden){display:block!important;position:fixed!important;top:58px!important;left:12px!important;right:auto!important;z-index:2000!important}@media(max-width:720px){.top-cluster{grid-template-columns:40px minmax(0,1fr) 40px max-content!important}.top-cluster .profile-control{grid-column:1;grid-row:1}.top-cluster>.map-search{grid-column:2;grid-row:1;grid-area:auto;width:100%!important}.top-cluster .locate-stack{grid-column:3;grid-row:1}.top-cluster>.regional-navigation{position:static!important;left:auto!important;top:auto!important;grid-column:4;grid-row:1;grid-area:auto}.top-cluster>.start-panel:not(.hidden){top:auto!important;left:8px!important;right:8px!important;bottom:calc(64px + env(safe-area-inset-bottom))!important}}</style>
   <style>
-    .top-cluster{height:auto!important;grid-template-columns:38px 30px 112px 38px 38px minmax(118px,1fr)!important;grid-template-rows:38px 38px!important;gap:0!important}
+    .top-cluster{height:auto!important;grid-template-columns:38px 30px max-content 38px 38px 112px!important;grid-template-rows:38px 38px!important;gap:0!important}
     .top-cluster>.profile-control{grid-column:1!important;grid-row:1!important}
     .top-cluster>.map-search{grid-column:2!important;grid-row:1!important;width:30px!important}
     .top-cluster>.locate-stack{grid-column:3!important;grid-row:1!important}
@@ -50,8 +50,13 @@
     .top-cluster>#quickDrawButton{grid-column:5!important;grid-row:1!important}
     .top-cluster>.weather-brief,.top-cluster>#weatherBrief{grid-column:6!important;grid-row:1!important;width:auto!important}
     .top-cluster>.regional-navigation{grid-column:6!important;grid-row:2!important;width:auto!important;position:relative!important;left:auto!important;top:auto!important}
-    .top-cluster>.regional-navigation .regional-navigation-button{width:100%!important;max-width:none!important}
-    @media(max-width:520px){.top-cluster{grid-template-columns:38px 30px minmax(92px,1fr) 38px 38px minmax(112px,1.2fr)!important}}
+    .top-cluster>.regional-navigation .regional-navigation-button{width:112px!important;max-width:none!important}
+    .top-cluster>.locate-stack,.top-cluster>.locate-stack .control-row,.top-cluster>.locate-stack .ink-control{width:max-content!important}
+    .top-cluster>.locate-stack .ink-control{padding-inline:8px!important}
+    .top-cluster>.map-search{border-left:1px solid #c5dce8!important;border-right:1px solid #c5dce8!important}
+    .top-cluster>.map-search::after{display:none!important}
+    .top-cluster>.weather-brief,.top-cluster>#weatherBrief,.top-cluster>.regional-navigation{width:112px!important}
+    @media(max-width:520px){.top-cluster{grid-template-columns:38px 30px max-content 38px 38px 112px!important}}
   </style>
   <title>Walk & Wildlife</title>
 </head>
