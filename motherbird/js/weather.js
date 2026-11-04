@@ -21,8 +21,14 @@ function weatherIcon(text = '') {
   return './icons/cloud.svg';
 }
 
-function weatherBriefHtml(text) {
-  return `<img class="weather-brief-icon" src="${weatherIcon(text)}" alt="" aria-hidden="true"><span>${escapeHtml(text)}</span>`;
+function localTimeLabel(timeZone = null) {
+  try {
+    return new Intl.DateTimeFormat([], { timeZone: timeZone || undefined, hour: 'numeric', minute: '2-digit' }).format(new Date());
+  } catch { return new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }); }
+}
+
+function weatherBriefHtml(text, timeZone = null) {
+  return `<img class="weather-brief-icon" src="${weatherIcon(text)}" alt="" aria-hidden="true"><span>${escapeHtml(text)}</span><time class="weather-brief-time" datetime="${new Date().toISOString()}">${escapeHtml(localTimeLabel(timeZone))}</time>`;
 }
 
 function nightAdjustedText(text, sun = null, period = null) {
@@ -84,7 +90,7 @@ export async function refreshLiveConditions() {
     setCompanionEnvironment({ rain, sunny: /sunny|clear/i.test(`${forecastText} ${nwsObservation?.textDescription || ''}`) });
     const adjusted = nightAdjustedText(liveConditionsText(weather, sun, nwsPeriod), sun, nwsPeriod);
     target.classList.toggle('is-night', adjusted.night);
-    target.innerHTML = weatherBriefHtml(adjusted.text);
+    target.innerHTML = weatherBriefHtml(adjusted.text, weather?.timezone);
   } catch {
     target.innerHTML = weatherBriefHtml('Weather unavailable');
   }
@@ -112,7 +118,7 @@ export async function renderWeatherBrief() {
     setCompanionEnvironment({ rain: observation ? observationIsWet(observation) : /rain|shower|storm/i.test(forecastText), sunny: /sunny|clear/i.test(`${forecastText} ${observation?.textDescription || ''}`) });
     const adjusted = nightAdjustedText(text, sun, period);
     target.classList.toggle('is-night', adjusted.night);
-    target.innerHTML = weatherBriefHtml(adjusted.text);
+    target.innerHTML = weatherBriefHtml(adjusted.text, weather?.timezone);
     target.classList.remove('hidden');
   } catch { target.innerHTML = weatherBriefHtml('Weather unavailable'); target.classList.remove('hidden'); }
 }

@@ -1866,10 +1866,10 @@ body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes {
 .sheet-header-actions { position: absolute; top: 10px; right: 12px; display: flex; gap: 4px; z-index: 2; }
 .learn-authored-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
 .learn-authored .guide-card p { display: block; -webkit-line-clamp: unset; overflow: visible; }
-.learn-authored { margin: 0 0 8px; }
+.learn-authored { margin: 0 0 2px; }
 .learn-section-summary { display:flex; align-items:center; justify-content:space-between; padding:8px 10px; border:1px solid var(--line); border-radius:9px; background:var(--paper2); cursor:pointer; font-size:.78rem; font-weight:850; }
 .learn-section-summary span { color:var(--muted); font-size:.68rem; }
-.learn-authored-grid { padding-top:8px; }
+.learn-authored-grid { padding-top:3px; }
 .learn-story-link { display:block; color:inherit; text-decoration:none; padding:9px 10px; }
 .learn-story-link h3 { margin:0; font-size:.78rem; line-height:1.2; }
 .learn-category { margin:0 0 8px; }

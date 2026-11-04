@@ -7,6 +7,7 @@ import { toast } from './ui.js';
 import { initMap } from './map.js?v=20261104-gestures-1';
 import { applyStaticAppearance } from './ui.js';
 import { loadAllCityData, refreshCityMap } from './city.js?v=20261103-header-repair-2';
+import { renderWeatherBrief } from './weather.js?v=20261104-time-weather-1';
 import { renderArchive } from './archive.js';
 import { normalizedEntitlements } from './entitlements.js';
 import { restoreLocalPoiClosures } from './spatial-closure-reporting.js';
@@ -149,6 +150,9 @@ export async function init() {
   // walk bar, or radio behind a slow/corrupt layer-settings read.
   void initNationalOsmLayers().catch((error) => console.warn('National layer settings unavailable:', error.message));
   initMap();
+  // Render the header weather/time independently of optional city enrichment.
+  // A slow or unavailable regional package must not leave the header blank.
+  void renderWeatherBrief().catch(() => {});
   telemetry('map');
   setSplashStatus('Initializing the map…');
   // Draw and layer controls are part of the visible map surface. Bind them
