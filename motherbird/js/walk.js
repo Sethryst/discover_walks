@@ -17,7 +17,7 @@ import { startWalkSession } from './walk-plan.js';
 import { updateProfile } from './profile.js';
 import { stepCreditForWalk } from './step-wallet.js?v=20261104-step-wallet-1';
 import { renderArchive } from './archive.js';
-import { refreshLiveConditions } from './weather.js?v=20261104-time-weather-1';
+import { refreshLiveConditions } from './weather.js?v=20261104-time-weather-2';
 import {
   addEventToWalk,
   completeWalkEvent,
@@ -518,7 +518,8 @@ async function completeEventById(id, endTime, metadata = {}) {
 
 function beginGpsWatch() {
   stopGpsWatch();
-  state.timerId = setInterval(() => { updateWalkDisplay(); void persistWalkDraft(); }, 1000);
+  state.timerId = setInterval(() => { updateWalkDisplay(); }, 1000);
+  state.persistTimerId = setInterval(() => { void persistWalkDraft(); }, 30000);
   state.watchId = watchPosition(
     (position) => void handleGpsPosition(position, state.activeWalk?.points.length === 0),
     () => { setStatus('Location connection paused'); toast('Location connection paused — your current route is still saved.'); },
@@ -531,6 +532,8 @@ function stopGpsWatch() {
   state.watchId = null;
   clearInterval(state.timerId);
   state.timerId = null;
+  clearInterval(state.persistTimerId);
+  state.persistTimerId = null;
 }
 
 export async function persistWalkDraft() {
