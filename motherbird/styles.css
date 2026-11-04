@@ -2260,6 +2260,7 @@ body.location-available .context-help-button {
 .top-cluster > #weatherBrief {
   background: #d7b9e5 !important;
 }
+
 .top-cluster > .locate-stack .location-help,
 body.location-available .top-cluster > .locate-stack .location-help {
   display: grid !important;
@@ -2586,4 +2587,27 @@ body.location-available .top-cluster > .locate-stack .location-help {
   border: 0 !important;
   border-radius: 0 9px 9px 0 !important;
   background: #d7b9e5 !important;
+}
+
+/* Keep the region picker directly below the location control at compact
+   widths. It remains a sibling so the existing navigation/menu behavior is
+   unchanged, but no longer competes with Locate me for the header row. */
+@media (max-width: 1099px) {
+  .top-cluster {
+    position: relative !important;
+    padding-bottom: 42px !important;
+  }
+  .top-cluster > .regional-navigation {
+    position: absolute !important;
+    left: 80px !important;
+    top: 42px !important;
+    width: min(180px, calc(100% - 80px)) !important;
+    max-width: 180px !important;
+    min-height: 40px !important;
+    z-index: 1402 !important;
+    border-radius: 0 0 10px 10px !important;
+  }
+  .top-cluster > .regional-navigation .regional-navigation-button {
+    border-radius: 0 10px 10px 10px !important;
+  }
 }
