@@ -156,7 +156,7 @@ export async function init() {
   // whose core controls are still waiting behind optional enrichment.
   await initMapPaint().catch((error) => console.warn('Map paint unavailable:', error.message));
   await initLayerSystem().catch((error) => console.warn('Layer system unavailable:', error.message));
-  await import('./events.js?v=gesture-actions-20261104-2')
+  await import('./events.js?v=gesture-actions-20261104-3')
     .then(({ initEvents }) => initEvents())
     .catch((error) => console.warn('Core controls unavailable:', error.message));
   const refreshMapLayout = () => state.map?.invalidateSize({ pan: false });
