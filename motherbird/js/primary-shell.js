@@ -167,7 +167,9 @@ export function initPrimaryShell() {
     const weather = document.querySelector('.top-cluster>.weather-brief, .top-cluster>#weatherBrief');
     const regionControl = document.querySelector('.top-cluster>.regional-navigation');
     if (!weather || !regionControl) return;
-    const width = weather.getBoundingClientRect().width;
+    const weatherRect = weather.getBoundingClientRect();
+    const regionRect = regionControl.getBoundingClientRect();
+    const width = weatherRect.right - regionRect.left;
     if (width > 0) {
       regionControl.style.setProperty('width', `${Math.round(width)}px`, 'important');
       regionControl.style.setProperty('max-width', `${Math.round(width)}px`, 'important');
