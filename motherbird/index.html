@@ -169,19 +169,19 @@
     .top-cluster>.weather-brief>span,.top-cluster>#weatherBrief>span{display:block!important;flex:1 1 auto!important;min-width:0!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important}
     .top-cluster>.weather-brief .weather-brief-time,.top-cluster>#weatherBrief .weather-brief-time{flex:0 0 auto!important;white-space:nowrap!important}
     /* Use one intrinsic two-row grid so weather shares Region's exact right edge. */
-    .top-cluster{display:grid!important;grid-template-columns:38px max-content 30px 30px 30px 112px!important;grid-template-rows:38px 42px!important;width:max-content!important;max-width:calc(100vw - 16px)!important;height:auto!important;align-items:stretch!important}
+     .top-cluster{display:grid!important;grid-template-columns:38px max-content 30px 30px 30px 112px!important;grid-template-rows:38px 42px!important;width:max-content!important;max-width:calc(100vw - 16px)!important;height:auto!important;align-items:stretch!important}
     .top-cluster>.profile-control{grid-column:1!important;grid-row:1!important}
     .top-cluster>.locate-stack{grid-column:2!important;grid-row:1!important;width:max-content!important;flex:none!important}
     .top-cluster>.locate-stack .location-help{display:none!important}
     .top-cluster>.map-search{grid-column:3!important;grid-row:1!important}
     .top-cluster>#quickRadioButton{grid-column:4!important;grid-row:1!important}
     .top-cluster>#quickDrawButton{grid-column:5!important;grid-row:1!important}
-    .top-cluster>.regional-navigation{grid-column:6!important;grid-row:1!important;position:static!important;width:112px!important;min-width:112px!important;max-width:112px!important}
-    .top-cluster>.regional-navigation .regional-navigation-button{width:112px!important;max-width:112px!important}
+     .top-cluster>.regional-navigation{grid-column:6!important;grid-row:1!important;position:static!important;width:112px!important;min-width:112px!important;max-width:112px!important}
+     .top-cluster>.regional-navigation .regional-navigation-button{width:112px!important;max-width:112px!important}
     .top-cluster>.weather-brief,.top-cluster>#weatherBrief{grid-column:1 / -1!important;grid-row:2!important;width:100%!important;min-width:0!important;max-width:none!important;min-height:42px!important;height:42px!important;flex:none!important}
     /* Final flush geometry: Region absorbs the available row width while
        Locate keeps only its two light-blue dividers. */
-    .top-cluster{display:grid!important;grid-template-columns:38px max-content 30px 30px 30px minmax(112px,1fr)!important;grid-template-rows:38px auto!important;grid-template-areas:'profile locate search radio draw region' 'weather weather weather weather weather weather'!important;width:fit-content!important;max-width:calc(100vw - 16px)!important;overflow:visible!important;box-sizing:border-box!important}
+     .top-cluster{display:grid!important;grid-template-columns:38px max-content 30px 30px 30px minmax(112px,1fr)!important;grid-template-rows:38px auto!important;grid-template-areas:'profile locate search radio draw region' 'weather weather weather weather weather weather'!important;width:fit-content!important;max-width:calc(100vw - 16px)!important;overflow:visible!important;box-sizing:border-box!important}
     .top-cluster>.profile-control{grid-area:profile!important;order:initial!important}.top-cluster>.locate-stack{grid-area:locate!important;order:initial!important}.top-cluster>.map-search{grid-area:search!important;order:initial!important}.top-cluster>#quickRadioButton{grid-area:radio!important;order:initial!important}.top-cluster>#quickDrawButton{grid-area:draw!important;order:initial!important}.top-cluster>.regional-navigation{grid-area:region!important;order:initial!important}.top-cluster>.weather-brief,.top-cluster>#weatherBrief{grid-area:weather!important;order:initial!important}
     .top-cluster>.locate-stack{border-left:1px solid #c5dce8!important;border-right:1px solid #c5dce8!important;outline:0!important;box-shadow:none!important}
     .top-cluster>.locate-stack .control-row,.top-cluster>.locate-stack .ink-control{border:0!important;outline:0!important;box-shadow:none!important}
@@ -196,7 +196,28 @@
     .top-cluster>.weather-brief,.top-cluster>#weatherBrief{grid-column:1 / -1!important;grid-row:2!important;min-width:0!important;width:100%!important;max-width:100%!important;overflow:visible!important;justify-self:stretch!important}
     .top-cluster>.weather-brief>span,.top-cluster>#weatherBrief>span{min-width:0!important;overflow-wrap:anywhere!important;word-break:normal!important}
     .top-cluster>.regional-navigation{justify-self:stretch!important;width:100%!important;min-width:0!important;max-width:none!important}
+     /* Keep Region aligned to the weather row's right edge without making
+        the full-width weather row grow with the Region control. */
+     .top-cluster>.regional-navigation{position:absolute!important;right:0!important;top:0!important;width:240px!important;min-width:240px!important;max-width:240px!important;height:38px!important}
+     .top-cluster>.regional-navigation .regional-navigation-button{width:100%!important;max-width:none!important;height:38px!important}
+     @media (max-width:480px){
+       .top-cluster>.regional-navigation{right:auto!important;left:auto!important;top:0!important;width:320px!important;min-width:320px!important;max-width:320px!important;display:flex!important;visibility:visible!important;z-index:2000!important}
+       .top-cluster>.regional-navigation .regional-navigation-button{width:320px!important;max-width:320px!important;justify-content:center!important;text-align:center!important}
+     }
     .top-cluster>.walk-options-control,.top-cluster>.companion-slot,.top-cluster>.start-stack,.top-cluster>.map-search-results{display:none!important}
+     @media (max-width:480px){
+       .top-cluster{width:calc(100vw - 16px)!important;max-width:calc(100vw - 16px)!important;grid-template-columns:38px max-content 30px 30px 30px minmax(0,1fr)!important}
+       .top-cluster>.regional-navigation{position:relative!important;grid-area:region!important;left:auto!important;right:auto!important;top:auto!important;width:100%!important;min-width:0!important;max-width:none!important;z-index:5!important}
+       .top-cluster>.regional-navigation .regional-navigation-button{width:100%!important;min-width:0!important;max-width:none!important;justify-content:center!important;text-align:center!important}
+       .top-cluster>.regional-navigation #regionalNavigation{display:flex!important;width:100%!important;min-width:0!important;align-items:stretch!important}
+       .top-cluster>.regional-navigation #regionalNavigationButton{flex:1 1 100%!important;width:100%!important;min-width:0!important;box-sizing:border-box!important}
+     }
+     @media (min-width:481px){
+       .top-cluster{flex-wrap:wrap!important;width:472px!important;max-width:calc(100vw - 16px)!important;height:auto!important}
+       .top-cluster>.regional-navigation{order:6!important;position:static!important;left:auto!important;right:auto!important;top:auto!important;width:240px!important;min-width:240px!important;max-width:240px!important;flex:0 0 240px!important}
+       .top-cluster>.regional-navigation .regional-navigation-button{width:240px!important;max-width:240px!important}
+       .top-cluster>.weather-brief,.top-cluster>#weatherBrief{order:7!important;flex:0 0 100%!important;width:100%!important;min-width:100%!important;max-width:100%!important}
+     }
   </style>
   <title>Walk & Wildlife</title>
 </head>
@@ -427,7 +448,7 @@
               navigator.serviceWorker?.getRegistrations().then((registrations) => Promise.all(registrations.map((registration) => registration.unregister())))
             ]).finally(() => location.replace(cleanUrl));
           })();
-        </script><script src="./vendor/leaflet/leaflet.js"></script><script src="./vendor/leaflet-markercluster/leaflet.markercluster.js"></script><script src="./vendor/leaflet-geoman/leaflet-geoman.min.js"></script><script src="./vendor/turf/turf.min.js"></script><script src="./vendor/maplibre-gl.js"></script><script src="./supabase-config.js"></script><script type="module" src="./app.js?v=region-edge-screenshot-20261104-1"></script>
+        </script><script src="./vendor/leaflet/leaflet.js"></script><script src="./vendor/leaflet-markercluster/leaflet.markercluster.js"></script><script src="./vendor/leaflet-geoman/leaflet-geoman.min.js"></script><script src="./vendor/turf/turf.min.js"></script><script src="./vendor/maplibre-gl.js"></script><script src="./supabase-config.js"></script><script type="module" src="./app.js?v=region-after-draw-20261104-1"></script>
 </body>
 </html>
 
