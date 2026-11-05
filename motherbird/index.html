@@ -240,6 +240,8 @@
      .top-cluster>.regional-navigation,.top-cluster>.regional-navigation:has(.regional-navigation-menu:not(.hidden)){transform:none!important;top:0!important;margin:0!important}
      .top-cluster>.regional-navigation .regional-navigation-button{height:38px!important;min-height:38px!important;max-height:38px!important;margin:0!important;transform:none!important;line-height:1!important}
      .top-cluster>.regional-navigation .regional-navigation-menu{position:absolute!important;top:38px!important;left:auto!important;right:0!important;width:min(320px,calc(100vw - 16px))!important;min-width:min(280px,calc(100vw - 16px))!important;max-width:calc(100vw - 16px)!important;box-sizing:border-box!important}
+     .top-cluster>.regional-navigation:not(.has-menu){background:#4d7ea6!important;color:#fff!important}
+     .top-cluster>.regional-navigation:not(.has-menu) .regional-navigation-label{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;height:38px!important;min-height:38px!important;max-height:38px!important;padding:0 12px!important;color:#fff!important;background:#4d7ea6!important;font:850 .72rem system-ui,sans-serif!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important}
   </style>
   <title>Walk & Wildlife</title>
 </head>
@@ -470,7 +472,7 @@
               navigator.serviceWorker?.getRegistrations().then((registrations) => Promise.all(registrations.map((registration) => registration.unregister())))
             ]).finally(() => location.replace(cleanUrl));
           })();
-        </script><script src="./vendor/leaflet/leaflet.js"></script><script src="./vendor/leaflet-markercluster/leaflet.markercluster.js"></script><script src="./vendor/leaflet-geoman/leaflet-geoman.min.js"></script><script src="./vendor/turf/turf.min.js"></script><script src="./vendor/maplibre-gl.js"></script><script src="./supabase-config.js"></script><script type="module" src="./app.js?v=20261105-daylight-refresh-6"></script>
+        </script><script src="./vendor/leaflet/leaflet.js"></script><script src="./vendor/leaflet-markercluster/leaflet.markercluster.js"></script><script src="./vendor/leaflet-geoman/leaflet-geoman.min.js"></script><script src="./vendor/turf/turf.min.js"></script><script src="./vendor/maplibre-gl.js"></script><script src="./supabase-config.js"></script><script type="module" src="./app.js?v=20261105-daylight-refresh-7"></script>
 </body>
 </html>
 

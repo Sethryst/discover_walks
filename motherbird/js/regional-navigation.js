@@ -81,7 +81,7 @@ function renderRegionalNavigation() {
     });
   } else {
     const text = document.createElement('span');
-    text.className = 'regional-navigation-label';
+    text.className = 'regional-navigation-button regional-navigation-label';
     text.textContent = label;
     text.setAttribute('aria-label', `Current map area: ${label}`);
     control.append(text);
