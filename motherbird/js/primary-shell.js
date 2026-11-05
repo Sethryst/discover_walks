@@ -53,7 +53,7 @@ export function initPrimaryShell() {
       if (initial) {
         // Explore is the default landing surface, so its category icons and
         // data are visible immediately rather than waiting for a click.
-        window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'explore', forceOpen: true } }));
+        queueMicrotask(() => window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'explore', forceOpen: true } })));
         return;
       }
       const mapWorkspace = document.getElementById('mapWorkspacePanel');
