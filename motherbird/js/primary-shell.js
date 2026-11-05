@@ -164,22 +164,8 @@ export function initPrimaryShell() {
     regionalNavigation.style.top = 'auto';
   }
   const syncRegionToWeather = () => {
-    const weather = document.querySelector('.top-cluster>.weather-brief, .top-cluster>#weatherBrief');
     const regionControl = document.querySelector('.top-cluster>.regional-navigation');
-    if (!weather || !regionControl) return;
-    const weatherRect = weather.getBoundingClientRect();
-    const regionRect = regionControl.getBoundingClientRect();
-    const width = weatherRect.right - regionRect.left;
-    if (width > 0) {
-      regionControl.style.setProperty('width', `${Math.round(width)}px`, 'important');
-      regionControl.style.setProperty('max-width', `${Math.round(width)}px`, 'important');
-      regionControl.style.setProperty('min-width', `${Math.round(width)}px`, 'important');
-      regionControl.style.setProperty('flex', `0 0 ${Math.round(width)}px`, 'important');
-      const regionButton = regionControl.querySelector('.regional-navigation-button');
-      regionButton?.style.setProperty('width', '100%', 'important');
-      regionButton?.style.setProperty('max-width', 'none', 'important');
-      regionButton?.style.setProperty('min-width', '100%', 'important');
-    }
+    if (regionControl && window.matchMedia('(max-width: 480px)').matches) regionControl.removeAttribute('style');
   };
   requestAnimationFrame(syncRegionToWeather);
   window.addEventListener('resize', syncRegionToWeather, { passive: true });
