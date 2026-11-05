@@ -26,7 +26,9 @@ export const state = {
   publicMarkerVotes: new Set(),
   layerFilters: { public: {}, personal: {} },
   layerUiState: { expanded: {} },
-  layerLights: { news: false, recreation: true, cuisine: false, personal: false },
+  // The map starts with the two primary place families visible. A saved
+  // explicit user choice still wins during layer-system hydration.
+  layerLights: { news: false, recreation: true, cuisine: true, personal: false },
 
   // map objects
   map: null,
