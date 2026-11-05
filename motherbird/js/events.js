@@ -7,7 +7,7 @@ import { getCurrentLocation, startWalk, stopWalk, updateActiveWalkDirection } fr
 import { openBackpack, openJournal, closeSheets, openSheet, renderGeofenceCategoryChips, setArchiveFilter, toast } from './ui.js';
 import { city, poiTags, searchPois } from './poi.js';
 import { localSearchHits, searchRowHtml, emptySearchHtml } from './search.js';
-import { initRegionalNavigation } from './regional-navigation.js?v=20261101-conditional-menu-1';
+import { initRegionalNavigation } from './regional-navigation.js?v=20261104-subregion-switch-1';
 import { switchCity } from './city.js';
 import { generateTimeBasedPlan, lockSelectedPlanOnMap, changePlan, setPlanningMode } from './planner.js?v=20261014-single-composed-walk-1';
 import { routeOnFoot, routeFailureMessage } from './routing.js?v=20261104-valhalla-wasm-1';

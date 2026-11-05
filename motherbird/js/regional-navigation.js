@@ -1,6 +1,7 @@
 import { CITIES } from './constants.js';
 import { state } from './state.js';
 import { escapeHtml } from './utils.js';
+import { switchCity } from './city.js';
 
 let catalog = null;
 let activeId = null;
@@ -56,7 +57,12 @@ function renderRegionalNavigation() {
     const hotspotUrl = bounds ? `https://www.inaturalist.org/observations?verifiable=any&mappable=any&swlat=${bounds.getSouth()}&swlng=${bounds.getWest()}&nelat=${bounds.getNorth()}&nelng=${bounds.getEast()}` : 'https://www.inaturalist.org/observations?verifiable=any&mappable=any';
     menu.insertAdjacentHTML('beforeend', `<div class="regional-outlinks"><strong>Birding & nature</strong><a role="menuitem" href="${hotspotUrl}" target="_blank" rel="noopener">Explore hotspots on iNaturalist</a></div>`);
     if (subregions.length) {
-      menu.insertAdjacentHTML('beforeend', `<div class="regional-region-list"><strong>Related areas</strong>${subregions.map((item) => `<a role="menuitem" href="${escapeHtml(item.href || '#')}">${escapeHtml(item.label)}</a>`).join('')}</div>`);
+      menu.insertAdjacentHTML('beforeend', `<div class="regional-region-list"><strong>Related areas</strong>${subregions.map((item) => {
+        const target = CITIES[item.id] ? item.id : '';
+        return target
+          ? `<button type="button" role="menuitem" data-region-target="${escapeHtml(target)}">${escapeHtml(item.label)}</button>`
+          : `<span role="menuitem" aria-disabled="true">${escapeHtml(item.label)}</span>`;
+      }).join('')}</div>`);
     }
     if (links.length) {
       menu.insertAdjacentHTML('beforeend', `<div class="regional-outlinks"><strong>Official local sites</strong>${links.map((link) => `<a role="menuitem" href="${escapeHtml(link.href)}" target="_blank" rel="noopener">${escapeHtml(link.label)}</a>`).join('')}</div>`);
@@ -65,6 +71,13 @@ function renderRegionalNavigation() {
     button.addEventListener('click', () => {
       const open = menu.classList.toggle('hidden');
       button.setAttribute('aria-expanded', String(!open));
+    });
+    menu.addEventListener('click', async (event) => {
+      const target = event.target.closest('[data-region-target]')?.dataset.regionTarget;
+      if (!target) return;
+      menu.classList.add('hidden');
+      button.setAttribute('aria-expanded', 'false');
+      await switchCity(target);
     });
   } else {
     const text = document.createElement('span');
