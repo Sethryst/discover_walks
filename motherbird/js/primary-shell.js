@@ -168,7 +168,10 @@ export function initPrimaryShell() {
     const regionControl = document.querySelector('.top-cluster>.regional-navigation');
     if (!weather || !regionControl) return;
     const width = weather.getBoundingClientRect().width;
-    if (width > 0) regionControl.style.width = `${Math.round(width)}px`;
+    if (width > 0) {
+      regionControl.style.setProperty('width', `${Math.round(width)}px`, 'important');
+      regionControl.style.setProperty('max-width', `${Math.round(width)}px`, 'important');
+    }
   };
   requestAnimationFrame(syncRegionToWeather);
   window.addEventListener('resize', syncRegionToWeather, { passive: true });
