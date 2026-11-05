@@ -116,7 +116,7 @@ export function syncJournalTitle() {
   title.innerHTML = `<span class="journal-moment-copy">${moment.label}</span><span class="journal-moon" role="img" aria-label="${moment.moonLabel}">${moment.moon}</span><span aria-hidden="true">⌄</span>`;
   title.title = `${moment.label}, ${moment.moonLabel}`;
 }
-syncJournalTitle();
+if (typeof document !== 'undefined') syncJournalTitle();
 export async function openJournal(walkId = null) {
   if (state.modalOpen === 'journalSheet') { closeSheets(); return; }
   const form = el('journalForm');
