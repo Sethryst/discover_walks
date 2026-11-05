@@ -19,6 +19,7 @@ export const LAYER_GROUPS = [
   { id: 'history_culture', light: 'recreation', label: 'History Sites', description: 'Historical sites, markers, museums, landmarks, and monuments', tags: ['history', 'history_landmark', 'history_monument', 'history_museum', 'history_cemetery', 'history_marker', 'historic', 'museum', 'landmark', 'monument', 'cemetery'] },
   { id: 'art', light: 'recreation', label: 'Art', description: 'Art and public art places', tags: ['art', 'public_art'] },
   { id: 'biodiversity', light: 'recreation', label: 'Nature observations', description: 'Open-coordinate iNaturalist observations', tags: ['biodiversity:birds', 'biodiversity:plants', 'biodiversity:mammals', 'biodiversity:insects', 'biodiversity:invertebrates', 'biodiversity:fungi', 'biodiversity:lichen', 'biodiversity:reptiles', 'biodiversity:amphibians', 'biodiversity:other'] },
+  { id: 'activities', light: 'recreation', label: 'Sports & activities', description: 'Sports, play, and active recreation places', tags: ['basketball', 'tennis', 'disc_golf', 'skate_park', 'sports_centre', 'swimming_pool', 'pitch', 'golf', 'fitness_centre'] },
   { id: 'culture', light: 'news', label: 'News & culture', description: 'Events and civic places', tags: ['event', 'civic'] },
   { id: 'cuisine', light: 'cuisine', label: 'Food & Drink', description: 'Food, drink, and places to stop', tags: ['market', 'farmers_market', 'restaurant', 'fast_food', 'coffee', 'coffee_shop', 'cafe', 'food_cart', 'bakery', 'argentinian', 'british', 'crepe', 'greek', 'latin_american', 'tea', 'turkish', 'tex_mex', 'juice', 'seafood', 'southern', 'milkshake', 'milkshakes', 'lunch', 'health_food'] },
   { id: 'more', light: 'recreation', label: 'Places', description: 'Places mapped in OpenStreetMap and not already grouped elsewhere', tags: ['osm'] }
@@ -637,6 +638,7 @@ function bindLayerControls() {
     const familyToggle = event.target.closest('[data-advanced-family-toggle]');
     if (familyToggle) {
       const id = familyToggle.dataset.advancedFamilyToggle;
+      for (const familyId of ['news', 'recreation', 'cuisine']) if (familyId !== id) state.layerUiState.familyExpanded[familyId] = false;
       state.layerUiState.familyExpanded[id] = !(state.layerUiState.familyExpanded[id] !== false);
       renderLayerFilters(); void persistLayerState(); return;
     }

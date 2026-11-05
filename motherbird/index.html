@@ -245,6 +245,9 @@
      .top-cluster>.regional-navigation,.top-cluster>.regional-navigation .regional-navigation-button{border-top-right-radius:10px!important}
      .radial-stack{bottom:calc(max(42px,env(safe-area-inset-bottom)) + 16px)!important}
      .top-cluster>#quickRadioButton + #quickDrawButton,.top-cluster>#quickDrawButton{border-left:1px solid rgba(23,60,53,.28)!important;box-sizing:border-box!important;margin:0!important;transform:none!important}
+     .poi-marker,.public-place-marker,.personal-place-marker,.place-cluster span,.observation-cluster span{width:32px!important;height:32px!important;min-width:32px!important;padding:0!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;color:inherit!important}
+     .poi-marker-glyph-image,.poi-marker-glyph{display:none!important}
+     .poi-standalone-glyph,.observation-cluster img,.place-cluster-taxonomy img{display:block!important;width:32px!important;height:32px!important;object-fit:contain!important;filter:none!important}
   </style>
   <title>Walk & Wildlife</title>
 </head>
@@ -475,7 +478,7 @@
               navigator.serviceWorker?.getRegistrations().then((registrations) => Promise.all(registrations.map((registration) => registration.unregister())))
             ]).finally(() => location.replace(cleanUrl));
           })();
-        </script><script src="./vendor/leaflet/leaflet.js"></script><script src="./vendor/leaflet-markercluster/leaflet.markercluster.js"></script><script src="./vendor/leaflet-geoman/leaflet-geoman.min.js"></script><script src="./vendor/turf/turf.min.js"></script><script src="./vendor/maplibre-gl.js"></script><script src="./supabase-config.js"></script><script type="module" src="./app.js?v=20261105-daylight-refresh-7"></script>
+        </script><script src="./vendor/leaflet/leaflet.js"></script><script src="./vendor/leaflet-markercluster/leaflet.markercluster.js"></script><script src="./vendor/leaflet-geoman/leaflet-geoman.min.js"></script><script src="./vendor/turf/turf.min.js"></script><script src="./vendor/maplibre-gl.js"></script><script src="./supabase-config.js"></script><script type="module" src="./app.js?v=20261105-explorer-taxonomy-1"></script>
 </body>
 </html>
 
