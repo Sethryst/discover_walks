@@ -2481,7 +2481,8 @@ body.location-available .top-cluster > .locate-stack .location-help {
 
  /* Give the region controller a more generous reading width on desktop. */
  @media (min-width: 721px) {
-   .top-cluster > .regional-navigation { flex-basis: 360px !important; min-width: 240px !important; max-width: 420px !important; }
+  .top-cluster { grid-template-columns: 38px max-content 30px 30px 30px minmax(224px, 2fr) !important; }
+  .top-cluster > .regional-navigation { flex-basis: 360px !important; min-width: 224px !important; max-width: 420px !important; }
  }
 
  .personal-observation-marker {
