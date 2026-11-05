@@ -415,7 +415,7 @@ function walkingNetworkStyle(sourceUrl, poiUrl = null) {
 function syncNeighborhoodPresentation() {
   if (!state.map) return;
   const neighborhood = state.map.getZoom() >= NEIGHBORHOOD_ZOOM;
-  document.querySelector('.app-shell')?.classList.toggle('watercolor-wash', !neighborhood);
+  document.querySelector('.app-shell')?.classList.remove('watercolor-wash');
   if (neighborhood) void activateNationalPoiOverlay();
   else if (state.nationalPoiMap) deactivateNationalPoiOverlay();
 }
