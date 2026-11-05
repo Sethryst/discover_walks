@@ -6,7 +6,7 @@ import { renderCityExplorer, renderCityPois, migratePoi, city as cityLookup } fr
 import { renderProfile } from './profile.js';
 import { setStatus, toast } from './ui.js';
 import { addObservationMarker, addJournalMarker } from './observation.js?v=20261103-observation-icons-2';
-import { renderWeatherBrief } from './weather.js?v=20261104-time-weather-1';
+import { renderWeatherBrief } from './weather.js?v=20261105-daylight-refresh-5';
 import { loadNeighborhoodsForCity } from './neighborhoods.js';
 import { normalizeRegionDataConfig } from './osm-regions.js';
 import { activateInstalledRegionRuntime } from './installed-region-runtime.js';

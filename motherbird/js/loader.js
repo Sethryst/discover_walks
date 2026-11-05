@@ -7,7 +7,7 @@ import { toast } from './ui.js';
 import { initMap } from './map.js?v=20261104-gestures-1';
 import { applyStaticAppearance } from './ui.js';
 import { loadAllCityData, refreshCityMap } from './city.js?v=20261103-header-repair-2';
-import { renderWeatherBrief } from './weather.js?v=20261104-rain-timing-3';
+import { renderWeatherBrief } from './weather.js?v=20261105-daylight-refresh-5';
 import { renderArchive } from './archive.js';
 import { normalizedEntitlements } from './entitlements.js';
 import { restoreLocalPoiClosures } from './spatial-closure-reporting.js';
