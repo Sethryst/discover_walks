@@ -51,9 +51,8 @@ export function initPrimaryShell() {
     if (tab === 'explore') {
       panel.classList.add('hidden');
       if (initial) {
-        // Explore is the default landing surface, so its category icons and
-        // data are visible immediately rather than waiting for a click.
-        queueMicrotask(() => window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'explore', forceOpen: true } })));
+        // Keep the default shell closed while Explore data and map icons load;
+        // the Explore workspace remains available from the primary tab.
         return;
       }
       const mapWorkspace = document.getElementById('mapWorkspacePanel');
@@ -164,6 +163,15 @@ export function initPrimaryShell() {
     regionalNavigation.style.left = 'auto';
     regionalNavigation.style.top = 'auto';
   }
+  const syncRegionToWeather = () => {
+    const weather = document.querySelector('.top-cluster>.weather-brief, .top-cluster>#weatherBrief');
+    const regionControl = document.querySelector('.top-cluster>.regional-navigation');
+    if (!weather || !regionControl) return;
+    const width = weather.getBoundingClientRect().width;
+    if (width > 0) regionControl.style.width = `${Math.round(width)}px`;
+  };
+  requestAnimationFrame(syncRegionToWeather);
+  window.addEventListener('resize', syncRegionToWeather, { passive: true });
 }
 const topCluster = document.querySelector('.top-cluster');
 if (topCluster) {

@@ -181,7 +181,7 @@
     .top-cluster>.weather-brief,.top-cluster>#weatherBrief{grid-column:1 / -1!important;grid-row:2!important;width:100%!important;min-width:0!important;max-width:none!important;min-height:42px!important;height:42px!important;flex:none!important}
     /* Final flush geometry: Region absorbs the available row width while
        Locate keeps only its two light-blue dividers. */
-    .top-cluster{display:grid!important;grid-template-columns:38px max-content 30px 30px 30px minmax(112px,max-content)!important;grid-template-rows:38px auto!important;grid-template-areas:'profile locate search radio draw region' 'weather weather weather weather weather weather'!important;width:fit-content!important;max-width:calc(100vw - 16px)!important;overflow:visible!important;box-sizing:border-box!important}
+    .top-cluster{display:grid!important;grid-template-columns:38px max-content 30px 30px 30px minmax(112px,1fr)!important;grid-template-rows:38px auto!important;grid-template-areas:'profile locate search radio draw region' 'weather weather weather weather weather weather'!important;width:fit-content!important;max-width:calc(100vw - 16px)!important;overflow:visible!important;box-sizing:border-box!important}
     .top-cluster>.profile-control{grid-area:profile!important;order:initial!important}.top-cluster>.locate-stack{grid-area:locate!important;order:initial!important}.top-cluster>.map-search{grid-area:search!important;order:initial!important}.top-cluster>#quickRadioButton{grid-area:radio!important;order:initial!important}.top-cluster>#quickDrawButton{grid-area:draw!important;order:initial!important}.top-cluster>.regional-navigation{grid-area:region!important;order:initial!important}.top-cluster>.weather-brief,.top-cluster>#weatherBrief{grid-area:weather!important;order:initial!important}
     .top-cluster>.locate-stack{border-left:1px solid #c5dce8!important;border-right:1px solid #c5dce8!important;outline:0!important;box-shadow:none!important}
     .top-cluster>.locate-stack .control-row,.top-cluster>.locate-stack .ink-control{border:0!important;outline:0!important;box-shadow:none!important}
@@ -193,7 +193,7 @@
     .top-cluster>.profile-control{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:flex-start!important;gap:1px!important;overflow:visible!important;position:relative!important}
     .top-cluster>.profile-control .profile-avatar{flex:0 0 27px!important;width:27px!important;height:27px!important;min-height:27px!important;max-height:27px!important}
     .top-cluster>.profile-control::after{content:'Profile';display:block!important;color:#24597d!important;font-size:8px!important;line-height:9px!important;letter-spacing:.01em!important;white-space:nowrap!important;pointer-events:none!important}
-    .top-cluster>.weather-brief,.top-cluster>#weatherBrief{min-width:0!important;width:100%!important;max-width:100%!important;overflow:hidden!important;justify-self:stretch!important}
+    .top-cluster>.weather-brief,.top-cluster>#weatherBrief{grid-column:1 / -1!important;grid-row:2!important;min-width:0!important;width:100%!important;max-width:100%!important;overflow:visible!important;justify-self:stretch!important}
     .top-cluster>.weather-brief>span,.top-cluster>#weatherBrief>span{min-width:0!important;overflow-wrap:anywhere!important;word-break:normal!important}
     .top-cluster>.regional-navigation{justify-self:stretch!important;width:100%!important;min-width:0!important;max-width:none!important}
     .top-cluster>.walk-options-control,.top-cluster>.companion-slot,.top-cluster>.start-stack,.top-cluster>.map-search-results{display:none!important}
@@ -427,7 +427,7 @@
               navigator.serviceWorker?.getRegistrations().then((registrations) => Promise.all(registrations.map((registration) => registration.unregister())))
             ]).finally(() => location.replace(cleanUrl));
           })();
-        </script><script src="./vendor/leaflet/leaflet.js"></script><script src="./vendor/leaflet-markercluster/leaflet.markercluster.js"></script><script src="./vendor/leaflet-geoman/leaflet-geoman.min.js"></script><script src="./vendor/turf/turf.min.js"></script><script src="./vendor/maplibre-gl.js"></script><script src="./supabase-config.js"></script><script type="module" src="./app.js?v=topbar-rendered-20261104-3"></script>
+        </script><script src="./vendor/leaflet/leaflet.js"></script><script src="./vendor/leaflet-markercluster/leaflet.markercluster.js"></script><script src="./vendor/leaflet-geoman/leaflet-geoman.min.js"></script><script src="./vendor/turf/turf.min.js"></script><script src="./vendor/maplibre-gl.js"></script><script src="./supabase-config.js"></script><script type="module" src="./app.js?v=topbar-final-20261104-2"></script>
 </body>
 </html>
 

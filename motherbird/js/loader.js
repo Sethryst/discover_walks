@@ -23,7 +23,7 @@ import { initOnlinePane } from './online-pane.js';
 import { startCoachMarks } from './coach.js';
 import { initNationalOsmLayers } from './national-osm-layers.js';
 import { initPwaUpdates } from './pwa-update.js';
-import { initPrimaryShell } from './primary-shell.js?v=20261104-explore-default-2';
+import { initPrimaryShell } from './primary-shell.js?v=20261104-explore-default-4';
 import { initRadialMenu } from './radial-menu.js?v=20261103-radial-start-walk-1';
 import { initStories } from './stories.js';
 import { initRadio } from './radio.js?v=20261009-radio-controls-2';
