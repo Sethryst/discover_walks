@@ -257,7 +257,7 @@ export const MAX_DRIVE_SPEED_MPS = 70;
 Object.entries(CITIES).forEach(([cityId, city]) => { city.osm = runtimeOsmConfig(cityId, city); });
 // This is the first pack shown by onboarding, not a boot-time active city.
 // Keeping the choice explicit avoids deriving identity from every data file.
-export const DEFAULT_CITY_ID = 'fairfax';
+export const DEFAULT_CITY_ID = 'pgcounty';
 export function chosenPackIds(settings = {}) {
   const ids = [];
   const add = (id) => { if (CITIES[id]?.dataFile && !ids.includes(id)) ids.push(id); };

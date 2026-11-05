@@ -32,7 +32,7 @@
   <link rel="stylesheet" href="./vendor/leaflet-geoman/leaflet-geoman.css" />
   <link rel="stylesheet" href="./vendor/maplibre-gl.css" />
   <link rel="stylesheet" href="./styles.css?v=explore-light-polish-20261104-11" />
-  <link rel="stylesheet" href="./css/topbar-and-marker-overrides.css?v=20261104-49" />
+  <link rel="stylesheet" href="./css/topbar-and-marker-overrides.css?v=20261105-region-width-1" />
     <link rel="stylesheet" href="./radio.css?v=20261101-radio-condensed-1" />
   <link rel="stylesheet" href="./shell.css?v=explore-filter-layout-20261103-1" />
   <link rel="stylesheet" href="./map-customization.css?v=20261012-map-studio-2" />
@@ -133,7 +133,7 @@
     .top-cluster>.weather-brief,.top-cluster>#weatherBrief,.top-cluster>.regional-navigation{width:112px!important}
     @media(max-width:520px){.top-cluster{grid-template-columns:38px 30px 64px 38px 38px 112px!important}}
   </style>
-  <link rel="stylesheet" href="./css/topbar-clean.css?v=20261104-clean-4" />
+  <link rel="stylesheet" href="./css/topbar-clean.css?v=20261105-region-width-1" />
   <style id="topbar-final-local">
     .top-cluster{display:flex!important;position:relative!important;align-items:stretch!important;gap:0!important;width:410px!important;max-width:410px!important;height:38px!important;margin:0!important;padding:0!important;overflow:visible!important}
     .top-cluster>.profile-control{order:1!important;flex:0 0 38px!important;width:38px!important;margin:0!important}
@@ -218,6 +218,13 @@
        .top-cluster>.regional-navigation .regional-navigation-button{width:100%!important;max-width:none!important}
        .top-cluster>.weather-brief,.top-cluster>#weatherBrief{order:7!important;flex:0 0 100%!important;width:100%!important;min-width:100%!important;max-width:100%!important}
      }
+     /* Final region sizing: use Prince George's County as the baseline and
+        keep every shorter label centered in the same fixed control. */
+     .top-cluster>.regional-navigation{width:180px!important;min-width:180px!important;max-width:180px!important}
+     .top-cluster>.regional-navigation .regional-navigation-button{width:180px!important;min-width:180px!important;max-width:180px!important;justify-content:center!important;text-align:center!important}
+     .top-cluster>.regional-navigation .regional-navigation-button>span:first-child{min-width:0!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important}
+     .top-cluster>.regional-navigation .regional-navigation-menu{width:180px!important;min-width:180px!important;max-width:180px!important}
+     @media(max-width:480px){.top-cluster{grid-template-columns:38px max-content 30px 30px 30px 180px!important;width:max-content!important;max-width:none!important}.top-cluster>.regional-navigation{position:relative!important;grid-area:region!important;width:180px!important;min-width:180px!important;max-width:180px!important}.top-cluster>.regional-navigation .regional-navigation-button{width:180px!important;min-width:180px!important;max-width:180px!important}}
   </style>
   <title>Walk & Wildlife</title>
 </head>
