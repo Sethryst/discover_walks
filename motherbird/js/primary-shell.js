@@ -171,10 +171,18 @@ export function initPrimaryShell() {
     if (width > 0) {
       regionControl.style.setProperty('width', `${Math.round(width)}px`, 'important');
       regionControl.style.setProperty('max-width', `${Math.round(width)}px`, 'important');
+      regionControl.style.setProperty('min-width', `${Math.round(width)}px`, 'important');
+      regionControl.style.setProperty('flex', `0 0 ${Math.round(width)}px`, 'important');
+      const regionButton = regionControl.querySelector('.regional-navigation-button');
+      regionButton?.style.setProperty('width', '100%', 'important');
+      regionButton?.style.setProperty('max-width', 'none', 'important');
+      regionButton?.style.setProperty('min-width', '100%', 'important');
     }
   };
   requestAnimationFrame(syncRegionToWeather);
   window.addEventListener('resize', syncRegionToWeather, { passive: true });
+  const weatherForResize = document.querySelector('.top-cluster>.weather-brief, .top-cluster>#weatherBrief');
+  if (weatherForResize && 'ResizeObserver' in window) new ResizeObserver(syncRegionToWeather).observe(weatherForResize);
 }
 const topCluster = document.querySelector('.top-cluster');
 if (topCluster) {
