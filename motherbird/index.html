@@ -32,7 +32,7 @@
   <link rel="stylesheet" href="./vendor/leaflet-geoman/leaflet-geoman.css" />
   <link rel="stylesheet" href="./vendor/maplibre-gl.css" />
   <link rel="stylesheet" href="./styles.css?v=explore-light-polish-20261104-11" />
-  <link rel="stylesheet" href="./css/topbar-and-marker-overrides.css?v=20261105-region-width-4" />
+  <link rel="stylesheet" href="./css/topbar-and-marker-overrides.css?v=20261105-region-width-5" />
     <link rel="stylesheet" href="./radio.css?v=20261101-radio-condensed-1" />
   <link rel="stylesheet" href="./shell.css?v=explore-filter-layout-20261103-1" />
   <link rel="stylesheet" href="./map-customization.css?v=20261012-map-studio-2" />
@@ -133,7 +133,7 @@
     .top-cluster>.weather-brief,.top-cluster>#weatherBrief,.top-cluster>.regional-navigation{width:112px!important}
     @media(max-width:520px){.top-cluster{grid-template-columns:38px 30px 64px 38px 38px 112px!important}}
   </style>
-  <link rel="stylesheet" href="./css/topbar-clean.css?v=20261105-region-width-4" />
+  <link rel="stylesheet" href="./css/topbar-clean.css?v=20261105-region-width-5" />
   <style id="topbar-final-local">
     .top-cluster{display:flex!important;position:relative!important;align-items:stretch!important;gap:0!important;width:410px!important;max-width:410px!important;height:38px!important;margin:0!important;padding:0!important;overflow:visible!important}
     .top-cluster>.profile-control{order:1!important;flex:0 0 38px!important;width:38px!important;margin:0!important}
@@ -242,6 +242,8 @@
      .top-cluster>.regional-navigation .regional-navigation-menu{position:absolute!important;top:38px!important;left:auto!important;right:0!important;width:min(320px,calc(100vw - 16px))!important;min-width:min(280px,calc(100vw - 16px))!important;max-width:calc(100vw - 16px)!important;box-sizing:border-box!important}
      .top-cluster>.regional-navigation:not(.has-menu){background:#4d7ea6!important;color:#fff!important}
      .top-cluster>.regional-navigation:not(.has-menu) .regional-navigation-label{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;height:38px!important;min-height:38px!important;max-height:38px!important;padding:0 12px!important;color:#fff!important;background:#4d7ea6!important;font:850 .72rem system-ui,sans-serif!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important}
+     .top-cluster>.regional-navigation,.top-cluster>.regional-navigation .regional-navigation-button{border-top-right-radius:10px!important}
+     .radial-stack{bottom:calc(max(36px,env(safe-area-inset-bottom)) + 16px)!important}
   </style>
   <title>Walk & Wildlife</title>
 </head>
