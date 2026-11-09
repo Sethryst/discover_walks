@@ -56,13 +56,6 @@
 .top-cluster > #quickDrawButton:hover,
 .top-cluster > #quickDrawButton:focus-visible { background: #c5dce8 !important; opacity: 1 !important; }
 
-.poi-marker,
-.personal-place-marker,
-.public-place-marker {
-  border-radius: 50% 50% 50% 0 !important;
-  transform: rotate(-45deg) !important;
-}
-.poi-marker-glyph-image { transform: rotate(45deg) !important; }
 .poi-standalone-glyph {
   width: 30px !important;
   height: 30px !important;
@@ -126,13 +119,14 @@
 .top-cluster > .locate-stack .control-row,
 .top-cluster > .locate-stack .ink-control { width: max-content !important; }
 .top-cluster > .locate-stack .ink-control { padding-inline: 8px !important; }
-.top-cluster > .map-search { border-left: 1px solid #c5dce8 !important; border-right: 1px solid #c5dce8 !important; }
+.top-cluster > .map-search { border-left: .5px solid rgba(23,60,53,.22) !important; border-right: 0 !important; box-shadow: inset -1px 0 rgba(23,60,53,.28) !important; }
 .top-cluster > .map-search::after { display: none !important; }
+.top-cluster > #quickDrawButton { border-left: 1px solid rgba(23,60,53,.28) !important; }
 .top-cluster > .weather-brief,
-.top-cluster > #weatherBrief,
-.top-cluster > .regional-navigation { width: 112px !important; }
+.top-cluster > #weatherBrief { width: 112px !important; }
 .top-cluster > .regional-navigation .regional-navigation-button { display: flex !important; align-items: center !important; }
 
 @media (max-width: 520px) {
   .top-cluster { grid-template-columns: 38px 30px max-content 38px 38px 112px !important; }
 }
+
