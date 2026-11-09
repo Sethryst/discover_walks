@@ -7,7 +7,7 @@ import { closeSheets, openSheet, toast } from './ui.js';
 import { CITIES } from './constants.js';
 import { routesForCity, splitDisconnectedPaths } from './routes.js';
 import { refreshPublicMarkers } from './online.js';
-import { ICON_IDS, MAP_DOMAINS, filterIconId, markerPinHtml, markerVisual } from './poi-icons.js?v=20261109-domain-icons-2';
+import { ICON_IDS, MAP_DOMAINS, filterIconId, markerPinHtml, markerVisual } from './poi-icons.js?v=20261109-domain-icons-3';
 import { civicNoticesFromPack, newsIsAvailable } from './civic-news.js';
 import { syncNewsStory } from './learn-change.js';
 import { drawStories } from './stories.js';
@@ -91,6 +91,7 @@ export async function initLayerSystem() {
   syncLegacyPoiTags();
   bindLayerControls();
   window.addEventListener('biodiversity-live-updated', () => { ensureLayerDefaults(); renderLayerFilters(); });
+  window.addEventListener('map-domain-labels-changed', () => { renderLayerFilters(); renderMapLights(); });
   renderLayerFilters();
   renderMapLights();
   renderNewsMarkers();
@@ -387,10 +388,12 @@ function lightModel() {
   const newsEntries = state.layerLights.news ? [...civicAvailability.notices, ...packPublicMarkers('news')] : [];
   const personalPins = curatedPersonalPlaces().filter((place) => !place.packId || place.packId === state.activeCity);
   const personal = state.personalPlaceCategories.map((category) => ({ id: category.id, label: category.name, tags: [], kind: 'personal' }));
+  const labels = state.settings?.mapSettings?.domainLabels || {};
+  const icons = state.settings?.mapSettings?.domainIcons || {};
   return [
-    { ...MAP_DOMAINS.news, available: true, chips: [], entries: newsEntries, hasChevron: false },
-    { ...MAP_DOMAINS.recreation, available: true, chips: recreation, hasChevron: false },
-    { ...MAP_DOMAINS.cuisine, available: true, chips: cuisine, hasChevron: false },
+    { ...MAP_DOMAINS.news, label: labels.news || MAP_DOMAINS.news.label, icon: icons.news || MAP_DOMAINS.news.icon, available: true, chips: [], entries: newsEntries, hasChevron: false },
+    { ...MAP_DOMAINS.recreation, label: labels.recreation || MAP_DOMAINS.recreation.label, icon: icons.recreation || MAP_DOMAINS.recreation.icon, available: true, chips: recreation, hasChevron: false },
+    { ...MAP_DOMAINS.cuisine, label: labels.cuisine || MAP_DOMAINS.cuisine.label, icon: icons.cuisine || MAP_DOMAINS.cuisine.icon, available: true, chips: cuisine, hasChevron: false },
     { id: 'personal', label: state.personalPlaceSelecting ? 'USE THIS SPOT' : 'MY PLACES', available: false, chips: personal, hasChevron: true }
   ].filter((light) => light.available);
 }

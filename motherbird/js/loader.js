@@ -34,7 +34,7 @@ import { initStorageDiagnostics } from './storage-diagnostics.js';
 import { initStorageHealth } from './storage-health.js';
 import { loadWorkspaceState, initWorkspaceRuntime, seedWorkspaceDemo } from './workspace.js?v=20261109-journal-filters-1';
 import { normalizeSavedRoute } from './saved-routes.js';
-import { initMapSettings } from './map-settings.js';
+import { initMapSettings } from './map-settings.js?v=20261109-domain-customization-1';
 import { initRegionalRoutingPackagesUI } from './regional-routing-packages-ui.js?v=20261104-valhalla-packages-ui-1';
 
 export async function init() {
