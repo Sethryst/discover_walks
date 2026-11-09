@@ -521,6 +521,13 @@ body[data-primary-tab="explore"] .map-dock [data-map-destination="explore"],body
   line-height: 1.15 !important;
 }
 
+/* The Customize Explore disclosure was sitting a few pixels too high. Move
+   the disclosure and its mutually-exclusive News/Rec/Cuisine families as a
+   single block so their spacing stays aligned. */
+.map-workspace-panel[data-destination="explore"] .advanced-filters {
+  margin-top: -1px !important;
+}
+
 /* Precise Explore chrome: squared outer sheet, rounded category pills. */
 .map-workspace-panel[data-destination="explore"] {
   border-radius: 0 !important;
