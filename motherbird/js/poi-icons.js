@@ -40,6 +40,19 @@ export const MARKER_COLORS = {
   personal: '#76558b', fallback: '#2d7259'
 };
 
+// One domain registry for the public Explore surface. Personal places and
+// map overlays intentionally stay outside this taxonomy.
+export const MAP_DOMAINS = Object.freeze({
+  news: Object.freeze({ id: 'news', label: 'NEWS', icon: 'radio', color: MARKER_COLORS.news }),
+  recreation: Object.freeze({ id: 'recreation', label: 'REC', icon: 'tree', color: MARKER_COLORS.nature }),
+  cuisine: Object.freeze({ id: 'cuisine', label: 'Cuisine', icon: 'utensils-taxonomy', color: MARKER_COLORS.cuisine })
+});
+
+export function filterIconId(id) {
+  const key = String(id || '').toLowerCase();
+  return validIconId(ICONS[key]) || (['food', 'drink'].includes(key) ? 'utensils' : 'map-pin');
+}
+
 const CHIP_ICON_IDS = {
   routes: 'walk', nature: 'tree', trails: 'walk', historic: 'bookmark',
   cafes: 'coffee', markets: 'utensils', restaurants: 'utensils'

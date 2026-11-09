@@ -7,7 +7,7 @@ import { closeSheets, openSheet, toast } from './ui.js';
 import { CITIES } from './constants.js';
 import { routesForCity, splitDisconnectedPaths } from './routes.js';
 import { refreshPublicMarkers } from './online.js';
-import { ICONS, ICON_IDS, markerPinHtml, markerVisual } from './poi-icons.js?v=20261104-cuisine-icons-1';
+import { ICON_IDS, MAP_DOMAINS, filterIconId, markerPinHtml, markerVisual } from './poi-icons.js?v=20261109-domain-icons-1';
 import { civicNoticesFromPack, newsIsAvailable } from './civic-news.js';
 import { syncNewsStory } from './learn-change.js';
 import { drawStories } from './stories.js';
@@ -154,7 +154,7 @@ function publicOption(id, sourceLabel, pois) {
   return {
     id, kind: 'public', label: cleanLabel(sourceLabel || STATIC_LABELS[id] || titleCase(id)),
     description: `Public map places tagged ${titleCase(id)}`,
-    icon: ICONS[id] || (isFoodFilterTag(id) ? 'utensils' : 'map-pin'), color: visual.color,
+    icon: filterIconId(id), color: visual.color,
     count: biodiversityCount ?? pois.filter((poi) => (id === 'osm' ? isOsmPoi(poi) : sourceIds.some((sourceId) => poiTags(poi).includes(sourceId))) && inViewport(poi)).length
   };
 }
@@ -388,9 +388,9 @@ function lightModel() {
   const personalPins = curatedPersonalPlaces().filter((place) => !place.packId || place.packId === state.activeCity);
   const personal = state.personalPlaceCategories.map((category) => ({ id: category.id, label: category.name, tags: [], kind: 'personal' }));
   return [
-    { id: 'news', label: 'NEWS', icon: 'radio', available: true, chips: [], entries: newsEntries, hasChevron: false },
-    { id: 'recreation', label: 'REC', icon: 'tree', available: true, chips: recreation, hasChevron: false },
-    { id: 'cuisine', label: 'Cuisine', icon: 'utensils-taxonomy', available: true, chips: cuisine, hasChevron: false },
+    { ...MAP_DOMAINS.news, available: true, chips: [], entries: newsEntries, hasChevron: false },
+    { ...MAP_DOMAINS.recreation, available: true, chips: recreation, hasChevron: false },
+    { ...MAP_DOMAINS.cuisine, available: true, chips: cuisine, hasChevron: false },
     { id: 'personal', label: state.personalPlaceSelecting ? 'USE THIS SPOT' : 'MY PLACES', available: false, chips: personal, hasChevron: true }
   ].filter((light) => light.available);
 }
