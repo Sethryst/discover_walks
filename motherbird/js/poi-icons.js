@@ -27,7 +27,7 @@ export const ICONS = {
   supermarket: 'utensils', restaurant: 'utensils', fast_food: 'utensils', juice: 'utensils', seafood: 'utensils', southern: 'utensils', milkshake: 'utensils', milkshakes: 'utensils', lunch: 'utensils', health_food: 'utensils',
   event: 'star', news: 'star',
   waste_basket: 'trash-2', trash: 'trash-2', accessible_parking: 'parking',
-  mexican: 'utensils', filipino: 'utensils', food_cart: 'utensils', bakery: 'utensils',
+  mexican: 'utensils', filipino: 'utensils', chicken: 'utensils', food_cart: 'utensils', bakery: 'utensils', hotpot: 'utensils', kebab: 'utensils', noodles: 'utensils', soul_food: 'utensils', sushi: 'utensils', wings: 'utensils',
   parking: 'parking', bicycle_parking: 'bike', bike_rack: 'bike', osm: 'map',
   community: 'home', facility: 'home', pantry: 'home', library: 'book-open',
   recreation_center: 'building', wifi: 'wifi',
@@ -49,6 +49,12 @@ export const MAP_DOMAINS = Object.freeze({
   news: Object.freeze({ id: 'news', label: 'NEWS', icon: 'radio', color: MARKER_COLORS.news }),
   recreation: Object.freeze({ id: 'recreation', label: 'REC', icon: 'tree', color: MARKER_COLORS.nature }),
   cuisine: Object.freeze({ id: 'cuisine', label: 'Cuisine', icon: 'utensils-taxonomy', color: MARKER_COLORS.cuisine })
+});
+
+export const DOMAIN_ICON_CHOICES = Object.freeze({
+  news: Object.freeze([{ id: 'radio', label: 'Radio' }, { id: 'newspaper', label: 'Newspaper' }, { id: 'flag', label: 'Flag' }]),
+  recreation: Object.freeze([{ id: 'tree', label: 'Tree' }, { id: 'leaf', label: 'Leaf' }, { id: 'activity', label: 'Activity' }, { id: 'compass', label: 'Compass' }]),
+  cuisine: Object.freeze([{ id: 'utensils-taxonomy', label: 'Utensils' }, { id: 'utensils', label: 'Simple utensils' }, { id: 'coffee', label: 'Coffee' }])
 });
 
 export function filterIconId(id) {

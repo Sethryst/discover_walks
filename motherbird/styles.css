@@ -936,7 +936,7 @@ body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] #mapArtifactList
 .map-workspace-panel .map-lights{grid-template-columns:repeat(3,minmax(0,1fr))!important;width:100%;gap:6px!important}
 .map-workspace-panel .map-light-row{display:flex!important;min-width:0;width:100%}
 .map-workspace-panel .map-light{flex:1 1 auto!important;min-width:0!important;width:100%!important;justify-content:center!important;text-align:center!important;padding:7px 4px!important;grid-template-columns:18px minmax(0,1fr)!important}
-.map-workspace-panel .map-light-label{overflow:visible;white-space:nowrap;font-size:clamp(.62rem,2.4vw,.73rem)!important;letter-spacing:0!important}
+.map-workspace-panel .map-light-label{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:clamp(.62rem,2.4vw,.73rem)!important;letter-spacing:0!important}
 .map-workspace-panel .map-light-chevron{flex:0 0 18px!important;width:18px!important}
 .radio-controls button img,.radio-mini-player button img{width:16px;height:16px;vertical-align:middle}
 .map-workspace-panel .map-light{padding:7px 9px!important;height:42px!important;grid-template-columns:18px 1fr auto!important;grid-template-rows:1fr!important;gap:6px!important;text-align:left!important}
