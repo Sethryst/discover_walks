@@ -7,7 +7,7 @@ import { hydrateInlineIcons } from './icon-loader.js';
 import { markerPinHtml, markerVisual } from './poi-icons.js?v=20261103-standalone-taxonomy-1';
 import { requestCompanionContext } from './companion.js';
 import { updateSavedRoute, deleteSavedRoute, savedRouteEditorHtml } from './saved-routes.js';
-import { renderWorkspacePanel, createWorkspace } from './workspace.js';
+import { renderWorkspacePanel, createWorkspace } from './workspace.js?v=20261109-journal-filters-1';
 import { addPlaceToJournalRoom } from './journal-room.js';
 import { generateTimeBasedPlan } from './planner.js?v=20261014-single-composed-walk-1';
 import {
@@ -835,7 +835,12 @@ function bindPersonalPlaceControls() {
   });
   window.addEventListener('public-markers-changed', () => { renderPersonalPlacesPanel(); renderPersonalPlacesOnMap(); });
   window.addEventListener('walk-display-updated', renderPersonalPlacesPanel);
-  window.addEventListener('journal-data-changed', () => renderPersonalPlacesPanel());
+  window.addEventListener('journal-data-changed', () => {
+    // An embedded Workspace Journal owns its own history/timeline refresh.
+    // Rebuilding the whole panel here would detach the live journal surface.
+    if (document.querySelector('#journalSheet[data-workspace-embedded="true"]')) return;
+    renderPersonalPlacesPanel();
+  });
   window.addEventListener('online-profile-changed', async () => { await ensureDefaultPersonalCategory(); personalDataChanged(); });
   window.addEventListener('walk-position-received', () => {
     if (!localStopPending) return;

@@ -429,7 +429,7 @@ export function renderMapLights() {
   if (!root) return;
   root.innerHTML = lightModel().filter((light) => light.id !== 'personal').map((light) => {
     const on = state.layerLights[light.id] === true;
-    return `<div class="map-light-wrap" data-map-light="${light.id}"><div class="map-light-row"><button type="button" class="map-light ${on ? 'on' : 'off'}" data-light="${light.id}" aria-pressed="${on}"><img src="./icons/${escapeHtml(light.icon)}.svg" alt="" aria-hidden="true"><span class="map-light-label">${escapeHtml(light.label)}</span><span class="context-help-button light-help" data-light-help="${escapeHtml(light.id)}" aria-label="${escapeHtml(light.label)} best practices" role="button" tabindex="0">?</span></button></div></div>`;
+    return `<div class="map-light-wrap" data-map-light="${light.id}"><div class="map-light-row"><button type="button" class="map-light ${on ? 'on' : 'off'}" data-light="${light.id}" aria-pressed="${on}"><img src="./icons/${escapeHtml(light.icon)}.svg" alt="" aria-hidden="true"><span class="map-light-label">${escapeHtml(light.label)}</span></button></div></div>`;
   }).join('');
 }
 
@@ -605,13 +605,6 @@ function bindLayerControls() {
     if (event.target.closest('[data-add-my-place]')) { window.dispatchEvent(new CustomEvent('personal-place-create-requested')); return; }
     const newsMarker = event.target.closest('[data-news-marker]');
     if (newsMarker) { window.dispatchEvent(new CustomEvent('public-marker-focus-requested', { detail: { markerId: newsMarker.dataset.newsMarker } })); return; }
-    const help = event.target.closest('[data-light-help]');
-    if (help) {
-      event.stopPropagation();
-      const model = lightModel().find((item) => item.id === help.dataset.lightHelp);
-      toast(`${model?.label || 'This layer'} adds that context to the map.`);
-      return;
-    }
     const light = event.target.closest('[data-light]');
     if (light) {
       if (light.dataset.light === 'personal') {

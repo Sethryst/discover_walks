@@ -1,7 +1,7 @@
 import { state } from './state.js';
 import db from './storage.js';
 import { uid, escapeHtml } from './utils.js';
-import { linkSavedRecord, deleteWorkspaceRecord } from './workspace.js';
+import { linkSavedRecord, deleteWorkspaceRecord } from './workspace.js?v=20261109-journal-filters-1';
 
 export function normalizeSavedRoute(route = {}, now = new Date().toISOString()) {
   const coordinates = Array.isArray(route.coordinates) ? route.coordinates.filter((point) => Array.isArray(point) && point.length >= 2).map(([lat, lng]) => [Number(lat), Number(lng)]) : [];

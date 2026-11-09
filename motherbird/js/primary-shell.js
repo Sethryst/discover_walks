@@ -4,7 +4,7 @@ import { CITIES } from './constants.js';
 import { initRadialMenu, isActionStarred, toggleStarAction } from './radial-menu.js?v=20261103-radial-start-walk-1';
 import { generateTimeBasedPlan } from './planner.js';
 import { openObservation } from './observation.js?v=20261103-observation-icons-2';
-import { openWorkspaceTool } from './workspace.js';
+import { openWorkspaceTool } from './workspace.js?v=20261109-journal-filters-1';
 
 const actions = {
   walk: [

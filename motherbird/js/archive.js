@@ -142,7 +142,8 @@ export async function renderJournalHistory() {
 }
 
 function timelineEvent({ icon, label, title, detail, createdAt, photo = null, active = false }) {
-  const date = new Date(createdAt);
+  const candidate = new Date(createdAt || 0);
+  const date = Number.isFinite(candidate.getTime()) ? candidate : new Date();
   const stamp = `${date.toLocaleDateString([], { month: 'short', day: 'numeric' })} · ${date.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}`;
   return `<article class="timeline-event ${active ? 'active' : ''}"><time>${escapeHtml(stamp)}</time><span class="timeline-dot">${icon}</span><div><small>${escapeHtml(label)}</small><strong>${escapeHtml(title)}</strong>${detail ? `<p>${escapeHtml(detail)}</p>` : ''}${journalPhoto(photo)}</div></article>`;
 }
@@ -168,7 +169,11 @@ export async function renderJournalTimeline() {
   target.innerHTML = events.length ? events.slice(-12).map(timelineEvent).join('') : '';
   const latest = events.at(-1);
   const preview = el('journalCollapsedPreview');
-  if (preview) preview.textContent = latest ? `${new Date(latest.createdAt).toLocaleDateString([], { month: 'short', day: 'numeric' })} · ${new Date(latest.createdAt).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })} · ${latest.title}` : 'No entries yet';
+  if (preview) {
+    const latestDate = latest ? new Date(latest.createdAt || 0) : null;
+    const safeDate = latestDate && Number.isFinite(latestDate.getTime()) ? latestDate : null;
+    preview.textContent = latest && safeDate ? `${safeDate.toLocaleDateString([], { month: 'short', day: 'numeric' })} · ${safeDate.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })} · ${latest.title}` : 'No entries yet';
+  }
   requestAnimationFrame(() => { target.scrollTop = target.scrollHeight; });
 }
 export async function openWalkDetail(id) {

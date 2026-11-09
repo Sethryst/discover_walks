@@ -440,7 +440,7 @@ body[data-primary-tab="explore"] .map-dock [data-map-destination="explore"],body
 }
 .map-workspace-panel[data-destination="explore"] #poiTagFilters {
   display: grid !important;
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  grid-template-columns: minmax(0, 1fr) !important;
   gap: 2px !important;
   align-items: start !important;
 }
@@ -486,6 +486,39 @@ body[data-primary-tab="explore"] .map-dock [data-map-destination="explore"],body
   width: auto !important;
   max-width: none !important;
   justify-content: space-between !important;
+}
+
+.map-workspace-panel[data-destination="explore"] .advanced-family-heading {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  gap: 8px !important;
+  min-width: 0 !important;
+}
+.map-workspace-panel[data-destination="explore"] .advanced-family-toggle {
+  min-width: 0 !important;
+  width: 100% !important;
+  overflow: hidden !important;
+}
+.map-workspace-panel[data-destination="explore"] .advanced-family-toggle > span,
+.map-workspace-panel[data-destination="explore"] .advanced-layer-chip > span {
+  min-width: 0 !important;
+  overflow-wrap: anywhere !important;
+  white-space: normal !important;
+}
+.map-workspace-panel[data-destination="explore"] .advanced-layer-chip {
+  min-width: 0 !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 30px !important;
+  align-items: center !important;
+  overflow: hidden !important;
+}
+.map-workspace-panel[data-destination="explore"] .advanced-layer-chip strong {
+  display: block !important;
+  min-width: 0 !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+  line-height: 1.15 !important;
 }
 
 /* Precise Explore chrome: squared outer sheet, rounded category pills. */

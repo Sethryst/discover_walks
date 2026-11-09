@@ -6,6 +6,7 @@ import { renderFieldGuide } from './field-guide.js?v=20261104-experiences-1';
 import { isBiodiversitySupported } from './biodiversity.js?v=20261103-live-biodiversity-clusters-2';
 import { startWalk } from './walk.js';
 import { openJournal, syncJournalTitle } from './ui.js?v=20261103-goal-batch-2';
+import { renderJournalHistory, renderJournalTimeline } from './archive.js';
 
 export const DEFAULT_WORKSPACE_ID = 'workspace:my-workspace';
 const LINKABLE_STORES = [
@@ -227,14 +228,24 @@ let pendingWorkspaceTool = null;
 let workspaceBuilderMode = 'auto-round-trip';
 let workspaceBuilderMinutes = 35;
 const embeddedWorkspaceSurfaces = new Map();
+const initialJournalSurface = document.getElementById('journalSheet');
+if (initialJournalSurface) embeddedWorkspaceSurfaces.set('journalSheet', {
+  node: initialJournalSurface,
+  parent: initialJournalSurface.parentElement,
+  next: initialJournalSurface.nextSibling
+});
 function mountEmbeddedWorkspaceSurface(id, target) {
-  const node = id === 'drawWorkspace' ? document.querySelector('.draw-workspace') : document.getElementById(id);
+  const saved = embeddedWorkspaceSurfaces.get(id);
+  const node = id === 'drawWorkspace' ? document.querySelector('.draw-workspace') : document.getElementById(id) || saved?.node;
   if (!node || !target) return;
   if (!embeddedWorkspaceSurfaces.has(id)) embeddedWorkspaceSurfaces.set(id, { node, parent: node.parentElement, next: node.nextSibling });
   target.append(node);
   node.classList.remove('hidden');
   node.dataset.workspaceEmbedded = 'true';
-  if (id === 'journalSheet') syncJournalTitle();
+  if (id === 'journalSheet') {
+    syncJournalTitle();
+    void Promise.all([renderJournalTimeline(), renderJournalHistory()]);
+  }
 }
 function restoreEmbeddedWorkspaceSurfaces(activeId = '') {
   for (const [id, entry] of embeddedWorkspaceSurfaces) {
@@ -314,12 +325,6 @@ async function hydrateWorkspaceLearn(target) {
 }
 function renderWorkspaceExperience(target) {
   target.innerHTML = `<section class="workspace-experience" aria-label="Workspace"><header class="workspace-experience-header"><div><h1>${currentWalk ? escapeHtml(currentWalk.title) : 'Your walks'}</h1></div></header><nav class="workspace-tool-pills" aria-label="Workspace sections" role="tablist">${WORKSPACE_TOOLS.map(([id, label, icon]) => `<button type="button" role="tab" class="${activeWorkspaceTool === id ? 'active' : ''}" aria-selected="${activeWorkspaceTool === id}" data-workspace-tool="${id}"><img src="./icons/${icon === 'route' ? 'route' : icon === 'journal' ? 'bookmark' : 'book-open'}.svg" alt="" aria-hidden="true"><span>${label}</span></button>`).join('')}</nav>${workspacePage()}</section>`;
-  target.querySelector('.workspace-tool-pills')?.addEventListener('click', (event) => {
-    const button = event.target.closest('[data-workspace-tool]');
-    if (!button || !button.closest('.workspace-tool-pills')) return;
-    event.preventDefault();
-    selectWorkspaceTool(button.dataset.workspaceTool);
-  });
   const header = target.querySelector('.workspace-experience-header');
   if (header && activeWorkspaceTool === 'options') {
     const chips = document.createElement('div');
@@ -394,6 +399,12 @@ export async function renderWorkspacePanel(target, { filter = 'all' } = {}) {
   }
   // Reconcile on open too: older capture flows do not all emit change events.
   await linkExistingRecords(workspace.id);
+  if (activeWorkspaceTool === 'journal') {
+    requestAnimationFrame(() => {
+      const currentTarget = document.querySelector('#personalPlacesPanel .workspace-home');
+      if (currentTarget) mountActiveWorkspaceSurface(currentTarget);
+    });
+  }
 }
 
 export function initWorkspaceRuntime() {
@@ -436,7 +447,7 @@ export function initWorkspaceRuntime() {
     const savedPlan = event.target.closest('[data-workspace-saved-plan]');
     if (savedPlan) { const record = (await db.all('walk_plans')).find((item) => String(item.id) === savedPlan.dataset.workspaceSavedPlan); const route = record?.route || record; if (route?.coordinates?.length) { state.plannedRoute = route; window.dispatchEvent(new CustomEvent('walk-sketch-painted', { detail: route })); } return; }
     const tool = event.target.closest('[data-workspace-tool]')?.dataset.workspaceTool;
-    if (tool) { activeWorkspaceTool = tool; const target = document.querySelector('#personalPlacesPanel .workspace-home'); if (target) void renderWorkspacePanel(target); return; }
+    if (tool) { selectWorkspaceTool(tool); return; }
     if (event.target.closest('[data-workspace-choice="new"]')) { activeWorkspaceTool = 'builder'; const target = document.querySelector('#personalPlacesPanel .workspace-home'); if (target) void renderWorkspacePanel(target); return; }
     if (event.target.closest('[data-workspace-choice="today"]')) { activeWorkspaceTool = 'options'; const target = document.querySelector('#personalPlacesPanel .workspace-home'); if (target) void renderWorkspacePanel(target); return; }
     if (event.target.closest('[data-workspace-add-stop]')) { currentWalk.stops.push('Choose a place'); currentWalk.evidence.push('User-added stop'); const target = document.querySelector('#personalPlacesPanel .workspace-home'); if (target) void renderWorkspacePanel(target); return; }
