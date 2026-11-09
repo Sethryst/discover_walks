@@ -7,7 +7,7 @@ import { closeSheets, openSheet, toast } from './ui.js';
 import { CITIES } from './constants.js';
 import { routesForCity, splitDisconnectedPaths } from './routes.js';
 import { refreshPublicMarkers } from './online.js';
-import { ICON_IDS, MAP_DOMAINS, filterIconId, markerPinHtml, markerVisual } from './poi-icons.js?v=20261109-domain-icons-1';
+import { ICON_IDS, MAP_DOMAINS, filterIconId, markerPinHtml, markerVisual } from './poi-icons.js?v=20261109-domain-icons-2';
 import { civicNoticesFromPack, newsIsAvailable } from './civic-news.js';
 import { syncNewsStory } from './learn-change.js';
 import { drawStories } from './stories.js';

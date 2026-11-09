@@ -62,17 +62,17 @@ The following table expands the source tag lists. Icon names are the repository 
 | `park` | Parks | `tree` |
 | `nature` | Nature | `tree` |
 | `water` | Water | `droplet` |
-| `scenic` | Scenic places | `map-pin` fallback |
-| `recreation` | Recreation | `map-pin` fallback |
+| `scenic` | Scenic places | `eye` |
+| `recreation` | Recreation | `activity` |
 | `community_garden` | Community | `tree` |
 | `garden` | Community | `tree` |
 | `playground` | Playground | `tree` |
 | `dog_park` | Dog park | `tree` |
-| `splash_pad` | Splash pad | `map-pin` fallback |
+| `splash_pad` | Splash pad | `water-fountain` |
 | `rest` | Community | `building` |
 | `bench` | Benches | `bench` |
 | `shelter` | Shade shelters | `tree` |
-| `shade` | Shade | `map-pin` fallback |
+| `shade` | Shade | `tree` |
 | `restrooms` | Restrooms | `building` |
 | `drinking_water` | Water fountains | `droplet` |
 | `water_fountain` | Water fountains | `droplet` |
@@ -99,17 +99,17 @@ The following table expands the source tag lists. Icon names are the repository 
 | `monument` | History Sites | `bookmark` |
 | `cemetery` | History Sites | `map-pin` |
 | `art` / `public_art` | Art | `star` |
-| `basketball` | Basketball | `map-pin` fallback |
-| `tennis` | Tennis | `map-pin` fallback |
-| `disc_golf` | Disc golf | `map-pin` fallback |
-| `skate_park` | Skate park | `map-pin` fallback |
-| `sports_centre` | Sports centre | `map-pin` fallback |
-| `swimming_pool` | Swimming pool | `map-pin` fallback |
-| `pitch` | Pitch | `map-pin` fallback |
-| `golf` | Golf | `map-pin` fallback |
-| `fitness_centre` | Fitness centre | `map-pin` fallback |
+| `basketball` | Basketball | `activity` |
+| `tennis` | Tennis | `activity` |
+| `disc_golf` | Disc golf | `activity` |
+| `skate_park` | Skate park | `activity` |
+| `sports_centre` | Sports centre | `activity` |
+| `swimming_pool` | Swimming pool | `activity` |
+| `pitch` | Pitch | `activity` |
+| `golf` | Golf | `activity` |
+| `fitness_centre` | Fitness centre | `activity` |
 | `event` | Events | `star` |
-| `civic` | Civic places | `map-pin` fallback |
+| `civic` | Civic places | `flag` |
 
 ### Nature observation filters
 

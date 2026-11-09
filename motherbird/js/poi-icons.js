@@ -5,7 +5,7 @@ import { HISTORY_SUBTYPES, POI_ICONS, POI_TAG_PRIORITY } from './constants.js';
 export const ICON_IDS = new Set([
   'anchor', 'bench', 'book-open', 'bookmark', 'building', 'coffee', 'droplet',
   'eye', 'home', 'map-pin', 'star', 'tree', 'leaf', 'utensils', 'walk', 'bird', 'paw-print', 'bug', 'mushroom', 'turtle', 'microscope',
-  'parking', 'bike', 'trash-2'
+  'parking', 'bike', 'trash-2', 'activity', 'flag', 'water-fountain', 'wifi'
 ]);
 
 // Shared tag-to-icon map for the map layer and the filter sheet. POI_ICONS is
@@ -14,7 +14,8 @@ export const ICON_IDS = new Set([
 export const ICONS = {
   ...POI_ICONS,
   park: 'tree', nature: 'tree', garden: 'tree', community_garden: 'tree',
-  playground: 'tree', dog_park: 'tree', shelter: 'tree',
+  playground: 'tree', dog_park: 'tree', shelter: 'tree', shade: 'tree',
+  splash_pad: 'water-fountain', scenic: 'eye', recreation: 'activity', walkway: 'walk',
   wildlife: 'eye', rest: 'building', restrooms: 'building', bench: 'bench',
   drinking_water: 'droplet', water_fountain: 'droplet', water: 'droplet',
   water_access: 'anchor', trail: 'walk',
@@ -29,7 +30,9 @@ export const ICONS = {
   mexican: 'utensils', filipino: 'utensils', food_cart: 'utensils', bakery: 'utensils',
   parking: 'parking', bicycle_parking: 'bike', bike_rack: 'bike', osm: 'map',
   community: 'home', facility: 'home', pantry: 'home', library: 'book-open',
-  recreation_center: 'building', wifi: 'home',
+  recreation_center: 'building', wifi: 'wifi',
+  basketball: 'activity', tennis: 'activity', disc_golf: 'activity', skate_park: 'activity',
+  sports_centre: 'activity', swimming_pool: 'activity', pitch: 'activity', golf: 'activity', fitness_centre: 'activity', civic: 'flag',
   'biodiversity:birds': 'bird', 'biodiversity:plants': 'tree', 'biodiversity:mammals': 'paw-print',
   'biodiversity:insects': 'bug', 'biodiversity:invertebrates': 'bug', 'biodiversity:fungi': 'mushroom', 'biodiversity:lichen': 'leaf', 'biodiversity:reptiles': 'turtle', 'biodiversity:amphibians': 'turtle', 'biodiversity:other': 'microscope'
 };
