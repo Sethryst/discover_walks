@@ -41,12 +41,15 @@
 @media (max-width: 720px) {
   .top-cluster > .regional-navigation {
     right: 0 !important;
+    flex: 0 0 110px !important;
     width: 110px !important;
     min-width: 110px !important;
     max-width: 110px !important;
   }
 
+  .top-cluster > .regional-navigation #regionalNavigationButton,
   .top-cluster > .regional-navigation .regional-navigation-button {
+    flex: 0 0 110px !important;
     width: 110px !important;
     min-width: 110px !important;
     max-width: 110px !important;
