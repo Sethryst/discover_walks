@@ -440,8 +440,9 @@ body[data-primary-tab="explore"] .map-dock [data-map-destination="explore"],body
 }
 .map-workspace-panel[data-destination="explore"] #poiTagFilters {
   display: grid !important;
-  grid-template-columns: minmax(0, 1fr) !important;
-  gap: 2px !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  column-gap: 8px !important;
+  row-gap: 5px !important;
   align-items: start !important;
 }
 .map-workspace-panel[data-destination="explore"] #poiTagFilters .advanced-filter-family {
@@ -508,6 +509,7 @@ body[data-primary-tab="explore"] .map-dock [data-map-destination="explore"],body
 .map-workspace-panel[data-destination="explore"] .advanced-layer-chip {
   min-width: 0 !important;
   width: 100% !important;
+  box-sizing: border-box !important;
   height: auto !important;
   min-height: 30px !important;
   align-items: center !important;
@@ -521,11 +523,9 @@ body[data-primary-tab="explore"] .map-dock [data-map-destination="explore"],body
   line-height: 1.15 !important;
 }
 
-/* The Customize Explore disclosure was sitting a few pixels too high. Move
-   the disclosure and its mutually-exclusive News/Rec/Cuisine families as a
-   single block so their spacing stays aligned. */
+/* Keep Customize Explore and its advanced families below the parent filters. */
 .map-workspace-panel[data-destination="explore"] .advanced-filters {
-  margin-top: -1px !important;
+  margin-top: 8px !important;
 }
 
 /* Precise Explore chrome: squared outer sheet, rounded category pills. */
