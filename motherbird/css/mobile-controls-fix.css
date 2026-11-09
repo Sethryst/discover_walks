@@ -30,6 +30,34 @@
   }
 
   .radial-stack {
-    bottom: calc(64px + env(safe-area-inset-bottom, 0px) + 8px) !important;
+    /* Sit just above the primary nav; the nav and device inset remain the
+       authoritative bottom buffer. */
+    bottom: calc(56px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+}
+
+/* Final compact geometry: keep the region control right-aligned without
+   inheriting the squeeze that was reducing its label to a narrow sliver. */
+@media (max-width: 720px) {
+  .top-cluster > .regional-navigation {
+    right: 0 !important;
+    width: 110px !important;
+    min-width: 110px !important;
+    max-width: 110px !important;
+  }
+
+  .top-cluster > .regional-navigation .regional-navigation-button {
+    width: 110px !important;
+    min-width: 110px !important;
+    max-width: 110px !important;
+    margin: 0 !important;
+    padding-inline: 8px !important;
+  }
+
+  .top-cluster > .regional-navigation .regional-navigation-button > span:first-child,
+  .top-cluster > .regional-navigation .regional-navigation-label {
+    max-width: calc(100% - 16px) !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
   }
 }
