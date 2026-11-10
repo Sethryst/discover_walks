@@ -7,7 +7,7 @@ import { closeSheets, openSheet, toast } from './ui.js';
 import { CITIES } from './constants.js';
 import { routesForCity, splitDisconnectedPaths } from './routes.js';
 import { refreshPublicMarkers } from './online.js';
-import { ICON_IDS, MAP_DOMAINS, filterIconId, markerPinHtml, markerVisual } from './poi-icons.js?v=20261109-domain-icons-6';
+import { ICON_IDS, MAP_DOMAINS, filterIconId, markerPinHtml, markerVisual } from './poi-icons.js?v=20261110-basic-explore-1';
 import { civicNoticesFromPack, newsIsAvailable } from './civic-news.js';
 import { syncNewsStory } from './learn-change.js';
 import { drawStories } from './stories.js';
@@ -66,13 +66,10 @@ export async function initLayerSystem() {
   // personal places and saved records. Move the existing filter surface into
   // Explore so My Places never becomes a second category browser.
   document.querySelector('.news-story-dropdown')?.remove();
-  const explorePanel = document.querySelector('[data-map-panel="explore"]');
   const advancedFilters = document.querySelector('.advanced-filters');
-  if (explorePanel && advancedFilters) {
+  if (advancedFilters) {
     const advancedSummary = advancedFilters.querySelector('summary');
     if (advancedSummary) advancedSummary.textContent = 'Customize Explore';
-    advancedFilters.querySelector('.advanced-filters-intro')?.remove();
-    explorePanel.append(advancedFilters);
     advancedFilters.open = false;
   }
   const [savedFilters, savedUi] = await Promise.all([
@@ -420,7 +417,7 @@ export function renderMapLights() {
   root.innerHTML = lightModel().filter((light) => light.id !== 'personal').map((light) => {
     const on = state.layerLights[light.id] === true;
     return `<div class="map-light-wrap" data-map-light="${light.id}"><div class="map-light-row"><button type="button" class="map-light ${on ? 'on' : 'off'}" data-light="${light.id}" aria-pressed="${on}"><img src="./icons/${escapeHtml(light.icon)}.svg" alt="" aria-hidden="true"><span class="map-light-label">${escapeHtml(light.label)}</span></button></div></div>`;
-  }).join('');
+  }).join('') + '<button type="button" class="map-advanced-controls-link" data-open-advanced-controls>Customize Explore</button>';
 }
 
 function setChip(chip, enabled) {
@@ -584,6 +581,10 @@ function openImportSheet() {
 }
 
 function bindLayerControls() {
+  el('mapLights')?.addEventListener('click', (event) => {
+    if (!event.target.closest('[data-open-advanced-controls]')) return;
+    window.dispatchEvent(new CustomEvent('companion-menu-requested'));
+  });
   el('mapLights')?.addEventListener('click', (event) => {
     const guideTab = event.target.closest('[data-field-guide-tab]')?.dataset.fieldGuideTab;
     if (guideTab) { window.dispatchEvent(new CustomEvent('field-guide-tab-requested', { detail: { tab: guideTab } })); return; }

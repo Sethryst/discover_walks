@@ -209,6 +209,24 @@ body[data-primary-tab="explore"] .map-dock [data-map-destination="explore"],body
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+.map-workspace-panel[data-destination="explore"] .map-advanced-controls-link {
+  display: block;
+  width: max-content;
+  margin: 6px auto 0;
+  padding: 2px 4px;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-size: .68rem;
+  font-weight: 800;
+  opacity: .78;
+}
+.map-workspace-panel[data-destination="explore"] .map-advanced-controls-link:hover,
+.map-workspace-panel[data-destination="explore"] .map-advanced-controls-link:focus-visible {
+  opacity: 1;
+}
 @media (min-width: 721px) {
   .map-workspace-panel[data-destination="explore"]:has(.advanced-filters[open]) {
     max-height: none !important;
