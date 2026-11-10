@@ -7,7 +7,7 @@ import { closeSheets, openSheet, toast } from './ui.js';
 import { CITIES } from './constants.js';
 import { routesForCity, splitDisconnectedPaths } from './routes.js';
 import { refreshPublicMarkers } from './online.js';
-import { ICON_IDS, MAP_DOMAINS, filterIconId, markerPinHtml, markerVisual } from './poi-icons.js?v=20261109-domain-icons-5';
+import { ICON_IDS, MAP_DOMAINS, filterIconId, markerPinHtml, markerVisual } from './poi-icons.js?v=20261109-domain-icons-6';
 import { civicNoticesFromPack, newsIsAvailable } from './civic-news.js';
 import { syncNewsStory } from './learn-change.js';
 import { drawStories } from './stories.js';
@@ -15,18 +15,18 @@ import { setNationalOsmFamily } from './national-osm-layers.js';
 import { capabilityIsAvailable } from './regional-capabilities.js';
 
 export const LAYER_GROUPS = [
-  { id: 'outdoors_recreation', light: 'recreation', label: 'Outdoors & Recreation', description: 'Trails, walkways, parks, gardens, community services, and places to rest', tags: ['trail', 'walkway', 'park', 'nature', 'water', 'scenic', 'recreation', 'community_garden', 'garden', 'playground', 'dog_park', 'splash_pad', 'rest', 'bench', 'shelter', 'shade', 'restrooms', 'drinking_water', 'water_fountain', 'community', 'facility', 'library', 'recreation_center', 'pantry', 'wifi'] },
-  { id: 'history_culture', light: 'recreation', label: 'History Sites', description: 'Historical sites, markers, museums, landmarks, and monuments', tags: ['history', 'history_landmark', 'history_monument', 'history_museum', 'history_cemetery', 'history_marker', 'historic', 'historic_site', 'museum', 'landmark', 'monument', 'cemetery'] },
+  { id: 'outdoors_recreation', light: 'recreation', label: 'Outdoors', description: 'Trails, walkways, parks, gardens, community services, and places to rest', tags: ['trail', 'walkway', 'park', 'nature', 'water', 'scenic', 'recreation', 'community_garden', 'garden', 'playground', 'dog_park', 'splash_pad', 'rest', 'bench', 'shelter', 'shade', 'restrooms', 'drinking_water', 'water_fountain', 'community', 'facility', 'library', 'recreation_center', 'pantry', 'wifi'] },
+  { id: 'history_culture', light: 'recreation', label: 'History', description: 'Historical sites, markers, museums, landmarks, and monuments', tags: ['history', 'history_landmark', 'history_monument', 'history_museum', 'history_cemetery', 'history_marker', 'historic', 'historic_site', 'museum', 'landmark', 'monument', 'cemetery'] },
   { id: 'art', light: 'recreation', label: 'Art', description: 'Art and public art places', tags: ['art', 'public_art'] },
-  { id: 'biodiversity', light: 'recreation', label: 'Nature observations', description: 'Open-coordinate iNaturalist observations', tags: ['biodiversity:birds', 'biodiversity:plants', 'biodiversity:mammals', 'biodiversity:insects', 'biodiversity:invertebrates', 'biodiversity:fungi', 'biodiversity:lichen', 'biodiversity:reptiles', 'biodiversity:amphibians', 'biodiversity:other'] },
-  { id: 'activities', light: 'recreation', label: 'Sports & activities', description: 'Sports, play, and active recreation places', tags: ['basketball', 'tennis', 'disc_golf', 'skate_park', 'sports_centre', 'swimming_pool', 'pitch', 'golf', 'fitness_centre'] },
-  { id: 'culture', light: 'news', label: 'News & culture', description: 'Events and civic places', tags: ['event', 'civic', 'government'] },
-  { id: 'cuisine', light: 'cuisine', label: 'Food & Drink', description: 'Food, drink, and places to stop', tags: ['market', 'farmers_market', 'restaurant', 'fast_food', 'coffee', 'coffee_shop', 'cafe', 'food_cart', 'bakery', 'argentinian', 'british', 'chicken', 'crepe', 'greek', 'hotpot', 'kebab', 'latin_american', 'noodles', 'soul_food', 'sushi', 'tea', 'turkish', 'tex_mex', 'juice', 'seafood', 'southern', 'milkshake', 'milkshakes', 'lunch', 'health_food', 'wings'] },
+  { id: 'biodiversity', light: 'recreation', label: 'Nature', description: 'Open-coordinate iNaturalist observations', tags: ['biodiversity:birds', 'biodiversity:plants', 'biodiversity:mammals', 'biodiversity:insects', 'biodiversity:invertebrates', 'biodiversity:fungi', 'biodiversity:lichen', 'biodiversity:reptiles', 'biodiversity:amphibians', 'biodiversity:other'] },
+  { id: 'activities', light: 'recreation', label: 'Sports', description: 'Sports, play, and active recreation places', tags: ['basketball', 'tennis', 'disc_golf', 'skate_park', 'sports_centre', 'swimming_pool', 'pitch', 'golf', 'fitness_centre'] },
+  { id: 'culture', light: 'news', label: 'News', description: 'Events and civic places', tags: ['event', 'civic', 'government'] },
+  { id: 'cuisine', light: 'cuisine', label: 'Food', description: 'Food, drink, and places to stop', tags: ['market', 'farmers_market', 'restaurant', 'fast_food', 'coffee', 'coffee_shop', 'cafe', 'food_cart', 'bakery', 'argentinian', 'british', 'chicken', 'crepe', 'greek', 'hotpot', 'kebab', 'latin_american', 'noodles', 'soul_food', 'sushi', 'tea', 'turkish', 'tex_mex', 'juice', 'seafood', 'southern', 'milkshake', 'milkshakes', 'lunch', 'health_food', 'wings'] },
   { id: 'more', light: 'recreation', label: 'Places', description: 'Places mapped in OpenStreetMap and not already grouped elsewhere', tags: ['osm'] }
 ];
 
 const STATIC_LABELS = {
-  walkway: 'Walkways', crossing: 'Crossings', barrier: 'Barriers', nature: 'Nature', scenic: 'Scenic places', recreation: 'Recreation', rest: 'Rest & comfort', historic: 'Historic places', historic_site: 'Historic sites', civic: 'Civic places', government: 'Government', transit: 'Transit', argentinian: 'Argentinian', british: 'British', chicken: 'Chicken', crepe: 'Crepe', greek: 'Greek', hotpot: 'Hotpot', kebab: 'Kebab', latin_american: 'Latin American', noodles: 'Noodles', soul_food: 'Soul Food', sushi: 'Sushi', tea: 'Tea', turkish: 'Turkish', tex_mex: 'Tex Mex', wings: 'Wings', 'biodiversity:birds': 'Birds', 'biodiversity:plants': 'Plants', 'biodiversity:mammals': 'Mammals', 'biodiversity:insects': 'Insects', 'biodiversity:invertebrates': 'Invertebrates', 'biodiversity:fungi': 'Fungi', 'biodiversity:lichen': 'Lichen', 'biodiversity:reptiles': 'Reptiles', 'biodiversity:amphibians': 'Amphibians', 'biodiversity:other': 'Other life',
+  walkway: 'Walkways', crossing: 'Crossings', barrier: 'Barriers', nature: 'Nature', scenic: 'Scenic places', recreation: 'Recreation', rest: 'Rest & comfort', historic: 'Historic places', historic_site: 'Historic sites', civic: 'Civic places', government: 'Government', transit: 'Transit', argentinian: 'Argentinian', british: 'British', chicken: 'Chicken', crepe: 'Crepe', greek: 'Greek', hotpot: 'Hotpot', kebab: 'Kebab', latin_american: 'Latin American', noodles: 'Noodles', soul_food: 'Soul Food', sushi: 'Sushi', tea: 'Tea', turkish: 'Turkish', tex_mex: 'Tex Mex', wings: 'Wings', 'biodiversity:birds': 'Birds', 'biodiversity:plants': 'Plants', 'biodiversity:mammals': 'Mammals', 'biodiversity:insects': 'Insects', 'biodiversity:invertebrates': 'Invertebrates', 'biodiversity:fungi': 'Fungi', 'biodiversity:lichen': 'Lichen', 'biodiversity:reptiles': 'Reptiles', 'biodiversity:amphibians': 'Frogs', 'biodiversity:other': 'Other Life',
   drinking_water: 'Water fountains', water_fountain: 'Water fountains', water: 'Water', waste_basket: 'Trash receptacles', trash: 'Trash receptacles', bench: 'Benches', shelter: 'Shade shelters', shade: 'Shade', rest: 'Rest', restrooms: 'Restrooms', accessible_parking: 'Accessible parking', restaurant: 'Restaurants', fast_food: 'Quick-service food', mexican: 'Mexican food', filipino: 'Filipino food', coffee: 'Coffee shops', coffee_shop: 'Coffee shops', cafe: 'Cafés', food_cart: 'Food carts', bakery: 'Bakeries', juice: 'Juices', seafood: 'Seafood', southern: 'Southern', milkshake: 'Milkshakes', milkshakes: 'Milkshakes', lunch: 'Lunch', health_food: 'Health Food', trail: 'Trails', parking: 'Parking', bicycle_parking: 'Bike racks', bike_rack: 'Bike racks', osm: 'Places'
 };
 
@@ -212,23 +212,10 @@ export function renderLayerFilters() {
   const query = searchQuery.trim().toLowerCase();
   const groups = buildAllLayerGroups().map((group) => ({ ...group, options: group.options.filter((option) => !query || `${option.label} ${option.description}`.toLowerCase().includes(query)) })).filter((group) => group.options.length || (!query && group.id === 'personal_places'));
   const groupHtml = (group) => {
-    const expanded = state.layerUiState.expanded[group.id] !== false;
     const enabledCount = group.options.filter((option) => state.layerFilters[option.kind][option.id] !== false).length;
-    const categoryEnabled = enabledCount > 0;
-    return `<section class="layer-filter-group" data-layer-group="${escapeHtml(group.id)}"><header><button class="layer-collapse" type="button" data-layer-collapse="${escapeHtml(group.id)}" aria-expanded="${expanded}"><span>${escapeHtml(group.label)}</span><small>(${enabledCount}/${group.options.length} shown)</small><b aria-hidden="true">⌄</b></button><button class="layer-category-toggle ${categoryEnabled ? 'on' : 'off'}" type="button" data-layer-group-toggle="${escapeHtml(group.id)}" aria-pressed="${categoryEnabled}">${categoryEnabled ? 'Hide all' : 'Show all'}</button></header><div class="layer-options ${expanded ? '' : 'hidden'}">${group.options.length ? group.options.map(renderLayerOption).join('') : '<p class="layer-empty">Create a personal collection to add it here.</p>'}</div></section>`;
+    return `<section class="layer-filter-group advanced-flat-group" data-layer-group="${escapeHtml(group.id)}"><header><span class="advanced-group-title">${escapeHtml(group.label)}</span><small>${enabledCount}/${group.options.length}</small></header><div class="layer-options">${group.options.map(renderLayerOption).join('')}</div></section>`;
   };
-  const families = [
-    ['news', 'NEWS'],
-    ['recreation', 'REC'],
-    ['cuisine', 'CUISINE']
-  ].map(([id, label]) => ({ id, label, groups: groups.filter((group) => group.light === id) })).filter((family) => family.groups.length);
-  root.innerHTML = families.map((family) => {
-    const expanded = state.layerUiState.familyExpanded[family.id] !== false;
-    const familyOptions = family.groups.flatMap((group) => group.options);
-    const enabledCount = familyOptions.filter((option) => state.layerFilters[option.kind][option.id] !== false).length;
-    const categoryEnabled = enabledCount > 0;
-    return `<section class="advanced-filter-family ${expanded ? 'is-expanded' : ''}" data-advanced-family="${family.id}"><div class="advanced-family-heading"><button class="advanced-family-toggle" type="button" data-advanced-family-toggle="${family.id}" aria-expanded="${expanded}"><span>${family.label}</span><b aria-hidden="true">⌄</b></button><button class="layer-category-toggle ${categoryEnabled ? 'on' : 'off'}" type="button" data-advanced-family-toggle-layers="${family.id}" aria-pressed="${categoryEnabled}">${categoryEnabled ? 'Hide all' : 'Show all'}</button></div><div class="advanced-family-content ${expanded ? '' : 'hidden'}"><div class="layer-options">${familyOptions.map(renderLayerOption).join('')}</div></div></section>`;
-  }).join('') || `<p class="layer-empty">${query ? 'No filters match that search.' : 'Select a category first.'}</p>`;
+  root.innerHTML = groups.map(groupHtml).join('') || `<p class="layer-empty">${query ? 'No filters match that search.' : 'No advanced filters yet.'}</p>`;
   updateLayerStatus();
 }
 

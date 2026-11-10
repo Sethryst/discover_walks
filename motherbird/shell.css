@@ -119,6 +119,106 @@ body[data-primary-tab="explore"] .map-dock [data-map-destination="explore"],body
   overflow-y: visible !important;
 }
 
+/* Customize Explore uses one disclosure, like the other compact map tools:
+   the closed state is the default and the open state grows with its rows.
+   Keep the advanced choices flat so there is no second collapse level or
+   nested scrolling region. */
+.map-workspace-panel[data-destination="explore"] .advanced-filters {
+  overflow: visible !important;
+}
+.map-workspace-panel[data-destination="explore"] .advanced-filters[open] {
+  max-height: none !important;
+}
+.map-workspace-panel[data-destination="explore"] #poiTagFilters {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 12px;
+  max-height: none !important;
+  overflow: visible !important;
+}
+.map-workspace-panel[data-destination="explore"] #poiTagFilters .advanced-flat-group {
+  min-width: 0;
+  margin: 0;
+  padding: 5px 0 6px;
+  border: 0;
+  border-bottom: 1px solid rgba(23, 60, 53, .16);
+  background: transparent;
+}
+.map-workspace-panel[data-destination="explore"] #poiTagFilters .advanced-flat-group > header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  min-width: 0;
+  margin: 0 0 3px;
+}
+.map-workspace-panel[data-destination="explore"] #poiTagFilters .advanced-group-title {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: .7rem;
+  font-weight: 900;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.map-workspace-panel[data-destination="explore"] #poiTagFilters .advanced-flat-group > header small {
+  flex: 0 0 auto;
+  font-size: .62rem;
+  opacity: .62;
+}
+.map-workspace-panel[data-destination="explore"] #poiTagFilters .advanced-flat-group .layer-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 3px 6px;
+  min-width: 0;
+}
+.map-workspace-panel[data-destination="explore"] #poiTagFilters .advanced-flat-group .layer-filter-option {
+  min-width: 0;
+}
+
+@media (max-width: 560px) {
+  .map-workspace-panel[data-destination="explore"] #poiTagFilters {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+  .map-workspace-panel[data-destination="explore"] #poiTagFilters .advanced-flat-group .layer-options {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Final override for the flat advanced list.  It intentionally wins over
+   the older family-sheet rules above while the markup is being migrated. */
+.map-workspace-panel[data-destination="explore"] #poiTagFilters .advanced-flat-group .advanced-layer-chip {
+  min-width: 0;
+  width: 100%;
+  padding: 5px 6px;
+  gap: 5px;
+}
+.map-workspace-panel[data-destination="explore"] #poiTagFilters .advanced-flat-group .advanced-layer-chip > img {
+  width: 16px;
+  height: 16px;
+  flex-basis: 16px;
+}
+.map-workspace-panel[data-destination="explore"] #poiTagFilters .advanced-flat-group .advanced-layer-chip > span {
+  min-width: 0;
+  overflow: hidden;
+}
+.map-workspace-panel[data-destination="explore"] #poiTagFilters .advanced-flat-group .advanced-layer-chip strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+@media (min-width: 721px) {
+  .map-workspace-panel[data-destination="explore"]:has(.advanced-filters[open]) {
+    max-height: none !important;
+  }
+  .map-workspace-panel[data-destination="explore"]:has(.advanced-filters[open]) > [data-map-panel="explore"] {
+    max-height: none !important;
+    overflow: visible !important;
+  }
+}
+
 /* Journal moment marker and compact Learn choice cards. */
 .journal-moon { display:inline-block; margin-left:5px; font-family:"Apple Color Emoji","Segoe UI Emoji",sans-serif; font-size:.82rem; line-height:1; vertical-align:-1px; }
 .learn-category-options { gap:3px !important; padding-top:5px !important; }
