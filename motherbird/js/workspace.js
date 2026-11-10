@@ -228,7 +228,9 @@ let pendingWorkspaceTool = null;
 let workspaceBuilderMode = 'auto-round-trip';
 let workspaceBuilderMinutes = 35;
 const embeddedWorkspaceSurfaces = new Map();
-const initialJournalSurface = document.getElementById('journalSheet');
+const initialJournalSurface = typeof document !== 'undefined'
+  ? document.getElementById('journalSheet')
+  : null;
 if (initialJournalSurface) embeddedWorkspaceSurfaces.set('journalSheet', {
   node: initialJournalSurface,
   parent: initialJournalSurface.parentElement,
