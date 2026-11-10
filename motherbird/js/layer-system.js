@@ -7,7 +7,7 @@ import { closeSheets, openSheet, toast } from './ui.js';
 import { CITIES } from './constants.js';
 import { routesForCity, splitDisconnectedPaths } from './routes.js';
 import { refreshPublicMarkers } from './online.js';
-import { ICON_IDS, MAP_DOMAINS, filterIconId, markerPinHtml, markerVisual } from './poi-icons.js?v=20261110-basic-explore-1';
+import { ICON_IDS, MAP_DOMAINS, filterIconId, markerPinHtml, markerVisual } from './poi-icons.js?v=20261110-basic-explore-2';
 import { civicNoticesFromPack, newsIsAvailable } from './civic-news.js';
 import { syncNewsStory } from './learn-change.js';
 import { drawStories } from './stories.js';
@@ -18,11 +18,11 @@ export const LAYER_GROUPS = [
   { id: 'outdoors_recreation', light: 'recreation', label: 'Outdoors', description: 'Trails, walkways, parks, gardens, community services, and places to rest', tags: ['trail', 'walkway', 'park', 'nature', 'water', 'scenic', 'recreation', 'community_garden', 'garden', 'playground', 'dog_park', 'splash_pad', 'rest', 'bench', 'shelter', 'shade', 'restrooms', 'drinking_water', 'water_fountain', 'community', 'facility', 'library', 'recreation_center', 'pantry', 'wifi'] },
   { id: 'history_culture', light: 'recreation', label: 'History', description: 'Historical sites, markers, museums, landmarks, and monuments', tags: ['history', 'history_landmark', 'history_monument', 'history_museum', 'history_cemetery', 'history_marker', 'historic', 'historic_site', 'museum', 'landmark', 'monument', 'cemetery'] },
   { id: 'art', light: 'recreation', label: 'Art', description: 'Art and public art places', tags: ['art', 'public_art'] },
-  { id: 'biodiversity', light: 'recreation', label: 'Nature', description: 'Open-coordinate iNaturalist observations', tags: ['biodiversity:birds', 'biodiversity:plants', 'biodiversity:mammals', 'biodiversity:insects', 'biodiversity:invertebrates', 'biodiversity:fungi', 'biodiversity:lichen', 'biodiversity:reptiles', 'biodiversity:amphibians', 'biodiversity:other'] },
+  { id: 'biodiversity', light: 'more', label: 'Nature', description: 'Open-coordinate iNaturalist observations', tags: ['biodiversity:birds', 'biodiversity:plants', 'biodiversity:mammals', 'biodiversity:insects', 'biodiversity:invertebrates', 'biodiversity:fungi', 'biodiversity:lichen', 'biodiversity:reptiles', 'biodiversity:amphibians', 'biodiversity:other'] },
   { id: 'activities', light: 'recreation', label: 'Sports', description: 'Sports, play, and active recreation places', tags: ['basketball', 'tennis', 'disc_golf', 'skate_park', 'sports_centre', 'swimming_pool', 'pitch', 'golf', 'fitness_centre'] },
   { id: 'culture', light: 'news', label: 'News', description: 'Events and civic places', tags: ['event', 'civic', 'government'] },
   { id: 'cuisine', light: 'cuisine', label: 'Food', description: 'Food, drink, and places to stop', tags: ['market', 'farmers_market', 'restaurant', 'fast_food', 'coffee', 'coffee_shop', 'cafe', 'food_cart', 'bakery', 'argentinian', 'british', 'chicken', 'crepe', 'greek', 'hotpot', 'kebab', 'latin_american', 'noodles', 'soul_food', 'sushi', 'tea', 'turkish', 'tex_mex', 'juice', 'seafood', 'southern', 'milkshake', 'milkshakes', 'lunch', 'health_food', 'wings'] },
-  { id: 'more', light: 'recreation', label: 'Places', description: 'Places mapped in OpenStreetMap and not already grouped elsewhere', tags: ['osm'] }
+  { id: 'more', light: 'more', label: 'Places', description: 'Places mapped in OpenStreetMap and not already grouped elsewhere', tags: ['osm'] }
 ];
 
 const STATIC_LABELS = {
@@ -47,13 +47,18 @@ const LIGHT_CHIPS = {
     { id: 'markets', label: 'markets', tags: ['market', 'farmers_market', 'grocery', 'supermarket', 'convenience'] },
     { id: 'restaurants', label: 'restaurants', tags: ['restaurant', 'fast_food'] },
     { id: 'tex_mex', label: 'tex mex', tags: ['tex_mex'] }
+  ],
+  more: [
+    { id: 'nature', label: 'nature', prefix: 'biodiversity:' },
+    { id: 'places', label: 'places', tags: ['osm'] }
   ]
 };
 
 const MAP_TAGS = new Set([
   'event', '__routes', '__volunteer',
   ...LIGHT_CHIPS.recreation.flatMap((chip) => chip.tags || []),
-  ...LIGHT_CHIPS.cuisine.flatMap((chip) => chip.tags || [])
+  ...LIGHT_CHIPS.cuisine.flatMap((chip) => chip.tags || []),
+  ...LIGHT_CHIPS.more.flatMap((chip) => chip.tags || [])
 ]);
 const FOOD_DRINK_TAGS = new Set(['market', 'farmers_market', 'restaurant', 'fast_food', 'coffee', 'coffee_shop', 'cafe', 'food_cart', 'bakery', 'argentinian', 'british', 'crepe', 'greek', 'latin_american', 'tea', 'turkish', 'açaí', 'american', 'asian', 'bubble_tea', 'french', 'ice_cream', 'indian', 'juice', 'seafood', 'southern', 'milkshake', 'milkshakes', 'lunch', 'health_food', 'korean', 'pasta', 'pizza', 'sandwich', 'smoothie', 'tex_mex', 'thai', 'uyghur']);
 const DRINK_TAGS = new Set(['coffee', 'coffee_shop', 'cafe', 'tea', 'açaí', 'bubble_tea', 'juice', 'smoothie', 'beer', 'milkshake', 'milkshakes']);
@@ -76,7 +81,7 @@ export async function initLayerSystem() {
     db.get('layer_settings', 'current-filters'), db.get('layer_settings', 'layer-ui-state')
   ]);
   state.layerFilters = { public: { ...(savedFilters?.public || {}) }, personal: { ...(savedFilters?.personal || {}) } };
-  state.layerLights = { news: true, recreation: true, cuisine: true, personal: true, ...(savedFilters?.lights || {}) };
+  state.layerLights = { news: true, recreation: true, cuisine: true, more: true, personal: true, ...(savedFilters?.lights || {}) };
   if (state.offlineView?.layers) {
     state.layerFilters = { public: { ...state.offlineView.layers.public }, personal: { ...state.offlineView.layers.personal } };
     state.layerLights = { ...state.layerLights, ...state.offlineView.layers.lights };
@@ -369,6 +374,7 @@ function routeInViewport(coordinates = []) {
 function lightModel() {
   const recreation = availableMapChips('recreation');
   const cuisine = availableMapChips('cuisine');
+  const more = availableMapChips('more');
   const newsEntries = state.layerLights.news ? [...civicAvailability.notices, ...packPublicMarkers('news')] : [];
   const personalPins = curatedPersonalPlaces().filter((place) => !place.packId || place.packId === state.activeCity);
   const personal = state.personalPlaceCategories.map((category) => ({ id: category.id, label: category.name, tags: [], kind: 'personal' }));
@@ -378,6 +384,7 @@ function lightModel() {
     { ...MAP_DOMAINS.news, label: labels.news || MAP_DOMAINS.news.label, icon: icons.news || MAP_DOMAINS.news.icon, available: true, chips: [], entries: newsEntries, hasChevron: false },
     { ...MAP_DOMAINS.recreation, label: labels.recreation || MAP_DOMAINS.recreation.label, icon: icons.recreation || MAP_DOMAINS.recreation.icon, available: true, chips: recreation, hasChevron: false },
     { ...MAP_DOMAINS.cuisine, label: labels.cuisine || MAP_DOMAINS.cuisine.label, icon: icons.cuisine || MAP_DOMAINS.cuisine.icon, available: true, chips: cuisine, hasChevron: false },
+    { id: 'more', label: 'More', icon: 'map-pin', color: '#76558b', available: true, chips: more, hasChevron: false },
     { id: 'personal', label: state.personalPlaceSelecting ? 'USE THIS SPOT' : 'MY PLACES', available: false, chips: personal, hasChevron: true }
   ].filter((light) => light.available);
 }
@@ -414,10 +421,15 @@ function expandedLightContent(light, expanded) {
 export function renderMapLights() {
   const root = el('mapLights');
   if (!root) return;
-  root.innerHTML = lightModel().filter((light) => light.id !== 'personal').map((light) => {
+  const lights = lightModel().filter((light) => light.id !== 'personal');
+  const simpleGroups = lights.filter((light) => light.chips?.length).map((light) => `<section class="explore-simple-group"><h4>${escapeHtml(light.label)}</h4><div class="explore-simple-chips">${light.chips.map((chip) => {
+    const selected = chipSelected(light.id, chip);
+    return `<button type="button" class="map-light-chip ${selected ? 'on' : ''}" data-light-chip="${escapeHtml(light.id)}:${escapeHtml(chip.id)}" aria-pressed="${selected}">${escapeHtml(chip.label)}</button>`;
+  }).join('')}</div></section>`).join('');
+  root.innerHTML = lights.map((light) => {
     const on = state.layerLights[light.id] === true;
     return `<div class="map-light-wrap" data-map-light="${light.id}"><div class="map-light-row"><button type="button" class="map-light ${on ? 'on' : 'off'}" data-light="${light.id}" aria-pressed="${on}"><img src="./icons/${escapeHtml(light.icon)}.svg" alt="" aria-hidden="true"><span class="map-light-label">${escapeHtml(light.label)}</span></button></div></div>`;
-  }).join('') + '<button type="button" class="map-advanced-controls-link" data-open-advanced-controls>Customize Explore</button>';
+  }).join('') + `<details class="explore-customize"><summary>Customize Explore</summary><div class="explore-simple-filters">${simpleGroups}</div><button type="button" class="map-advanced-controls-link" data-open-advanced-controls>Advanced controls</button></details>`;
 }
 
 function setChip(chip, enabled) {

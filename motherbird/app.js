@@ -17,7 +17,7 @@ startupTelemetry('document');
 globalThis.__MOTHERBIRD_STARTUP_MARK__ = startupTelemetry;
 startupTelemetry('app.js');
 
-import('./js/loader.js?v=20261110-basic-explore-1').then(({ init }) => {
+import('./js/loader.js?v=20261110-basic-explore-2').then(({ init }) => {
   startupTelemetry('loader imported');
   return init();
 }).catch((error) => {
