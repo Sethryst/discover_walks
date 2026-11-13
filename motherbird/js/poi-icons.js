@@ -7,7 +7,7 @@ export const ICON_IDS = new Set([
   'eye', 'home', 'map-pin', 'star', 'tree', 'leaf', 'utensils', 'walk', 'bird', 'paw-print', 'bug', 'mushroom', 'turtle', 'microscope',
   'parking', 'bike', 'trash-2', 'activity', 'flag', 'water-fountain', 'wifi',
   // Seasonal biodiversity markers can pass the resolved asset directly.
-  'tree-taxonomy', 'tree-fall'
+  'tree-taxonomy', 'tree-fall', 'tree-bare'
 ]);
 
 // Shared tag-to-icon map for the map layer and the filter sheet. POI_ICONS is
@@ -151,7 +151,7 @@ export function markerPinHtml(visual) {
   const iconId = validIconId(visual?.iconId) || 'map-pin';
   const color = visual?.color || MARKER_COLORS.fallback;
   const month = new Date().getMonth() + 1;
-  const asset = iconId === 'tree' && month >= 9 && month <= 11 ? 'tree-fall' : ({ bird: 'bird-map', coffee: 'coffee-map', mushroom: 'mushroom-taxonomy', turtle: 'turtle-taxonomy', 'paw-print': 'paw-print-taxonomy', bug: 'bug-taxonomy', microscope: 'microscope-taxonomy', tree: 'tree-taxonomy', leaf: 'leaf-taxonomy', utensils: 'utensils-taxonomy' }[iconId] || iconId);
-  const detailed = new Set(['bird-map', 'coffee-map', 'bug-taxonomy', 'leaf-taxonomy', 'mushroom-taxonomy', 'paw-print-taxonomy', 'microscope-taxonomy', 'tree-taxonomy', 'tree-fall', 'turtle-taxonomy', 'utensils-taxonomy']).has(asset);
+  const asset = iconId === 'tree' ? (month >= 9 && month <= 11 ? 'tree-fall' : month === 12 || month <= 2 ? 'tree-bare' : 'tree-taxonomy') : ({ bird: 'bird-map', coffee: 'coffee-map', mushroom: 'mushroom-taxonomy', turtle: 'turtle-taxonomy', 'paw-print': 'paw-print-taxonomy', bug: 'bug-taxonomy', microscope: 'microscope-taxonomy', tree: 'tree-taxonomy', leaf: 'leaf-taxonomy', utensils: 'utensils-taxonomy' }[iconId] || iconId);
+  const detailed = new Set(['bird-map', 'coffee-map', 'bug-taxonomy', 'leaf-taxonomy', 'mushroom-taxonomy', 'paw-print-taxonomy', 'microscope-taxonomy', 'tree-taxonomy', 'tree-fall', 'tree-bare', 'turtle-taxonomy', 'utensils-taxonomy']).has(asset);
   return `<img class="poi-standalone-glyph poi-standalone-glyph--${iconId}" src="./icons/${asset}.svg" alt="" aria-hidden="true">`;
 }

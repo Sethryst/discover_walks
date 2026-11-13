@@ -100,7 +100,7 @@ function initMapCustomization() {
 function createOnlineBasemapLayer(id) {
   const preset = BASEMAP_PRESETS[id] || BASEMAP_PRESETS.street;
   if (preset.type === 'simplified') return L.layerGroup();
-  return L.tileLayer(preset.url, { maxZoom: preset.maxZoom, maxNativeZoom: preset.maxNativeZoom, subdomains: preset.subdomains, attribution: preset.attribution, crossOrigin: true });
+  return L.tileLayer(preset.url, { maxZoom: preset.maxZoom, maxNativeZoom: preset.maxNativeZoom, subdomains: preset.subdomains, attribution: preset.attribution, crossOrigin: true, keepBuffer: 4, updateWhenIdle: true, updateWhenZooming: false, updateInterval: 250 });
 }
 
 export function setOnlineBasemap(id, { announce = true } = {}) {
@@ -176,7 +176,9 @@ export function initMap() {
         counts[icon] = (counts[icon] || 0) + 1;
       });
       const icon = Object.entries(counts).sort((a, b) => b[1] - a[1])[0]?.[0] || 'microscope';
-      const asset = { tree: 'tree-fall', mushroom: 'mushroom-taxonomy', bug: 'bug-taxonomy', bird: 'bird-map', 'paw-print': 'paw-print-taxonomy', microscope: 'microscope-taxonomy' }[icon] || 'microscope-taxonomy';
+      const month = new Date().getMonth() + 1;
+      const seasonalTree = month >= 9 && month <= 11 ? 'tree-fall' : month === 12 || month <= 2 ? 'tree-bare' : 'tree-taxonomy';
+      const asset = { tree: seasonalTree, mushroom: 'mushroom-taxonomy', bug: 'bug-taxonomy', bird: 'bird-map', 'paw-print': 'paw-print-taxonomy', microscope: 'microscope-taxonomy' }[icon] || 'microscope-taxonomy';
       return L.divIcon({ className: 'observation-cluster', html: `<span><img src="./icons/${asset}.svg" alt="" /></span>`, iconSize: [42, 42] });
     }
   }) : L.layerGroup()).addTo(state.map);
@@ -187,7 +189,9 @@ export function initMap() {
     const light = Object.keys(counts).sort((a,b) => counts[b] - counts[a])[0];
     const color = { news: '#8b3a4a', recreation: '#2d7259', cuisine: '#c65d0e' }[light];
     const dominantTaxon = Object.entries(taxonomy).sort((a,b) => b[1] - a[1])[0]?.[0];
-    const taxonAsset = { 'biodiversity:plants': 'tree-taxonomy', 'biodiversity:fungi': 'mushroom-taxonomy', 'biodiversity:insects': 'bug-taxonomy', 'biodiversity:invertebrates': 'bug-taxonomy', 'biodiversity:mammals': 'paw-print-taxonomy', 'biodiversity:birds': 'bird-map', 'biodiversity:reptiles': 'turtle-taxonomy', 'biodiversity:amphibians': 'turtle-taxonomy' }[dominantTaxon];
+    const month = new Date().getMonth() + 1;
+    const seasonalTree = month >= 9 && month <= 11 ? 'tree-fall' : month === 12 || month <= 2 ? 'tree-bare' : 'tree-taxonomy';
+    const taxonAsset = { 'biodiversity:plants': seasonalTree, 'biodiversity:fungi': 'mushroom-taxonomy', 'biodiversity:insects': 'bug-taxonomy', 'biodiversity:invertebrates': 'bug-taxonomy', 'biodiversity:mammals': 'paw-print-taxonomy', 'biodiversity:birds': 'bird-map', 'biodiversity:reptiles': 'turtle-taxonomy', 'biodiversity:amphibians': 'turtle-taxonomy' }[dominantTaxon] || (light === 'recreation' ? seasonalTree : light === 'cuisine' ? 'utensils-taxonomy' : light === 'news' ? 'star' : null);
     const total = cluster.getChildCount();
     const html = taxonAsset ? `<span class="place-cluster-taxonomy"><img src="./icons/${taxonAsset}.svg" alt="" /></span>` : `<span class="place-cluster-glyph place-cluster-glyph--${light}" style="--cluster-color:${color}" aria-label="${light} places"></span>`;
     return L.divIcon({ className: taxonAsset ? 'place-cluster place-cluster--taxonomy' : 'place-cluster', html, iconSize: [40,40] });
@@ -291,7 +295,7 @@ export function initMap() {
     if (center) void activateWalkingCellAt(center).catch((error) => console.warn('Walking cell unavailable:', error.message));
     renderCityPois();
     window.dispatchEvent(new CustomEvent('map-viewport-changed'));
-  }, 260);
+  }, 500);
   state.map.on('moveend', refreshSettledViewport);
   state.map.on('zoomend', refreshSettledViewport);
   state.map.on('zoomend', syncNeighborhoodPresentation);
@@ -415,7 +419,10 @@ function walkingNetworkStyle(sourceUrl, poiUrl = null) {
 function syncNeighborhoodPresentation() {
   if (!state.map) return;
   const neighborhood = state.map.getZoom() >= NEIGHBORHOOD_ZOOM;
-  document.querySelector('.app-shell')?.classList.toggle('watercolor-wash', !neighborhood);
+  // Keep the same warm basemap treatment while switching between the broad
+  // view and the neighborhood overlay; otherwise the palette changes at the
+  // zoom threshold even though the user is still looking at one map.
+  document.querySelector('.app-shell')?.classList.add('watercolor-wash');
   if (neighborhood) void activateNationalPoiOverlay();
   else if (state.nationalPoiMap) deactivateNationalPoiOverlay();
 }
@@ -712,8 +719,8 @@ function fieldEditionStyle(sourceUrl) {
       { id: 'water', type: 'fill', source: 'field', 'source-layer': 'water', paint: { 'fill-color': '#a9d0df', 'fill-opacity': 0.95 } },
       { id: 'waterway', type: 'line', source: 'field', 'source-layer': 'waterway', paint: { 'line-color': '#80b9cf', 'line-width': 1.4 } },
       { id: 'building', type: 'fill', source: 'field', 'source-layer': 'building', minzoom: 15, paint: { 'fill-color': '#e4d8c4', 'fill-outline-color': '#cfbea6' } },
-      { id: 'roads-casing', type: 'line', source: 'field', 'source-layer': 'transportation', paint: { 'line-color': '#f7f3ea', 'line-width': ['interpolate', ['linear'], ['zoom'], 12, 1, 18, 6] } },
-      { id: 'roads', type: 'line', source: 'field', 'source-layer': 'transportation', paint: { 'line-color': '#b39f7d', 'line-width': ['interpolate', ['linear'], ['zoom'], 12, 0.55, 18, 3.2] } }
+      { id: 'roads-casing', type: 'line', source: 'field', 'source-layer': 'transportation', paint: { 'line-color': '#ead5ad', 'line-width': ['interpolate', ['linear'], ['zoom'], 12, 1, 18, 6] } },
+      { id: 'roads', type: 'line', source: 'field', 'source-layer': 'transportation', paint: { 'line-color': '#b88654', 'line-width': ['interpolate', ['linear'], ['zoom'], 12, 0.55, 18, 3.2] } }
     ]
   };
 }
