@@ -5,7 +5,9 @@ import { HISTORY_SUBTYPES, POI_ICONS, POI_TAG_PRIORITY } from './constants.js';
 export const ICON_IDS = new Set([
   'anchor', 'bench', 'book-open', 'bookmark', 'building', 'coffee', 'droplet',
   'eye', 'home', 'map-pin', 'star', 'tree', 'leaf', 'utensils', 'walk', 'bird', 'paw-print', 'bug', 'mushroom', 'turtle', 'microscope',
-  'parking', 'bike', 'trash-2', 'activity', 'flag', 'water-fountain', 'wifi'
+  'parking', 'bike', 'trash-2', 'activity', 'flag', 'water-fountain', 'wifi',
+  // Seasonal biodiversity markers can pass the resolved asset directly.
+  'tree-taxonomy', 'tree-fall'
 ]);
 
 // Shared tag-to-icon map for the map layer and the filter sheet. POI_ICONS is
