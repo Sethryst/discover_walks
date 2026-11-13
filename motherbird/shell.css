@@ -119,6 +119,96 @@ body[data-primary-tab="explore"] .map-dock [data-map-destination="explore"],body
   overflow-y: visible !important;
 }
 
+/* Final newspaper palette: this block intentionally stays at EOF so it wins
+   over the older Explore chip gradients above. */
+.map-workspace-panel[data-destination="explore"] {
+  background: #f3ead8 !important;
+  border: 2px solid #173c35 !important;
+  box-shadow: 4px 4px 0 rgba(23,60,53,.2) !important;
+}
+.map-workspace-panel[data-destination="explore"] > header,
+.map-workspace-panel[data-destination="explore"] .map-lights {
+  background: #f3ead8 !important;
+}
+#mapLights .map-light[data-light="news"] {
+  background: linear-gradient(105deg, #244f73 0%, #3d739d 100%) !important;
+  background-image: linear-gradient(105deg, #244f73 0%, #3d739d 100%) !important;
+  color: #fffaf0 !important;
+}
+#mapLights .map-light[data-light="recreation"] {
+  background: linear-gradient(105deg, #2c5b40 0%, #467858 100%) !important;
+  background-image: linear-gradient(105deg, #2c5b40 0%, #467858 100%) !important;
+  color: #fffaf0 !important;
+}
+#mapLights .map-light[data-light="cuisine"] {
+  background: linear-gradient(105deg, #8c4b1d 0%, #b86b2c 100%) !important;
+  background-image: linear-gradient(105deg, #8c4b1d 0%, #b86b2c 100%) !important;
+  color: #fffaf0 !important;
+}
+
+/* Explore should feel like a clipped newspaper panel: warm stock, dark ink,
+   and compact editorial rules around the category controls. */
+.map-workspace-panel[data-destination="explore"] {
+  background: #f3ead8 !important;
+  border: 2px solid #173c35 !important;
+  box-shadow: 4px 4px 0 rgba(23,60,53,.2) !important;
+  color: #173c35 !important;
+}
+.map-workspace-panel[data-destination="explore"] > header {
+  background: #eadcc4 !important;
+  border-bottom: 2px solid #173c35 !important;
+}
+.map-workspace-panel[data-destination="explore"] > header strong {
+  letter-spacing: inherit !important;
+}
+.map-workspace-panel[data-destination="explore"] .map-lights {
+  background: #f3ead8 !important;
+  padding: 7px 6px 5px !important;
+}
+.map-workspace-panel[data-destination="explore"] .map-light {
+  background: #f8f0e1 !important;
+  border: 1px solid rgba(23,60,53,.38) !important;
+  box-shadow: inset 0 -2px 0 rgba(23,60,53,.12) !important;
+  color: #173c35 !important;
+}
+.map-workspace-panel[data-destination="explore"] .advanced-filters,
+.map-workspace-panel[data-destination="explore"] .advanced-filter-family {
+  background: #f3ead8 !important;
+}
+.map-workspace-panel[data-destination="explore"] [data-map-light="news"] .map-light,
+.map-workspace-panel[data-destination="explore"] [data-light="news"] {
+  background: linear-gradient(105deg, #244f73 0%, #3d739d 100%) !important;
+  border-color: #173c35 !important;
+  color: #fffaf0 !important;
+}
+.map-workspace-panel[data-destination="explore"] [data-map-light="recreation"] .map-light,
+.map-workspace-panel[data-destination="explore"] [data-light="recreation"] {
+  background: linear-gradient(105deg, #2c5b40 0%, #467858 100%) !important;
+  border-color: #173c35 !important;
+  color: #fffaf0 !important;
+}
+.map-workspace-panel[data-destination="explore"] [data-map-light="cuisine"] .map-light,
+.map-workspace-panel[data-destination="explore"] [data-light="cuisine"] {
+  background: linear-gradient(105deg, #8c4b1d 0%, #b86b2c 100%) !important;
+  border-color: #173c35 !important;
+  color: #fffaf0 !important;
+}
+#mapLights .map-light[data-light="news"] {
+  background: linear-gradient(105deg, #244f73 0%, #3d739d 100%) !important;
+  background-image: linear-gradient(105deg, #244f73 0%, #3d739d 100%) !important;
+  color: #fffaf0 !important;
+}
+#mapLights .map-light[data-light="recreation"] {
+  background: linear-gradient(105deg, #2c5b40 0%, #467858 100%) !important;
+  background-image: linear-gradient(105deg, #2c5b40 0%, #467858 100%) !important;
+  color: #fffaf0 !important;
+}
+#mapLights .map-light[data-light="cuisine"] {
+  background: linear-gradient(105deg, #8c4b1d 0%, #b86b2c 100%) !important;
+  background-image: linear-gradient(105deg, #8c4b1d 0%, #b86b2c 100%) !important;
+  color: #fffaf0 !important;
+}
+
 /* Customize Explore uses one disclosure, like the other compact map tools:
    the closed state is the default and the open state grows with its rows.
    Keep the advanced choices flat so there is no second collapse level or
@@ -600,6 +690,44 @@ body[data-primary-tab="explore"] .map-dock [data-map-destination="explore"],body
   border-left-color: #d47c35 !important;
   background: rgba(212,124,53,.14) !important;
   color: #a65d23 !important;
+}
+
+/* Warm paper chrome: keep menus related to the printed-map surface instead of
+   the cool white used by the older controls. */
+.profile-menu,
+.regional-navigation-menu,
+.field-guide-dropdown,
+.messenger-menu,
+.sheet,
+.map-workspace-panel {
+  background-color: #f8f0e1 !important;
+}
+.profile-menu button:hover,
+.profile-menu button:focus-visible,
+.regional-navigation-menu button:hover,
+.regional-navigation-menu button:focus-visible,
+.regional-navigation-menu a:hover,
+.regional-navigation-menu a:focus-visible,
+.field-guide-dropdown button:hover,
+.field-guide-dropdown button:focus-visible,
+.messenger-menu button:hover,
+.messenger-menu button:focus-visible {
+  background: #eee1ce !important;
+}
+
+/* Stronger category bands make the three filter families scan as distinct
+   sections while preserving their existing blue/green/terracotta language. */
+.map-workspace-panel[data-destination="explore"] [data-advanced-family="news"] .advanced-family-toggle {
+  background: linear-gradient(105deg, #2d5f8a 0%, #4c89b8 100%) !important;
+  color: #fffaf0 !important;
+}
+.map-workspace-panel[data-destination="explore"] [data-advanced-family="recreation"] .advanced-family-toggle {
+  background: linear-gradient(105deg, #356b4b 0%, #4e8d68 100%) !important;
+  color: #fffaf0 !important;
+}
+.map-workspace-panel[data-destination="explore"] [data-advanced-family="cuisine"] .advanced-family-toggle {
+  background: linear-gradient(105deg, #a65d23 0%, #d47c35 100%) !important;
+  color: #fffaf0 !important;
 }
 .map-workspace-panel[data-destination="explore"] .advanced-filter-family .layer-filter-group {
   margin-top: 1px !important;
@@ -1438,4 +1566,12 @@ body.draw-pane-open .draw-tool-rail { display: flex !important; }
   height: auto !important;
   overflow-y: visible !important;
 }
+
+/* Final newspaper palette. */
+.map-workspace-panel[data-destination="explore"] { background: #f3ead8 !important; border: 2px solid #173c35 !important; box-shadow: 4px 4px 0 rgba(23,60,53,.2) !important; }
+.map-workspace-panel[data-destination="explore"] > header,
+.map-workspace-panel[data-destination="explore"] .map-lights { background: #f3ead8 !important; }
+#mapLights .map-light[data-light="news"] { background: linear-gradient(105deg, #244f73 0%, #3d739d 100%) !important; background-image: linear-gradient(105deg, #244f73 0%, #3d739d 100%) !important; color: #fffaf0 !important; }
+#mapLights .map-light[data-light="recreation"] { background: linear-gradient(105deg, #2c5b40 0%, #467858 100%) !important; background-image: linear-gradient(105deg, #2c5b40 0%, #467858 100%) !important; color: #fffaf0 !important; }
+#mapLights .map-light[data-light="cuisine"] { background: linear-gradient(105deg, #8c4b1d 0%, #b86b2c 100%) !important; background-image: linear-gradient(105deg, #8c4b1d 0%, #b86b2c 100%) !important; color: #fffaf0 !important; }
 

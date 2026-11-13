@@ -31,14 +31,23 @@
   <link rel="stylesheet" href="./vendor/leaflet-markercluster/MarkerCluster.Default.css" />
   <link rel="stylesheet" href="./vendor/leaflet-geoman/leaflet-geoman.css" />
   <link rel="stylesheet" href="./vendor/maplibre-gl.css" />
-  <link rel="stylesheet" href="./styles.css?v=explore-light-polish-20261104-11" />
+  <link rel="stylesheet" href="./styles.css?v=20261111-weather-border-match-9" />
   <link rel="stylesheet" href="./css/topbar-and-marker-overrides.css?v=20261105-region-width-5" />
     <link rel="stylesheet" href="./radio.css?v=20261101-radio-condensed-1" />
-  <link rel="stylesheet" href="./shell.css?v=explore-filter-layout-20261109-5" />
+  <link rel="stylesheet" href="./shell.css?v=newspaper-explore-20261112-3" />
   <link rel="stylesheet" href="./map-customization.css?v=20261012-map-studio-2" />
   <link rel="stylesheet" href="./splash-fix.css?v=20261007-library-nav-fix-1" />
   <link rel="stylesheet" href="./css/radio-theme.css?v=20261011-blue-phosphor-1" />
   <link rel="stylesheet" href="./css/biodiversity-icons.css?v=20261103-observation-icons-1" />
+  <style>
+    /* Newspaper treatment for the Explore card. Keep the existing app font. */
+    #mapWorkspacePanel[data-destination="explore"] { background:#f3ead8!important; border:2px solid #173c35!important; box-shadow:4px 4px 0 rgba(23,60,53,.2)!important; }
+    #mapWorkspacePanel[data-destination="explore"] > header,
+    #mapWorkspacePanel[data-destination="explore"] .map-lights { background:#f3ead8!important; }
+    #mapLights .map-light[data-light="news"] { background:linear-gradient(105deg,#244f73 0%,#3d739d 100%)!important; background-image:linear-gradient(105deg,#244f73 0%,#3d739d 100%)!important; color:#fffaf0!important; }
+    #mapLights .map-light[data-light="recreation"] { background:linear-gradient(105deg,#2c5b40 0%,#467858 100%)!important; background-image:linear-gradient(105deg,#2c5b40 0%,#467858 100%)!important; color:#fffaf0!important; }
+    #mapLights .map-light[data-light="cuisine"] { background:linear-gradient(105deg,#8c4b1d 0%,#b86b2c 100%)!important; background-image:linear-gradient(105deg,#8c4b1d 0%,#b86b2c 100%)!important; color:#fffaf0!important; }
+  </style>
   <style>.top-cluster .profile-control{order:-1}@media(max-width:720px){.top-cluster{grid-template-columns:40px 40px minmax(0,1fr)}.top-cluster .profile-control{grid-column:1;grid-row:1}.top-cluster .locate-stack{grid-column:2;grid-row:1}.top-cluster .map-search{grid-column:3;grid-row:1}}</style>
   <style>#radialRouteOptionsButton{display:none!important}.planner-start-walk{width:100%;justify-content:center;margin-bottom:8px}.top-cluster>.start-panel:not(.hidden){display:block!important;position:fixed!important;top:58px!important;left:12px!important;right:auto!important;z-index:2000!important}@media(max-width:720px){.top-cluster{grid-template-columns:40px minmax(0,1fr) 40px max-content!important}.top-cluster .profile-control{grid-column:1;grid-row:1}.top-cluster>.map-search{grid-column:2;grid-row:1;grid-area:auto;width:100%!important}.top-cluster .locate-stack{grid-column:3;grid-row:1}.top-cluster>.regional-navigation{position:static!important;left:auto!important;top:auto!important;grid-column:4;grid-row:1;grid-area:auto}.top-cluster>.start-panel:not(.hidden){top:auto!important;left:8px!important;right:8px!important;bottom:calc(64px + env(safe-area-inset-bottom))!important}}</style>
   <style>
@@ -479,7 +488,7 @@
               navigator.serviceWorker?.getRegistrations().then((registrations) => Promise.all(registrations.map((registration) => registration.unregister())))
             ]).finally(() => location.replace(cleanUrl));
           })();
-        </script><script src="./vendor/leaflet/leaflet.js"></script><script src="./vendor/leaflet-markercluster/leaflet.markercluster.js"></script><script src="./vendor/leaflet-geoman/leaflet-geoman.min.js"></script><script src="./vendor/turf/turf.min.js"></script><script src="./vendor/maplibre-gl.js"></script><script src="./supabase-config.js"></script><script type="module" src="./app.js?v=20261109-category-taxonomy-1"></script>
+        </script><script src="./vendor/leaflet/leaflet.js"></script><script src="./vendor/leaflet-markercluster/leaflet.markercluster.js"></script><script src="./vendor/leaflet-geoman/leaflet-geoman.min.js"></script><script src="./vendor/turf/turf.min.js"></script><script src="./vendor/maplibre-gl.js"></script><script src="./supabase-config.js"></script><script type="module" src="./app.js?v=20261111-warm-private-roads-1"></script>
 </body>
 </html>
 
