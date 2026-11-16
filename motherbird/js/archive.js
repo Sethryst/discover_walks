@@ -137,6 +137,11 @@ export async function renderJournalHistory() {
   }).join('') || '<p class="empty-state">Your earlier pages appear here, newest first.</p>';
   target.querySelectorAll('[data-delete-annotation]').forEach((button) => button.addEventListener('click', async () => { await db.remove('moments', button.dataset.deleteAnnotation); await renderArchive(); }));
   target.querySelectorAll('[data-delete-geofence]').forEach((button) => button.addEventListener('click', async () => { await db.remove('moments', button.dataset.deleteGeofence); await renderArchive(); }));
+  target.querySelectorAll('[data-rename-location]').forEach((button) => button.addEventListener('click', async () => {
+    const moment = await db.get('moments', button.dataset.renameLocation); const name = prompt('Name this location', moment?.title || 'Point');
+    if (!moment || !name?.trim()) return;
+    moment.title = name.trim().slice(0, 80); moment.updatedAt = new Date().toISOString(); await db.put('moments', moment); await renderArchive();
+  }));
   const counts = { notes: items.filter((item) => !['walk', 'observation'].includes(item.type)).length, observations: items.filter((item) => item.type === 'observation').length, voice: voices.filter((item) => item.audio instanceof Blob).length, walks: items.filter((item) => item.type === 'walk').length };
   if (el('journalNavDropdown')) el('journalNavDropdown').innerHTML = Object.entries(counts).map(([kind, count]) => `<button type="button" data-journal-jump="${kind}">${kind === 'voice' ? 'voice files' : kind} <b>${count}</b></button>`).join('');
 }

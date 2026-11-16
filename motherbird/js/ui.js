@@ -148,7 +148,8 @@ export function momentCard(item) {
   let detail = item.note || '';
   if (item.type === 'walk') detail = `${formatDistance(item.distanceMeters)} miles · ${formatDuration(item.durationSeconds)}`;
   if (!detail) detail = item.type === 'observation' ? 'Nature observation' : 'Journal reflection';
-  return `<article class="moment-card ${item.type === 'walk' ? 'walk-card' : ''}" ${item.type === 'walk' ? `data-walk-id="${escapeHtml(item.id)}" role="button" tabindex="0"` : ''}><span class="moment-symbol ${kind === 'history' ? 'history' : kind === 'walk' ? 'walk' : ''}">${icons[kind]}</span><div class="moment-copy"><strong>${escapeHtml(title)}</strong><p>${escapeHtml(detail)}</p>${journalPhoto(item.photo)}</div><time class="moment-date">${shortDate(item.createdAt || item.startedAt)}</time></article>`;
+  const rename = item.locationCheckpoint ? `<button type="button" class="text-button rename-location-checkpoint" data-rename-location="${escapeHtml(item.id)}">Rename</button>` : '';
+  return `<article class="moment-card ${item.type === 'walk' ? 'walk-card' : ''}" ${item.type === 'walk' ? `data-walk-id="${escapeHtml(item.id)}" role="button" tabindex="0"` : ''}><span class="moment-symbol ${kind === 'history' ? 'history' : kind === 'walk' ? 'walk' : ''}">${icons[kind]}</span><div class="moment-copy"><strong>${escapeHtml(title)}</strong><p>${escapeHtml(detail)}</p>${journalPhoto(item.photo)}${rename}</div><time class="moment-date">${shortDate(item.createdAt || item.startedAt)}</time></article>`;
 }
 export function journalPhoto(value) {
   // Imported pages must not inject HTML or cause remote photo requests.

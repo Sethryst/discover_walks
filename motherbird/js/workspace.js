@@ -328,6 +328,11 @@ async function hydrateWorkspaceLearn(target) {
 function renderWorkspaceExperience(target) {
   target.innerHTML = `<section class="workspace-experience" aria-label="Workspace"><header class="workspace-experience-header"><div><h1>${currentWalk ? escapeHtml(currentWalk.title) : 'Your walks'}</h1></div></header><nav class="workspace-tool-pills" aria-label="Workspace sections" role="tablist">${WORKSPACE_TOOLS.map(([id, label, icon]) => `<button type="button" role="tab" class="${activeWorkspaceTool === id ? 'active' : ''}" aria-selected="${activeWorkspaceTool === id}" data-workspace-tool="${id}"><img src="./icons/${icon === 'route' ? 'route' : icon === 'journal' ? 'bookmark' : 'book-open'}.svg" alt="" aria-hidden="true"><span>${label}</span></button>`).join('')}</nav>${workspacePage()}</section>`;
   const header = target.querySelector('.workspace-experience-header');
+  if (header && currentWalk?.id === 'user-location-checkpoints') {
+    const rename = document.createElement('button'); rename.type = 'button'; rename.className = 'text-button'; rename.textContent = 'Rename';
+    rename.addEventListener('click', async () => { const walk = await db.get('walks', currentWalk.id); const name = prompt('Name this logged walk', walk?.title || currentWalk.title); if (!walk || !name?.trim()) return; walk.title = name.trim().slice(0, 80); await db.put('walks', walk); currentWalk.title = walk.title; await renderWorkspacePanel(target); });
+    header.querySelector('div')?.append(rename);
+  }
   if (header && activeWorkspaceTool === 'options') {
     const chips = document.createElement('div');
     chips.className = 'workspace-mode-chips';
@@ -380,6 +385,7 @@ export async function renderWorkspacePanel(target, { filter = 'all' } = {}) {
     const plan = state.walkPlan || state.savedRoutes?.[0] || state.walks?.[0];
     const route = plan?.route || plan;
     currentWalk = {
+      id: plan.id,
       title: plan.title || route?.title || 'Your walk',
       stops: (plan.encounters || route?.sections || []).map((stop) => stop.name || stop.title || stop.label || 'Walking stop').slice(0, 6),
       duration: route?.durationSeconds ? `${Math.round(route.durationSeconds / 60)} min` : 'Walking route',
