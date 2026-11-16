@@ -14,6 +14,7 @@ import { toast, setStatus, openJournal, closeSheets } from './ui.js';
 import db from './storage.js';
 import { linkSavedRecord } from './workspace.js?v=20261109-journal-filters-1';
 import { startWalkSession } from './walk-plan.js';
+import { recordLocationCheckpoint } from './location-checkpoints.js';
 import { updateProfile } from './profile.js';
 import { stepCreditForWalk } from './step-wallet.js?v=20261104-step-wallet-1';
 import { renderArchive } from './archive.js';
@@ -202,6 +203,7 @@ async function reconstructRouteGap(previous, current) {
 }
 
 async function handleGpsPosition(position, shouldPan = false) {
+  void recordLocationCheckpoint(position).catch((error) => console.warn('Location checkpoint unavailable:', error));
   await refineInstalledPack(position);
   handlePosition(position, shouldPan);
 }

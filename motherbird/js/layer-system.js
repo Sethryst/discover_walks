@@ -93,6 +93,7 @@ export async function initLayerSystem() {
   syncLegacyPoiTags();
   bindLayerControls();
   window.addEventListener('biodiversity-live-updated', () => { ensureLayerDefaults(); renderLayerFilters(); });
+  window.addEventListener('location-checkpoints-changed', () => renderRouteLights());
   window.addEventListener('map-domain-labels-changed', () => { renderLayerFilters(); renderMapLights(); });
   renderLayerFilters();
   renderMapLights();
