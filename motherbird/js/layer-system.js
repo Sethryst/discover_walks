@@ -374,7 +374,6 @@ function routeInViewport(coordinates = []) {
 function lightModel() {
   const recreation = availableMapChips('recreation');
   const cuisine = availableMapChips('cuisine');
-  const more = availableMapChips('more');
   const newsEntries = state.layerLights.news ? [...civicAvailability.notices, ...packPublicMarkers('news')] : [];
   const personalPins = curatedPersonalPlaces().filter((place) => !place.packId || place.packId === state.activeCity);
   const personal = state.personalPlaceCategories.map((category) => ({ id: category.id, label: category.name, tags: [], kind: 'personal' }));
@@ -384,7 +383,6 @@ function lightModel() {
     { ...MAP_DOMAINS.news, label: labels.news || MAP_DOMAINS.news.label, icon: icons.news || MAP_DOMAINS.news.icon, available: true, chips: [], entries: newsEntries, hasChevron: false },
     { ...MAP_DOMAINS.recreation, label: labels.recreation || MAP_DOMAINS.recreation.label, icon: icons.recreation || MAP_DOMAINS.recreation.icon, available: true, chips: recreation, hasChevron: false },
     { ...MAP_DOMAINS.cuisine, label: labels.cuisine || MAP_DOMAINS.cuisine.label, icon: icons.cuisine || MAP_DOMAINS.cuisine.icon, available: true, chips: cuisine, hasChevron: false },
-    { id: 'more', label: 'More', icon: 'map-pin', color: '#76558b', available: true, chips: more, hasChevron: false },
     { id: 'personal', label: state.personalPlaceSelecting ? 'USE THIS SPOT' : 'MY PLACES', available: false, chips: personal, hasChevron: true }
   ].filter((light) => light.available);
 }
