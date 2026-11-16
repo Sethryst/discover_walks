@@ -309,7 +309,7 @@ export async function startWalk({ routeMode = 'tracking', transportMode = null, 
   ensurePauseButton();
   state.routeLine?.remove();
   state.routeLine = L.polyline([], { color: '#168cff', weight: 8, opacity: 1, lineCap: 'round', lineJoin: 'round' }).addTo(state.map);
-  el('walkButton').setAttribute('disabled', '');
+  el('walkButton')?.setAttribute('disabled', '');
   el('endWalkButton').classList.remove('hidden');
   setStatus('Recording your walk', true);
   updateWalkDisplay();
@@ -422,7 +422,7 @@ export async function recoverWalkDraft() {
   state.routeLine?.remove();
   const style = globalThis.__MOTHERBIRD_MAP_STYLE__; state.routeLine = L.polyline(state.activeWalk.points.map((point) => [point.lat, point.lng]), { color: style?.features?.recordedRoute || '#245448', weight: style?.features?.routeWidth || 5, opacity: style?.features?.routeOpacity || .85, styleRole: 'recordedRoute' }).addTo(state.map);
   ensurePauseButton();
-  el('walkButton').setAttribute('disabled', '');
+  el('walkButton')?.setAttribute('disabled', '');
   el('endWalkButton').classList.remove('hidden');
   updateWalkDisplay();
   if (state.activeWalk.recordingStatus === 'recording') {
@@ -561,7 +561,7 @@ function resetActiveWalk() {
   state.liveDirectionLine = null;
   state.routeLine = null;
   updateWalkDisplay();
-  el('walkButton').removeAttribute('disabled');
+  el('walkButton')?.removeAttribute('disabled');
   el('endWalkButton')?.classList.add('hidden');
   const pauseButton = el('pauseWalkButton');
   if (pauseButton) pauseButton.classList.add('hidden');

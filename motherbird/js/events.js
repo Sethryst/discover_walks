@@ -629,12 +629,9 @@ function bindWalkControls() {
   if (!el('liveWalkOptionsButton')) {
     el('endWalkButton')?.insertAdjacentHTML('afterend', '<button class="ink-control hidden" id="liveWalkOptionsButton" type="button">Walk options</button>');
   }
-  if (startPanel && !el('plannerStartWalkButton')) startPanel.insertAdjacentHTML('afterbegin', '<button class="primary-button planner-start-walk" id="plannerStartWalkButton" type="button">Start recording</button>');
   decorateWalkPlanner();
   void initOutingComposer();
   if (bottomWalkBar && startPanel && !bottomWalkBar.contains(startPanel)) bottomWalkBar.append(startPanel);
-  el('walkButton')?.addEventListener('click', async () => { if (!state.activeWalk) await startWalk({ routeMode: 'tracking' }); });
-  el('plannerStartWalkButton')?.addEventListener('click', async () => { if (!state.activeWalk) await startWalk({ routeMode: 'tracking' }); });
   el('endWalkButton')?.addEventListener('click', () => void stopWalk());
   el('liveWalkOptionsButton')?.addEventListener('click', () => {
     el('radialRouteOptionsButton')?.click();
@@ -667,7 +664,7 @@ function bindWalkControls() {
   if (!document.body.dataset.walkMenuDismissBound) {
     document.body.dataset.walkMenuDismissBound = 'true';
     document.addEventListener('click', (event) => {
-      if (event.target.closest('#startPanel, #radialRouteOptionsButton, #startChevron, #radialWalkButton')) return;
+      if (event.target.closest('#startPanel, #radialRouteOptionsButton, #startChevron')) return;
       if (state.plannerSelecting || document.body.classList.contains('route-selection-active') || event.target.closest('#map, .leaflet-container, .leaflet-popup, .leaflet-popup-close-button')) return;
       const panel = el('startPanel');
       if (panel && !panel.classList.contains('hidden')) {
@@ -714,7 +711,6 @@ function bindWalkControls() {
   };
   el('chooseStartButton')?.addEventListener('click', () => beginPointSelection('Start'));
   el('chooseEndButton')?.addEventListener('click', () => { if (!state.plannerStart && !state.currentPosition) { toast('Select a starting point first.'); return; } beginPointSelection('End'); });
-  el('addStopButton')?.addEventListener('click', () => beginPointSelection('Stop'));
   el('useCurrentLocationButton')?.addEventListener('click', () => {
     if (!state.currentPosition) { toast('Current location is not available yet.'); return; }
     state.plannerStart = { ...state.currentPosition };

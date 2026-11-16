@@ -1,6 +1,6 @@
 import { state } from './state.js';
 import { el, escapeHtml } from './utils.js';
-import { startWalk, stopWalk, pauseWalk, resumeWalk } from './walk.js';
+import { stopWalk } from './walk.js';
 import db from './storage.js';
 
 const DEFAULT_STARRED = [
@@ -46,33 +46,11 @@ export async function toggleStarAction(item) {
   }
 }
 
-export function updateRadialWalkButton() {
-  const btn = el('radialWalkButton');
-  const label = el('radialWalkLabel');
+export function updateRadialPauseButton() {
   const pauseBtn = el('radialPauseButton');
-  if (!btn || !label) return;
-
-  const walk = state.activeWalk;
-  if (!walk) {
-    label.textContent = 'Start walk';
-    btn.classList.remove('active-walk', 'paused');
-    if (pauseBtn) pauseBtn.classList.add('hidden');
-  } else if (walk.paused) {
-    label.textContent = 'Resume walk';
-    btn.classList.add('active-walk', 'paused');
-    if (pauseBtn) {
-      pauseBtn.classList.remove('hidden');
-      pauseBtn.textContent = 'End walk';
-    }
-  } else {
-    label.textContent = 'Pause walk';
-    btn.classList.add('active-walk');
-    btn.classList.remove('paused');
-    if (pauseBtn) {
-      pauseBtn.classList.remove('hidden');
-      pauseBtn.textContent = 'End walk';
-    }
-  }
+  if (!pauseBtn) return;
+  pauseBtn.classList.toggle('hidden', !state.activeWalk);
+  if (state.activeWalk) pauseBtn.textContent = 'End walk';
 }
 
 export function renderRadialWheel() {
@@ -122,34 +100,21 @@ export function toggleRadialMenu(force) {
 export function initRadialMenu() {
   if (radialMenuInitialized) return;
   radialMenuInitialized = true;
-  const btn = el('radialWalkButton');
   const pauseBtn = el('radialPauseButton');
   const chevron = el('radialChevron');
-
-  btn?.addEventListener('click', async () => {
-    const walk = state.activeWalk;
-    if (!walk) {
-      await startWalk({ routeMode: 'tracking' });
-    } else if (walk.paused) {
-      await resumeWalk();
-    } else {
-      await pauseWalk();
-    }
-    updateRadialWalkButton();
-  });
 
   pauseBtn?.addEventListener('click', () => {
     if (state.activeWalk) {
       void stopWalk();
     }
-    updateRadialWalkButton();
+    updateRadialPauseButton();
   });
 
   chevron?.addEventListener('click', () => toggleRadialMenu());
 
-  window.addEventListener('walk-display-updated', () => updateRadialWalkButton());
+  window.addEventListener('walk-display-updated', () => updateRadialPauseButton());
   window.addEventListener('radial-starred-changed', () => renderRadialWheel());
 
-  updateRadialWalkButton();
+  updateRadialPauseButton();
   renderRadialWheel();
 }

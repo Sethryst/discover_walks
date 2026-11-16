@@ -5,7 +5,7 @@ import { openSheet } from './ui.js';
 
 export const COACH_STEPS = [
   { target: 'mapSearchInput', text: 'Find a place or trail.' },
-  { target: 'radialWalkButton', text: 'Start a walk or compose one in Workspace.' },
+  { target: 'radialChevron', text: 'Open your starred quick actions here.' },
   { target: 'libraryTab', text: 'Open Workspace to edit maps routes places and drawings.' },
   { target: 'profileAvatarButton', text: 'Your private tools.' },
 ];
