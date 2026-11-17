@@ -31,7 +31,7 @@
   <link rel="stylesheet" href="./vendor/leaflet-markercluster/MarkerCluster.Default.css" />
   <link rel="stylesheet" href="./vendor/leaflet-geoman/leaflet-geoman.css" />
   <link rel="stylesheet" href="./vendor/maplibre-gl.css" />
-  <link rel="stylesheet" href="./styles.css?v=20261111-weather-border-match-9" />
+  <link rel="stylesheet" href="./styles.css?v=20261117-goal-progress-1" />
   <link rel="stylesheet" href="./css/topbar-and-marker-overrides.css?v=20261105-region-width-5" />
     <link rel="stylesheet" href="./radio.css?v=20261101-radio-condensed-1" />
   <link rel="stylesheet" href="./shell.css?v=newspaper-explore-20261112-3" />
@@ -335,6 +335,7 @@
 
   <section class="sheet split-sheet hidden" id="backpackSheet" role="dialog" aria-modal="false" aria-labelledby="backpackTitle">
     <button class="close-sheet" data-close-sheet aria-label="Close">×</button><h2 id="backpackTitle">Learn</h2>
+    <section class="goal-progress-panel" id="goalProgressPanel" aria-labelledby="goalProgressTitle"><div class="goal-progress-heading"><div><span class="sheet-kicker">PROJECT GOALS</span><h3 id="goalProgressTitle">Your overall progress</h3></div><strong id="goalProgressPercent">0%</strong></div><div class="goal-progress-track" role="progressbar" aria-label="Overall project goals progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="goalProgressFill"></span></div><p id="goalProgressSummary">Start a walk, make a drawing, write a journal note, or record something you learn.</p><div class="goal-progress-grid" id="goalProgressGrid"></div></section>
     <p class="guide-order-note hidden" id="fieldGuideOrderNote"></p><section class="guide-list" id="fieldGuideList" aria-live="polite"></section>
     <section class="share-panel hidden" id="sharePanel">
       <div class="app-entry" data-app-entry="online" data-guide-tab="online">Online

@@ -21,6 +21,7 @@ import { isBiodiversitySupported, renderBiodiversityGuide } from './biodiversity
 
 const FORMAT = 'walk-wildlife-plan-v1';
 let selectedPlaceId = null;
+async function renderGoalProgress() { const panel = el('goalProgressPanel'); if (!panel) return; const [walks, moments, observations] = await Promise.all([db.all('walks'), db.all('moments'), db.all('observations')]); const goals = [{ label: 'Walk', icon: '↝', count: walks.length, target: 5, noun: 'walks' }, { label: 'Journal', icon: '✎', count: moments.filter((item) => ['journal', 'history'].includes(item.type) && String(item.note || '').trim()).length, target: 7, noun: 'notes' }, { label: 'Draw', icon: '⌖', count: moments.filter((item) => item.type === 'drawing').length, target: 5, noun: 'drawings' }, { label: 'Learn', icon: '✦', count: observations.length, target: 10, noun: 'observations' }].map((goal) => ({ ...goal, percent: Math.min(100, Math.round((goal.count / goal.target) * 100)) })); const overall = Math.round(goals.reduce((sum, goal) => sum + goal.percent, 0) / goals.length); el('goalProgressPercent').textContent = `${overall}%`; el('goalProgressFill').style.width = `${overall}%`; panel.querySelector('[role="progressbar"]')?.setAttribute('aria-valuenow', String(overall)); el('goalProgressSummary').textContent = `${goals.filter((goal) => goal.count > 0).length} of ${goals.length} goals started · counts are saved on this device.`; el('goalProgressGrid').innerHTML = goals.map((goal) => `<div class="goal-progress-item"><div><span aria-hidden="true">${goal.icon}</span><strong>${goal.label}</strong><small>${goal.count}/${goal.target} ${goal.noun}</small></div><div class="goal-mini-track"><span style="width:${goal.percent}%"></span></div><b>${goal.percent}%</b></div>`).join(''); }
 
 async function loadJson(url, fallback) {
   if (!url) return fallback;
@@ -182,6 +183,7 @@ export async function renderFieldGuide(tab = state.fieldGuideTab || 'discover') 
     return;
   }
   if (tab === 'learn') {
+    await renderGoalProgress();
     await renderLearnHistory(target, point, data.learn);
     return;
   }
@@ -373,6 +375,7 @@ export function initFieldGuideFilters() {
   window.addEventListener('utility-tab-requested', ({ detail }) => { void renderFieldGuide(detail?.tab === 'export' ? 'export' : 'online'); });
   window.addEventListener('map-overlay-changed', ({ detail }) => { if (!detail.open || detail.id !== 'backpackSheet') shadeLearnBounds(false); });
   window.addEventListener('layer-state-dirty', () => { if (state.modalOpen === 'backpackSheet' && state.fieldGuideTab === 'learn') void renderFieldGuide('learn'); });
+  ['walks-changed', 'journal-data-changed', 'observations-changed', 'local-drawings-changed'].forEach((eventName) => window.addEventListener(eventName, () => { if (state.modalOpen === 'backpackSheet' && state.fieldGuideTab === 'learn') void renderGoalProgress(); }));
   window.addEventListener('poi-visit-state-changed', () => { if (state.fieldGuideTab === 'learn') void renderFieldGuide('learn'); });
   window.addEventListener('walk-position-received', () => { if (state.modalOpen === 'backpackSheet' && ['discover', 'learn'].includes(state.fieldGuideTab)) void renderFieldGuide(state.fieldGuideTab); });
   window.addEventListener('map-viewport-changed', () => { if (state.modalOpen === 'backpackSheet' && state.fieldGuideTab === 'learn') void renderFieldGuide('learn'); });
