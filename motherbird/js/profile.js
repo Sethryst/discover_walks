@@ -7,6 +7,10 @@ import { renderFavoriteRegions } from './region-favorites.js';
 
 export function renderProfile() {
   const profile = state.profile; const cityDiscoveries = sitesForProfile(profile).length;
+  const nameInput = el('deviceProfileNameInput');
+  if (nameInput && document.activeElement !== nameInput) nameInput.value = profile.name || '';
+  const stats = el('deviceProfileStats');
+  if (stats) stats.innerHTML = `<span><strong>${Number(profile.walksCompleted || 0)}</strong><small>walks</small></span><span><strong>${Number(profile.observationsLogged || 0)}</strong><small>observations</small></span><span><strong>${cityDiscoveries}</strong><small>places learned</small></span><span><strong>${Number(profile.milesTotal || 0).toFixed(1)}</strong><small>miles</small></span>`;
   if (el('geofenceToggle')) el('geofenceToggle').checked = state.settings.enableGeofencing !== false;
   if (el('geofenceOptionsContainer')) el('geofenceOptionsContainer').classList.toggle('hidden', state.settings.enableGeofencing === false);
   if (el('geofenceRadiusSelect')) el('geofenceRadiusSelect').value = String(state.settings.defaultGeofenceRadiusMeters || 50);
@@ -22,7 +26,7 @@ export function renderProfile() {
     const image = el('profileAvatarImage'); image.src = state.profile.avatarImage || '';
     image.classList.toggle('hidden', !state.profile.avatarImage);
     el('profileAvatarGlyph').classList.toggle('hidden', Boolean(state.profile.avatarImage));
-    el('profileAvatarSettings')?.classList.toggle('hidden', !signedIn);
+    el('profileAvatarSettings')?.classList.remove('hidden');
   }
 }
 

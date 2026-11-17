@@ -146,9 +146,16 @@ export async function initOnlinePane() {
   el('goOnlineButton')?.addEventListener('click', () => void savePersonalSeal({ interactive: true }).catch(reportOnlineError));
   document.querySelectorAll('[data-avatar-icon]').forEach((button) => button.addEventListener('click', () => void setProfileAvatar({ icon: button.dataset.avatarIcon })));
   el('profileAvatarInput')?.addEventListener('change', (event) => { const file = event.target.files?.[0]; if (!file) return; const reader = new FileReader(); reader.onload = () => void setProfileAvatar({ image: String(reader.result || '') }); reader.readAsDataURL(file); });
+  el('deviceProfileNameInput')?.addEventListener('change', () => void updateLocalProfileName());
   window.addEventListener('online-panel-render-requested', renderOnlinePane);
   window.addEventListener('online-profile-changed', () => { if (unlocked && unlocked.ownerId !== state.online.session?.user.id) { unlocked = null; clearInterval(timer); timer = null; } renderOnlinePane(); });
   const { initOpenControls } = await import('./open-payload.js'); initOpenControls();
   const { initFriendWalk } = await import('./friend-walk.js'); initFriendWalk();
   renderOnlinePane();
+}
+
+async function updateLocalProfileName() {
+  const name = el('deviceProfileNameInput')?.value.trim() || '';
+  state.profile = { ...state.profile, name };
+  await db.put('profile', state.profile);
 }
