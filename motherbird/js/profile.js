@@ -41,6 +41,7 @@ export async function updateProfile(mutator) {
   state.profile = normalizeProfile(state.profile);
   await db.put('profile', state.profile);
   renderProfile();
+  if (state.online.session) import('./online.js').then(({ syncProfile }) => syncProfile().catch(() => {})).catch(() => {});
   // Go online uploads selected, encrypted classes only. Updating a local walk
   // or observation must not separately upload unencrypted activity totals.
   return result;

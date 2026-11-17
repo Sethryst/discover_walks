@@ -80,10 +80,27 @@ export async function loadRemoteProfile() {
     throw error;
   }
   state.online.remoteProfile = data || null;
+  if (data) await mergeRemoteProfileIntoDevice(data);
   await refreshCloudJournalEntitlement();
   renderProfile();
   window.dispatchEvent(new CustomEvent('online-profile-changed'));
   return data;
+}
+
+async function mergeRemoteProfileIntoDevice(remote) {
+  const local = state.profile || {};
+  const merged = {
+    ...local,
+    totalPoints: Math.max(Number(local.totalPoints) || 0, Number(remote.total_points) || 0),
+    milesTotal: Math.max(Number(local.milesTotal) || 0, Number(remote.miles_total) || 0),
+    sitesDiscovered: { ...(local.sitesDiscovered || {}) },
+    remoteMergedAt: new Date().toISOString()
+  };
+  // Supabase stores aggregate site counts, so preserve the local site list and
+  // never invent site IDs from a remote count.
+  if (totalSitesDiscovered(merged) < Number(remote.sites_discovered) || 0) merged.remoteSitesDiscovered = Number(remote.sites_discovered) || 0;
+  state.profile = merged;
+  await db.put('profile', state.profile);
 }
 
 function bindPublicMarkerEvents() {
@@ -238,7 +255,7 @@ export async function syncProfile() {
   const payload = {
     id: state.online.session.user.id, username: state.online.remoteProfile.username,
     total_points: Math.round(state.profile.totalPoints), miles_total: Number(state.profile.milesTotal.toFixed(3)),
-    sites_discovered: totalSitesDiscovered(state.profile), updated_at: new Date().toISOString()
+    sites_discovered: Math.max(totalSitesDiscovered(state.profile), Number(state.profile.remoteSitesDiscovered) || 0), updated_at: new Date().toISOString()
   };
   const { data, error } = await state.online.client.from('profiles').upsert(payload).select().single();
   if (error) throw error;
