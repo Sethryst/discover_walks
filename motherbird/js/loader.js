@@ -11,7 +11,8 @@ import { renderWeatherBrief } from './weather.js?v=20261105-daylight-refresh-5';
 import { renderArchive } from './archive.js';
 import { normalizedEntitlements } from './entitlements.js';
 import { restoreLocalPoiClosures } from './spatial-closure-reporting.js';
-import { initFieldGuideFilters } from './field-guide.js?v=140-live-learn-by-me';
+import { initFieldGuideFilters } from './field-guide.js?v=20261111-pack-story-distances-2';
+import './demo-learn-navigation.js?v=20261111-learn-bubbles-1';
 import { initPersonalPlaces } from './personal-places.js';
 import { initLayerSystem } from './layer-system.js';
 import { initMapPaint } from './map-paint.js?v=20261102-crosshair-pin-placement-1';
@@ -32,7 +33,7 @@ import { initBiodiversity } from './biodiversity.js?v=20261103-live-biodiversity
 import { initRegionalNavigation } from './regional-navigation.js?v=20261104-subregion-switch-1';
 import { initStorageDiagnostics } from './storage-diagnostics.js';
 import { initStorageHealth } from './storage-health.js';
-import { loadWorkspaceState, initWorkspaceRuntime, seedWorkspaceDemo } from './workspace.js?v=20261109-journal-filters-1';
+import { loadWorkspaceState, initWorkspaceRuntime, seedWorkspaceDemo } from './workspace.js?v=20261116-my-walks-6';
 import { normalizeSavedRoute } from './saved-routes.js';
 import { initMapSettings } from './map-settings.js?v=20261109-domain-customization-2';
 import { initRegionalRoutingPackagesUI } from './regional-routing-packages-ui.js?v=20261104-valhalla-packages-ui-1';

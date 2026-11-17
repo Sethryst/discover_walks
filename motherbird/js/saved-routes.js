@@ -1,7 +1,7 @@
 import { state } from './state.js';
 import db from './storage.js';
 import { uid, escapeHtml } from './utils.js';
-import { linkSavedRecord, deleteWorkspaceRecord } from './workspace.js?v=20261109-journal-filters-1';
+import { linkSavedRecord, deleteWorkspaceRecord } from './workspace.js?v=20261116-my-walks-6';
 
 export function normalizeSavedRoute(route = {}, now = new Date().toISOString()) {
   const coordinates = Array.isArray(route.coordinates) ? route.coordinates.filter((point) => Array.isArray(point) && point.length >= 2).map(([lat, lng]) => [Number(lat), Number(lng)]) : [];
@@ -19,6 +19,7 @@ export function normalizeSavedRoute(route = {}, now = new Date().toISOString()) 
     distanceMeters: Number.isFinite(Number(section.distanceMeters)) ? Number(section.distanceMeters) : null,
     durationSeconds: Number.isFinite(Number(section.durationSeconds)) ? Number(section.durationSeconds) : null,
     status: ['upcoming', 'active', 'completed'].includes(section.status) ? section.status : 'upcoming',
+    enabled: section.enabled !== false,
     completedAt: section.completedAt || null,
     alternatives: Array.isArray(section.alternatives) ? section.alternatives : [],
     mip: section.mip || null
@@ -41,6 +42,10 @@ export function normalizeSavedRoute(route = {}, now = new Date().toISOString()) 
     })).filter((option) => option.id && option.coordinates.length >= 2) : [],
     stops, sections,
     routeIntent: route.routeIntent || route.intent || null,
+    generatedFrom: route.generatedFrom || null,
+    sourceLocationIds: Array.isArray(route.sourceLocationIds) ? route.sourceLocationIds.map(String) : [],
+    wholeWalkEnabled: route.wholeWalkEnabled !== false,
+    interests: Array.isArray(route.interests) ? route.interests.map(String) : [],
     discoveryStyle: route.discoveryStyle || null,
     quietProfile: route.quietProfile || route.quietDiscoveryProfile || null,
     reasoning: route.reasoning || route.reason || null,

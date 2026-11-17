@@ -12,7 +12,7 @@ import { el, uid } from './utils.js';
 import { checkGeofences } from './geofence.js';
 import { toast, setStatus, openJournal, closeSheets } from './ui.js';
 import db from './storage.js';
-import { linkSavedRecord } from './workspace.js?v=20261109-journal-filters-1';
+import { linkSavedRecord } from './workspace.js?v=20261116-my-walks-6';
 import { startWalkSession } from './walk-plan.js';
 import { recordLocationCheckpoint } from './location-checkpoints.js';
 import { updateProfile } from './profile.js';

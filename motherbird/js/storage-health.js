@@ -45,14 +45,14 @@ export function initStorageHealth() {
   section.id = 'storageHealthSection';
   section.className = 'companion-settings-section storage-health-section';
   section.setAttribute('aria-labelledby', 'storageHealthTitle');
-  section.innerHTML = '<div class="companion-section-heading"><div><span class="sheet-kicker">DEVICE CARE</span><h3 id="storageHealthTitle">Storage health</h3></div><button type="button" class="text-button" id="refreshStorageHealthButton">Check now</button></div><p id="storageHealthSummary">Your journal and offline areas stay on this device.</p><output id="storageHealthDetails" aria-live="polite"></output>';
+  section.innerHTML = '<div class="companion-section-heading"><div><span class="sheet-kicker">DEVICE CARE</span><h3 id="storageHealthTitle">Storage health</h3></div><div class="storage-health-heading-side"><button type="button" class="text-button" id="refreshStorageHealthButton">Check now</button><p id="storageHealthSummary">Your data stays on this device and can be merged with an account.</p></div></div><output id="storageHealthDetails" aria-live="polite"></output>';
   sheet.querySelector('.companion-settings-section')?.before(section);
   const output = section.querySelector('#storageHealthDetails');
   const refresh = async () => {
     output.textContent = 'Checking local storage…';
     const report = await collectHealth();
     const findings = [report.orphanedRegionRecords ? `${report.orphanedRegionRecords} orphaned regional record${report.orphanedRegionRecords === 1 ? '' : 's'}` : '', report.staleDrafts ? `${report.staleDrafts} old walk draft${report.staleDrafts === 1 ? '' : 's'} to review` : ''].filter(Boolean);
-    output.textContent = `Device storage: ${report.used} used of ${report.quota} · ${report.regions} installed area${report.regions === 1 ? '' : 's'} · ${report.cacheEntries} cached assets · ${report.journal} saved walk${report.journal === 1 ? '' : 's'} · ${report.observations} observation${report.observations === 1 ? '' : 's'}${findings.length ? ` · Review: ${findings.join('; ')}` : ''} · checked ${report.checkedAt}`;
+    output.innerHTML = `<span class="storage-health-primary">Storage used · ${report.used} · ${report.regions} installed area${report.regions === 1 ? '' : 's'} · checked ${report.checkedAt}</span><span class="storage-health-secondary">${report.journal} saved walk${report.journal === 1 ? '' : 's'} · ${report.observations} observation${report.observations === 1 ? '' : 's'} · Device storage: ${report.used} used of ${report.quota} · ${report.cacheEntries} cached assets${findings.length ? ` · Review: ${findings.join('; ')}` : ''}</span>`;
   };
   section.querySelector('#refreshStorageHealthButton').addEventListener('click', () => void refresh());
   refresh();

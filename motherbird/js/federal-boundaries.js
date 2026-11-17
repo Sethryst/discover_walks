@@ -60,7 +60,7 @@ export class FederalBoundaryOverlay {
     this.requestSequence = 0;
     this.progressSequence = 0;
     this.disposed = false;
-    this.refreshSettled = debounce(() => { void this.refresh(); }, 140);
+    this.refreshSettled = debounce(() => { void this.refresh(); }, 500);
   }
 
   async start() {

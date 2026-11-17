@@ -7,6 +7,7 @@ import { isBiodiversitySupported } from './biodiversity.js?v=20261103-live-biodi
 import { startWalk } from './walk.js';
 import { openJournal, syncJournalTitle } from './ui.js?v=20261103-goal-batch-2';
 import { renderJournalHistory, renderJournalTimeline } from './archive.js';
+import { installMyWalksReconciler, reconcileMyWalks } from './my-walks.js';
 
 export const DEFAULT_WORKSPACE_ID = 'workspace:my-workspace';
 const LINKABLE_STORES = [
@@ -131,6 +132,7 @@ export async function seedWorkspaceDemo() {
     ['observations', { id: 'demo-observation', species: 'Red-tailed hawk', location: { lat: 38.906, lng: -77.034 }, note: 'Circling above the tree line.', updatedAt: stamp(19) }, 'observation'],
     ['geo_cypher_manifests', { id: 'demo-audio', title: 'Creek under the bridge', note: 'A short listening stop.', updatedAt: stamp(26) }, 'audio'],
     ['personal_places', { id: 'demo-place', name: 'Pocket overlook', location: { lat: 38.909, lng: -77.042 }, note: 'Good shade and a clear view downstream.', updatedAt: stamp(33) }, 'place'],
+    ['personal_places', { id: 'demo-place-2', name: 'Creek breakfast stop', location: { lat: 38.904, lng: -77.038 }, note: 'A familiar starting point for the demo connection.', updatedAt: stamp(36) }, 'place'],
     ['moments', { id: 'demo-journal', type: 'journal', title: 'What changed here', note: 'The water is higher than last season.', updatedAt: stamp(40) }, 'journal'],
     ['moments', { id: 'demo-annotation', type: 'drawing', title: 'Quiet edge', body: { shape: 'Line', measurement: '240 ft shoreline mark' }, updatedAt: stamp(47) }, 'annotation']
   ];
@@ -222,7 +224,7 @@ async function renderJournalRoomWorkspaceSummary() {
   return `<section class="workspace-journal-room" aria-label="Journal Room summary"><div class="workspace-journal-room-heading"><div><span class="sheet-kicker">PLACE COMPOSITION</span><h3>Journal Room</h3><p>${poiCount} POI${poiCount === 1 ? '' : 's'} · ${noteCount} journal note${noteCount === 1 ? '' : 's'}</p></div><button type="button" class="secondary-button" data-open-journal-room>Open room</button></div>${preview.length ? `<div class="workspace-journal-room-preview">${preview.map((item) => `<span class="workspace-journal-room-chip"><b>${item.kind === 'journal' ? '✎' : '⌖'}</b>${escapeHtml(item.name || 'Untitled')}</span>`).join('')}</div>` : '<p class="workspace-journal-room-empty">Your saved places and page notes will gather here.</p>'}</section>`;
 }
 
-const WORKSPACE_TOOLS = [['options', 'Walk', 'route'], ['journal', 'Journal', 'journal'], ['learn', 'Learn', 'learn']];
+const WORKSPACE_TOOLS = [['open', 'My Walks', 'route'], ['builder', 'New Walk', 'route'], ['journal', 'Journal', 'journal'], ['learn', 'Learn', 'learn']];
 let activeWorkspaceTool = 'open';
 let pendingWorkspaceTool = null;
 let workspaceBuilderMode = 'auto-round-trip';
@@ -272,7 +274,7 @@ function workspacePlacesMarkup() {
 function workspacePathLinks() {
   // My paths is the default surface. Keep this control idempotent so clicking
   // the already-selected destination never sends the walker to Saved journeys.
-  return `<nav class="workspace-path-links" aria-label="Walk paths"><button type="button" class="${activeWorkspaceTool === 'open' ? 'active' : ''}" ${activeWorkspaceTool === 'open' ? 'aria-current="page"' : ''} data-workspace-tool="open">My paths</button><button type="button" class="${activeWorkspaceTool === 'builder' ? 'active' : ''}" ${activeWorkspaceTool === 'builder' ? 'aria-current="page"' : ''} data-workspace-choice="new">New paths</button></nav>`;
+  return `<nav class="workspace-path-links" aria-label="Walk paths"><button type="button" class="${activeWorkspaceTool === 'open' ? 'active' : ''}" ${activeWorkspaceTool === 'open' ? 'aria-current="page"' : ''} data-workspace-tool="open">My Walks</button><button type="button" class="${activeWorkspaceTool === 'builder' ? 'active' : ''}" ${activeWorkspaceTool === 'builder' ? 'aria-current="page"' : ''} data-workspace-choice="new">New Walk</button></nav>`;
 }
 function setWorkspacePlannerChoice({ mode, minutes }) {
   const routeInput = document.querySelector(`input[name="routeMode"][value="${mode}"]`);
@@ -290,20 +292,37 @@ function setWorkspacePlannerChoice({ mode, minutes }) {
 }
 async function generateWorkspaceWalk() {
   setWorkspacePlannerChoice({ mode: workspaceBuilderMode, minutes: workspaceBuilderMinutes });
+  const interests = selectedWorkspaceInterests();
+  if (interests.length) {
+    state.settings ||= {};
+    state.settings.favoriteCategories = interests;
+    await db.put('settings', state.settings);
+  }
   const plan = await generateTimeBasedPlan();
   const target = document.querySelector('#personalPlacesPanel .workspace-home');
   if (target && plan?.coordinates?.length) {
-    activeWorkspaceTool = 'options';
+    activeWorkspaceTool = 'open';
     await renderWorkspacePanel(target);
   }
   return plan;
 }
-function workspaceOpenWalksMarkup() { return `<div class="workspace-tool-page workspace-open-walks">${workspacePathLinks()}<h2 class="workspace-page-title">My paths</h2><div data-workspace-saved-walks><p class="empty-state">Loading saved walks…</p></div></div>`; }
+function selectedWorkspaceInterests() { return [...new Set([document.querySelector('[data-workspace-interest]')?.value, ...[...document.querySelectorAll('[data-workspace-interest-extra]:checked')].map((input) => input.value)].filter(Boolean))]; }
+function visibleSavedRouteCoordinates(route) {
+  if (!route || route.wholeWalkEnabled === false) return [];
+  const sections = (route.sections || []).filter((section) => section.enabled !== false && section.coordinates?.length >= 2);
+  if (!sections.length) return route.coordinates || [];
+  return sections.flatMap((section, index) => index ? section.coordinates.slice(1) : section.coordinates);
+}
+function workspaceOpenWalksMarkup() { return `<div class="workspace-tool-page workspace-open-walks">${workspacePathLinks()}<h2 class="workspace-page-title">My Walks</h2><p class="workspace-helper">Connections are built automatically from places you have logged. Turn on a whole walk or explore it one segment at a time.</p><div data-workspace-saved-walks><p class="empty-state">Loading your geographic memory…</p></div></div>`; }
 function workspacePage() {
   const tool = activeWorkspaceTool;
+  const savedInterests = Array.isArray(state.settings?.favoriteCategories) ? state.settings.favoriteCategories : [];
+  const primaryInterest = savedInterests[0] || 'wildlife';
+  const hasInterest = (interest) => savedInterests.includes(interest) ? ' checked' : '';
+  const selectedInterest = (interest) => interest === primaryInterest ? ' selected' : '';
   if (tool === 'open') return workspaceOpenWalksMarkup();
   if (tool === 'options') return `${workspacePathLinks()}${currentWalk ? `<div class="workspace-walk-card"><div class="workspace-walk-card-heading"><div><p class="workspace-kicker">YOUR WALK</p><h2>${escapeHtml(currentWalk.title)}</h2></div><span>${escapeHtml(currentWalk.duration)}</span></div><div class="workspace-edit-stops">${currentWalk.stops.map((stop, index) => `<label><b>${index + 1}</b><input type="text" value="${escapeHtml(stop)}" data-walk-stop="${index}" aria-label="Stop ${index + 1}"></label>`).join('')}</div><div class="workspace-edit-row"><button type="button" data-workspace-add-stop>+ Add stop</button><select data-workspace-mode aria-label="Walk shape"><option ${currentWalk.mode === 'Loop' ? 'selected' : ''}>Loop</option><option ${currentWalk.mode === 'Point to point' ? 'selected' : ''}>Point to point</option></select></div><button type="button" class="primary-button workspace-start-walk">Start walk</button></div>` : '<p class="workspace-helper workspace-empty-walks">See your created walks here!<br>Try making one in New paths</p>'}`;
-  if (tool === 'builder') return `<div class="workspace-tool-page"><div class="workspace-builder-top">${workspacePathLinks()}</div><h2 class="workspace-page-title">Build a route for the map</h2><div class="workspace-segmented"><button type="button" class="${workspaceBuilderMode === 'auto-round-trip' ? 'active' : ''}" data-builder-mode="auto-round-trip">Loop</button><button type="button" class="${workspaceBuilderMode === 'point-to-point' ? 'active' : ''}" data-builder-mode="point-to-point">Point to point</button></div><label class="workspace-duration-control" for="workspaceDuration"><span>Walk length</span><output id="workspaceDurationValue">${workspaceBuilderMinutes} min</output><input id="workspaceDuration" type="range" min="15" max="90" step="5" value="${workspaceBuilderMinutes}" data-builder-duration></label><section class="workspace-generate-block" aria-label="Generate or compose a walk"><button type="button" class="primary-button" data-workspace-compose>Generate walk</button><button type="button" class="secondary-button" data-workspace-compose-open>Compose a walk</button></section></div>`;
+  if (tool === 'builder') return `<div class="workspace-tool-page"><div class="workspace-builder-top">${workspacePathLinks()}</div><h2 class="workspace-page-title">New Walk</h2><p class="workspace-helper">Choose what you are curious about and the map will build an invitation around it.</p><label class="workspace-interest-picker" for="workspaceInterest"><span>What are you interested in?</span><select id="workspaceInterest" data-workspace-interest><option value="wildlife"${selectedInterest('wildlife')}>Wildlife</option><option value="history"${selectedInterest('history')}>History</option><option value="water"${selectedInterest('water')}>Water</option><option value="forests"${selectedInterest('forests')}>Forests</option><option value="coffee"${selectedInterest('coffee')}>Coffee</option><option value="architecture"${selectedInterest('architecture')}>Architecture</option><option value="quiet"${selectedInterest('quiet')}>Quiet places</option><option value="unfamiliar"${selectedInterest('unfamiliar')}>Unfamiliar neighborhoods</option></select></label><details class="workspace-interest-more"><summary>Combine another interest</summary><div class="workspace-interest-options"><label><input type="checkbox" value="nature" data-workspace-interest-extra${hasInterest('nature')} /> Nature</label><label><input type="checkbox" value="history" data-workspace-interest-extra${hasInterest('history')} /> History</label><label><input type="checkbox" value="water" data-workspace-interest-extra${hasInterest('water')} /> Water</label><label><input type="checkbox" value="architecture" data-workspace-interest-extra${hasInterest('architecture')} /> Architecture</label><label><input type="checkbox" value="food" data-workspace-interest-extra${hasInterest('food')} /> Food and drink</label><label><input type="checkbox" value="quiet" data-workspace-interest-extra${hasInterest('quiet')} /> Quiet places</label></div></details><section class="workspace-generate-block" aria-label="Generate an interest-based walk"><button type="button" class="primary-button" data-workspace-compose>Build from this interest</button></section></div>`;
   if (tool === 'radio') return '<div class="workspace-tool-page"><div data-workspace-embedded="radio"></div></div>';
   if (tool === 'annotate') return '<div class="workspace-tool-page"><div data-workspace-embedded="draw"></div></div>';
   if (tool === 'journal') return '<div class="workspace-tool-page workspace-journal-page"><div data-workspace-embedded="journal"></div></div>';
@@ -333,7 +352,7 @@ function renderWorkspaceExperience(target) {
     rename.addEventListener('click', async () => { const walk = await db.get('walks', currentWalk.id); const name = prompt('Name this logged walk', walk?.title || currentWalk.title); if (!walk || !name?.trim()) return; walk.title = name.trim().slice(0, 80); await db.put('walks', walk); currentWalk.title = walk.title; await renderWorkspacePanel(target); });
     header.querySelector('div')?.append(rename);
   }
-  if (header && activeWorkspaceTool === 'options') {
+  if (header && activeWorkspaceTool === 'open') {
     const chips = document.createElement('div');
     chips.className = 'workspace-mode-chips';
     chips.innerHTML = '<button type="button" data-workspace-tool="open">Open walks</button><button type="button" data-workspace-tool="builder">Make walks</button>';
@@ -341,15 +360,16 @@ function renderWorkspaceExperience(target) {
   }
   const list = target.querySelector('[data-workspace-saved-walks]');
   if (list) {
-    void db.all('walk_plans').then((plans) => {
-      const recent = plans.filter((plan) => Number(plan.route?.durationSeconds || 0) >= 3 * 60).slice().sort((a, b) => Date.parse(b.updatedAt || b.createdAt || 0) - Date.parse(a.updatedAt || a.createdAt || 0)).slice(0, 6);
-      list.innerHTML = recent.length ? recent.map((plan) => `<button type="button" class="workspace-saved-walk" data-workspace-saved-plan="${escapeHtml(plan.id)}"><strong>${escapeHtml(plan.title || plan.route?.title || 'Generated walk')}<small>${escapeHtml(plan.route?.city || plan.city || 'Local route')} · ${escapeHtml(plan.route?.routeMode || plan.routeMode || 'Walking')} · ${Number(plan.route?.durationSeconds || 0) > 0 ? `${Math.round(plan.route.durationSeconds / 60)} min` : 'Saved route'}</small></strong><span>Show map</span></button>`).join('') : '<p class="empty-state">No generated walks saved yet. Make a walk to start one.</p>';
+    void db.all('walk_plans').then(async (plans) => {
+      const routes = await db.all('saved_routes');
+      const recent = routes.filter((route) => Number(route.distanceMeters || 0) >= 100).slice().sort((a, b) => Date.parse(b.updatedAt || b.createdAt || 0) - Date.parse(a.updatedAt || a.createdAt || 0)).slice(0, 12);
+      list.innerHTML = recent.length ? recent.map((route) => `<article class="workspace-saved-walk-card"><button type="button" class="workspace-saved-walk" data-workspace-saved-route="${escapeHtml(route.id)}"><strong>${escapeHtml(route.title || 'Untitled walk')}<small>${route.generatedFrom === 'personal-place-pair' ? 'Built from logged places' : 'Saved route'} · ${Math.round(Number(route.distanceMeters || 0))} m${route.memoryPalace?.memoryCount ? ` · ${route.memoryPalace.memoryCount} memories` : ''}</small></strong><span>Show map</span></button><button type="button" class="text-button" data-rename-walk="${escapeHtml(route.id)}">Rename</button><label class="workspace-walk-toggle"><input type="checkbox" data-walk-toggle="${escapeHtml(route.id)}" ${route.wholeWalkEnabled !== false ? 'checked' : ''} /> Whole walk</label>${(route.sections || []).map((section) => `<label class="workspace-segment-toggle"><input type="checkbox" data-segment-toggle="${escapeHtml(route.id)}:${escapeHtml(section.id)}" ${section.enabled !== false ? 'checked' : ''} /> ${escapeHtml(section.title || 'Segment')}</label>`).join('')}${(route.discoveries || []).length ? `<section class="workspace-discovery-list"><strong>Nearby opportunities</strong>${route.discoveries.slice(0, 3).map((discovery) => `<div class="workspace-discovery-row"><span><b>${escapeHtml(discovery.object?.name || 'Unnamed geographic opportunity')}</b><small>${escapeHtml(discovery.explanation || discovery.relationship || 'Related to this route')}</small></span><button type="button" class="text-button" data-enable-discovery="${escapeHtml(route.id)}|${escapeHtml(discovery.id)}">${(route.sections || []).some((section) => section.discoveryId === discovery.id && section.enabled !== false) ? 'On' : 'Explore'}</button></div>`).join('')}</section>` : ''}</article>`).join('') : '<p class="empty-state">Log two distinct places to begin building My Walks.</p>';
     });
   }
   if (activeWorkspaceTool === 'learn') void hydrateWorkspaceLearn(target);
 }
 function selectWorkspaceTool(tool) {
-  if (!['options', 'journal', 'learn'].includes(tool)) return;
+  if (!['open', 'builder', 'options', 'journal', 'learn'].includes(tool)) return;
   activeWorkspaceTool = tool;
   const target = document.querySelector('#personalPlacesPanel .workspace-home');
   if (target) {
@@ -418,6 +438,7 @@ export async function renderWorkspacePanel(target, { filter = 'all' } = {}) {
 export function initWorkspaceRuntime() {
   if (initWorkspaceRuntime.bound) return;
   initWorkspaceRuntime.bound = true;
+  installMyWalksReconciler();
   window.addEventListener('workspace-tool-requested', (event) => selectWorkspaceTool(event.detail?.tool));
   window.addEventListener('map-workspace-changed', ({ detail }) => {
     if (detail?.destination === 'maps' && pendingWorkspaceTool) requestAnimationFrame(() => selectWorkspaceTool(pendingWorkspaceTool));
@@ -452,12 +473,60 @@ export function initWorkspaceRuntime() {
     }
     if (event.target.closest('.workspace-start-walk')) { await startWalk({ routeMode: 'tracking' }); return; }
     if (event.target.closest('[data-workspace-journal]')) { await openJournal('workspace-current-walk'); return; }
+    const enableDiscovery = event.target.closest('[data-enable-discovery]');
+    if (enableDiscovery) {
+      const value = String(enableDiscovery.dataset.enableDiscovery || '');
+      const separator = value.indexOf('|');
+      const routeId = separator >= 0 ? value.slice(0, separator) : value;
+      const discoveryId = separator >= 0 ? value.slice(separator + 1) : '';
+      const route = await db.get('saved_routes', routeId);
+      if (!route) return;
+      route.sections = (route.sections || []).map((section) => section.discoveryId === discoveryId ? { ...section, enabled: section.enabled === false } : section);
+      await db.put('saved_routes', route);
+      state.savedRoutes = (state.savedRoutes || []).map((item) => item.id === route.id ? route : item);
+      window.dispatchEvent(new CustomEvent('saved-routes-changed'));
+      const target = document.querySelector('#personalPlacesPanel .workspace-home');
+      if (target) await renderWorkspacePanel(target);
+      return;
+    }
+    const renameWalk = event.target.closest('[data-rename-walk]');
+    if (renameWalk) {
+      const route = await db.get('saved_routes', renameWalk.dataset.renameWalk);
+      if (!route) return;
+      renameWalk.outerHTML = `<form class="workspace-inline-rename" data-rename-form="${escapeHtml(route.id)}"><label><span class="sr-only">Walk name</span><input name="title" maxlength="100" value="${escapeHtml(route.title || '')}" /></label><button type="button" class="text-button" data-rename-save>Save</button><button type="button" class="text-button" data-rename-cancel>Cancel</button></form>`;
+      renameWalk.parentElement?.querySelector('[data-rename-form] input')?.focus();
+      return;
+    }
+    const renameCancel = event.target.closest('[data-rename-cancel]');
+    if (renameCancel) {
+      const target = document.querySelector('#personalPlacesPanel .workspace-home');
+      if (target) await renderWorkspacePanel(target);
+      return;
+    }
+    const renameSave = event.target.closest('[data-rename-save]');
+    if (renameSave) {
+      const form = renameSave.closest('[data-rename-form]');
+      const nextTitle = form?.querySelector('input[name="title"]')?.value?.trim();
+      if (!form || !nextTitle) return;
+      const route = await db.get('saved_routes', form.dataset.renameForm);
+      if (!route) return;
+      route.title = nextTitle.slice(0, 100);
+      route.updatedAt = new Date().toISOString();
+      await db.put('saved_routes', route);
+      state.savedRoutes = (state.savedRoutes || []).map((item) => item.id === route.id ? route : item);
+      window.dispatchEvent(new CustomEvent('saved-routes-changed'));
+      const target = document.querySelector('#personalPlacesPanel .workspace-home');
+      if (target) await renderWorkspacePanel(target);
+      return;
+    }
+    const savedRoute = event.target.closest('[data-workspace-saved-route]');
+    if (savedRoute) { const record = (await db.all('saved_routes')).find((item) => String(item.id) === savedRoute.dataset.workspaceSavedRoute); const coordinates = visibleSavedRouteCoordinates(record); if (record && coordinates.length >= 2) { const preview = { ...record, coordinates }; state.plannedRoute = preview; window.dispatchEvent(new CustomEvent('walk-sketch-painted', { detail: preview })); } return; }
     const savedPlan = event.target.closest('[data-workspace-saved-plan]');
     if (savedPlan) { const record = (await db.all('walk_plans')).find((item) => String(item.id) === savedPlan.dataset.workspaceSavedPlan); const route = record?.route || record; if (route?.coordinates?.length) { state.plannedRoute = route; window.dispatchEvent(new CustomEvent('walk-sketch-painted', { detail: route })); } return; }
     const tool = event.target.closest('[data-workspace-tool]')?.dataset.workspaceTool;
     if (tool) { selectWorkspaceTool(tool); return; }
     if (event.target.closest('[data-workspace-choice="new"]')) { activeWorkspaceTool = 'builder'; const target = document.querySelector('#personalPlacesPanel .workspace-home'); if (target) void renderWorkspacePanel(target); return; }
-    if (event.target.closest('[data-workspace-choice="today"]')) { activeWorkspaceTool = 'options'; const target = document.querySelector('#personalPlacesPanel .workspace-home'); if (target) void renderWorkspacePanel(target); return; }
+    if (event.target.closest('[data-workspace-choice="today"]')) { activeWorkspaceTool = 'open'; const target = document.querySelector('#personalPlacesPanel .workspace-home'); if (target) void renderWorkspacePanel(target); return; }
     if (event.target.closest('[data-workspace-add-stop]')) { currentWalk.stops.push('Choose a place'); currentWalk.evidence.push('User-added stop'); const target = document.querySelector('#personalPlacesPanel .workspace-home'); if (target) void renderWorkspacePanel(target); return; }
     if (event.target.closest('[data-workspace-close]')) { window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: '' } })); return; }
     const futurePlace = event.target.closest('[data-future-place]');
@@ -487,6 +556,40 @@ export function initWorkspaceRuntime() {
     if (output) output.textContent = `${workspaceBuilderMinutes} min`;
   });
   document.addEventListener('change', (event) => {
+    const interest = event.target.closest('[data-workspace-interest], [data-workspace-interest-extra]');
+    if (interest) {
+      state.settings ||= {};
+      state.settings.favoriteCategories = selectedWorkspaceInterests();
+      void db.put('settings', state.settings);
+      void reconcileMyWalks();
+      return;
+    }
+    const walkToggle = event.target.closest('[data-walk-toggle]');
+    if (walkToggle) {
+      void db.get('saved_routes', walkToggle.dataset.walkToggle).then(async (route) => {
+        if (!route) return;
+        route.wholeWalkEnabled = walkToggle.checked;
+        await db.put('saved_routes', route);
+        state.savedRoutes = (state.savedRoutes || []).map((item) => item.id === route.id ? route : item);
+        window.dispatchEvent(new CustomEvent('saved-routes-changed'));
+      });
+      return;
+    }
+    const segmentToggle = event.target.closest('[data-segment-toggle]');
+    if (segmentToggle) {
+      const value = String(segmentToggle.dataset.segmentToggle || '');
+      const separator = value.lastIndexOf(':');
+      const routeId = separator >= 0 ? value.slice(0, separator) : value;
+      const sectionId = separator >= 0 ? value.slice(separator + 1) : '';
+      void db.get('saved_routes', routeId).then(async (route) => {
+        if (!route) return;
+        route.sections = (route.sections || []).map((section) => section.id === sectionId ? { ...section, enabled: segmentToggle.checked } : section);
+        await db.put('saved_routes', route);
+        state.savedRoutes = (state.savedRoutes || []).map((item) => item.id === route.id ? route : item);
+        window.dispatchEvent(new CustomEvent('saved-routes-changed'));
+      });
+      return;
+    }
     const stop = event.target.closest('[data-walk-stop]');
     if (stop) currentWalk.stops[Number(stop.dataset.walkStop)] = stop.value.trim() || 'Choose a place';
     const mode = event.target.closest('[data-workspace-mode]');

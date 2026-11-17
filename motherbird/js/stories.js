@@ -12,6 +12,23 @@ let activeChapter = 0;
 let autoplayStory = false;
 let locationLockedStory = false;
 
+function transcriptSentences(text) {
+  return String(text || '').match(/[^.!?]+[.!?]+|[^.!?]+$/g)?.map((part) => part.trim()).filter(Boolean) || [];
+}
+
+function renderTranscript(text) {
+  return transcriptSentences(text).map((sentence, index) => `<span class="story-transcript-line" data-transcript-line="${index}">${escapeHtml(sentence)}</span>`).join(' ');
+}
+
+function syncTranscript(player) {
+  const transcript = document.getElementById('storyTranscript');
+  const lines = [...(transcript?.querySelectorAll('[data-transcript-line]') || [])];
+  if (!lines.length || !Number.isFinite(player?.duration) || player.duration <= 0) return;
+  const active = Math.min(lines.length - 1, Math.floor((player.currentTime / player.duration) * lines.length));
+  lines.forEach((line, index) => line.classList.toggle('is-current', index === active));
+  lines[active]?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+}
+
 function storiesForCity() { return DC_STORIES.filter((story) => !state.activeCity || story.city === state.activeCity || story.scope === 'national'); }
 
 function beaconIcon(story) {
@@ -51,7 +68,7 @@ function renderPlayer() {
   document.getElementById('storyLookPrompt').textContent = locationLockedStory
     ? `At the chapter location to hear this piece · ${chapter.look}`
     : chapter.look;
-  document.getElementById('storyTranscript').textContent = chapter.narration;
+  document.getElementById('storyTranscript').innerHTML = renderTranscript(chapter.narration);
   const save = document.getElementById('storySaveAudio');
   if (save) { save.disabled = !chapter.audioAssetId; save.textContent = savedStoryAudio(chapter) ? 'Remove saved audio' : `Save audio for this visit${chapter.audioRights?.bytes ? ` · ${Math.ceil(chapter.audioRights.bytes / 1024)} KB` : ''}`; }
   document.getElementById('storyProgress').textContent = `Chapter ${activeChapter + 1} of ${activeStory.chapters.length}`;
@@ -83,9 +100,9 @@ async function playChapter(button) {
     const url = saved?.url || await loadStoryChapterAudio(chapter);
     let player = document.getElementById('storyAudioElement');
     if (!player) { player = document.createElement('audio'); player.id = 'storyAudioElement'; player.controls = true; player.hidden = true; document.getElementById('storyPlay').after(player); }
-    player.src = url; player.dataset.chapter = String(activeChapter); await player.play(); button.textContent = 'Ⅱ'; button.setAttribute('aria-label', 'Pause chapter');
+    player.src = url; player.dataset.chapter = String(activeChapter); player.ontimeupdate = () => syncTranscript(player); player.onloadedmetadata = () => syncTranscript(player); await player.play(); button.textContent = 'Ⅱ'; button.setAttribute('aria-label', 'Pause chapter');
     player.onended = () => {
-      button.textContent = '▶'; button.setAttribute('aria-label', 'Play chapter');
+      button.textContent = '▶'; button.setAttribute('aria-label', 'Play chapter'); syncTranscript(player);
       if (autoplayStory && !locationLockedStory && activeStory && activeChapter < activeStory.chapters.length - 1) {
         activeChapter += 1;
         renderPlayer();

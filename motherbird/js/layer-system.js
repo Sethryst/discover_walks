@@ -94,6 +94,7 @@ export async function initLayerSystem() {
   bindLayerControls();
   window.addEventListener('biodiversity-live-updated', () => { ensureLayerDefaults(); renderLayerFilters(); });
   window.addEventListener('location-checkpoints-changed', () => renderRouteLights());
+  window.addEventListener('saved-routes-changed', () => renderRouteLights());
   window.addEventListener('map-domain-labels-changed', () => { renderLayerFilters(); renderMapLights(); });
   renderLayerFilters();
   renderMapLights();
@@ -364,7 +365,11 @@ function routesInViewport() {
   // Leaflet necessarily renders those as straight chords rather than paths.
   const packaged = routesForCity(state.activeCity).filter((route) => route.coordinates.length >= 3 && routeInViewport(route.coordinates));
   const saved = (state.walks || []).filter((walk) => routeInViewport((walk.points || []).map((point) => [point.lat, point.lng])));
-  return [...packaged.map((route) => ({ ...route, saved: false })), ...saved.map((walk) => ({ ...walk, coordinates: (walk.points || []).map((point) => [point.lat, point.lng]), saved: true }))];
+  const personal = (state.savedRoutes || []).filter((route) => route.wholeWalkEnabled !== false && routeInViewport(route.coordinates || []));
+  return [...packaged.map((route) => ({ ...route, saved: false })), ...saved.map((walk) => ({ ...walk, coordinates: (walk.points || []).map((point) => [point.lat, point.lng]), saved: true })), ...personal.flatMap((route) => {
+    const sections = (route.sections || []).filter((section) => section.enabled !== false && section.coordinates?.length >= 2);
+    return sections.length ? sections.map((section) => ({ ...route, ...section, title: `${route.title || 'Walk'} · ${section.title || 'Segment'}`, saved: true })) : [{ ...route, saved: true }];
+  })];
 }
 
 function routeInViewport(coordinates = []) {
