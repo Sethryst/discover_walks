@@ -96,7 +96,7 @@ export async function savePersonalSeal({ interactive = false } = {}) {
       const subset = await buildSelectedBackup(local, state.settings.sealClasses || SEAL_DEFAULTS, state.settings.viewConditions);
       const envelope = { format: 'walk-wildlife-personal-seal-v1', wrap: session.wrap, sealed: await sealJson(subset, session.key, `personal:${session.ownerId}`) };
       const packed = new TextEncoder().encode(JSON.stringify(envelope));
-      if (packed.byteLength > 32 * 1024 * 1024) throw new Error('Sealed copy exceeds 32 MB. Turn Voice off or keep large files on this device.');
+      if (packed.byteLength > 32 * 1024 * 1024) throw new Error('Sync copy exceeds 32 MB. Turn Photos or Voice off, then try again.');
       const { data, error } = await state.online.client.rpc('save_personal_seal', { sealed_payload: journalPayloadToBytea(packed), expected_created_at: remote?.created_at || null });
       if (error?.code === '40001') continue;
       if (error) throw error;
@@ -107,6 +107,7 @@ export async function savePersonalSeal({ interactive = false } = {}) {
     state.settings.sealEnabled = true;
     await db.put('settings', state.settings);
     renderOnlinePane();
+    window.dispatchEvent(new CustomEvent('device-sync-complete', { detail: { at: createdAt } }));
     if (!timer) timer = setInterval(() => void savePersonalSeal().catch(reportOnlineError), 10 * 60 * 1000);
   } finally { busy = false; }
 }
@@ -144,11 +145,18 @@ export async function initOnlinePane() {
   });
   el('saveOfflineViewButton')?.addEventListener('click', () => void saveOfflineView().catch(reportOnlineError));
   el('goOnlineButton')?.addEventListener('click', () => void savePersonalSeal({ interactive: true }).catch(reportOnlineError));
+  el('syncDeviceDataButton')?.addEventListener('click', () => void savePersonalSeal({ interactive: true }).catch(reportOnlineError));
   document.querySelectorAll('[data-avatar-icon]').forEach((button) => button.addEventListener('click', () => void setProfileAvatar({ icon: button.dataset.avatarIcon })));
   el('profileAvatarInput')?.addEventListener('change', (event) => { const file = event.target.files?.[0]; if (!file) return; const reader = new FileReader(); reader.onload = () => void setProfileAvatar({ image: String(reader.result || '') }); reader.readAsDataURL(file); });
   el('deviceProfileNameInput')?.addEventListener('change', () => void updateLocalProfileName());
   window.addEventListener('online-panel-render-requested', renderOnlinePane);
   window.addEventListener('online-profile-changed', () => { if (unlocked && unlocked.ownerId !== state.online.session?.user.id) { unlocked = null; clearInterval(timer); timer = null; } renderOnlinePane(); });
+  window.addEventListener('device-sync-error', (event) => { if (el('sealedCopyStatus')) el('sealedCopyStatus').textContent = `Sync error: ${event.detail?.message || 'try again'}`; });
+  let changeTimer = null;
+  const syncAfterChange = () => { clearTimeout(changeTimer); changeTimer = setTimeout(() => void savePersonalSeal().catch((error) => window.dispatchEvent(new CustomEvent('device-sync-error', { detail: { message: error.message } }))), 1200); };
+  window.addEventListener('journal-data-changed', syncAfterChange);
+  window.addEventListener('local-drawings-changed', syncAfterChange);
+  window.addEventListener('personal-places-changed', syncAfterChange);
   const { initOpenControls } = await import('./open-payload.js'); initOpenControls();
   const { initFriendWalk } = await import('./friend-walk.js'); initFriendWalk();
   renderOnlinePane();

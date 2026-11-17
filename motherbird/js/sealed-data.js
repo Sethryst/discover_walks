@@ -1,3 +1,7 @@
+// User-facing sync categories. `photos` is carried inside journal/observation
+// records; it remains opt-in because media can make an encrypted copy large.
+// Legacy keys remain in the persisted shape so older sealed copies continue
+// to import; the dashboard writes the newer category names below.
 export const SEAL_DEFAULTS = Object.freeze({ walks: true, journal: true, pins: true, offline: false, voice: false });
 export const SEALED_STORES = ['walks', 'walk_events', 'moments', 'observations', 'personal_places', 'personal_place_categories', 'voice_notes', 'layer_settings', 'county_additions'];
 
@@ -32,13 +36,18 @@ export function decodePrivateValue(value) {
   return value;
 }
 export async function buildSelectedBackup(local, selection = SEAL_DEFAULTS, viewConditions = null, now = new Date().toISOString()) {
-  const selected = { ...SEAL_DEFAULTS, ...selection };
+  const selected = { ...SEAL_DEFAULTS, ...selection, drawings: selection.drawings ?? selection.pins ?? true, photos: selection.photos ?? false, settings: selection.settings ?? false };
   const data = Object.fromEntries(SEALED_STORES.map((store) => [store, []]));
   if (selected.walks) { data.walks = local.walks || []; data.walk_events = local.walk_events || []; }
   if (selected.journal) { data.moments = (local.moments || []).filter((item) => item.type !== 'drawing' || item.friendSessionId); data.observations = local.observations || []; }
-  if (selected.pins) {
-    for (const store of ['personal_places', 'personal_place_categories', 'layer_settings', 'county_additions']) data[store] = local[store] || [];
-    data.moments = [...data.moments, ...(local.moments || []).filter((item) => item.type === 'drawing' && !item.friendSessionId)];
+  if (selected.drawings) data.moments = [...data.moments, ...(local.moments || []).filter((item) => item.type === 'drawing' && !item.friendSessionId)];
+  if (selected.drawings || selected.pins) {
+    for (const store of ['personal_places', 'personal_place_categories', 'county_additions']) data[store] = local[store] || [];
+  }
+  if (selected.settings) data.layer_settings = local.layer_settings || [];
+  if (selected.photos !== true) {
+    data.moments = data.moments.map((item) => withoutMedia(item));
+    data.observations = data.observations.map((item) => withoutMedia(item));
   }
   // Friend-walk tickets enter the personal seal only AFTER a local journal merge.
   if (!selected.journal) for (const store of SEALED_STORES) data[store] = data[store].filter((item) => !item.friendSessionId);
@@ -47,6 +56,15 @@ export async function buildSelectedBackup(local, selection = SEAL_DEFAULTS, view
   // Keep an explicit empty collection, never stale attachment references.
   if (!selected.voice) transferable.voice_notes = [];
   return { format: 'walk-wildlife-subset-v1', journalPagesIncluded: selected.journal, included: selected, exportedAt: now, data: await encodePrivateValue(transferable), ...(selected.offline && viewConditions ? { viewConditions } : {}) };
+}
+
+function withoutMedia(value) {
+  if (value instanceof Blob) return /^image\//i.test(value.type) ? undefined : value;
+  if (Array.isArray(value)) return value.map(withoutMedia).filter((item) => item !== undefined);
+  if (value && typeof value === 'object') return Object.fromEntries(Object.entries(value)
+    .filter(([key]) => !['photo', 'photos', 'image', 'imageBlob', 'photoBlob', 'photoData'].includes(key))
+    .map(([key, child]) => [key, withoutMedia(child)]).filter(([, child]) => child !== undefined));
+  return value;
 }
 export function joinSameId(local, saved, now = new Date().toISOString()) {
   const textKey = typeof local.note === 'string' || typeof saved.note === 'string' ? 'note' : typeof local.notes === 'string' || typeof saved.notes === 'string' ? 'notes' : null;

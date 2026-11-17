@@ -52,6 +52,9 @@ export async function setupOnline() {
     setTimeout(async () => {
       if (session) {
         try { await loadRemoteProfile(); } catch (error) { console.warn('Profile unavailable:', error.message); }
+        // Sign-in is a meaningful change: unlock/merge the latest copy, then
+        // publish local additions using the selected categories.
+        import('./online-pane.js').then(({ savePersonalSeal }) => savePersonalSeal({ interactive: true })).catch((error) => window.dispatchEvent(new CustomEvent('device-sync-error', { detail: { message: error.message } })));
         window.dispatchEvent(new CustomEvent('online-profile-changed'));
       }
       else {
