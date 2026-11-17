@@ -8,6 +8,8 @@ create table if not exists public.profiles (
   total_points integer not null default 0 check (total_points >= 0),
   miles_total numeric not null default 0 check (miles_total >= 0),
   sites_discovered integer not null default 0 check (sites_discovered >= 0),
+  display_name text,
+  avatar_icon text default '✦',
   updated_at timestamptz not null default now()
 );
 
@@ -16,6 +18,8 @@ alter table public.profiles add column if not exists total_points integer defaul
 alter table public.profiles add column if not exists miles_total numeric default 0;
 alter table public.profiles add column if not exists sites_discovered integer default 0;
 alter table public.profiles add column if not exists updated_at timestamptz default now();
+alter table public.profiles add column if not exists display_name text;
+alter table public.profiles add column if not exists avatar_icon text default '✦';
 update public.profiles set total_points = coalesce(total_points, 0), miles_total = coalesce(miles_total, 0), sites_discovered = coalesce(sites_discovered, 0), updated_at = coalesce(updated_at, now());
 
 create table if not exists public.friendships (

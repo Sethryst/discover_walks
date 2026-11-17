@@ -74,9 +74,9 @@ export async function setupOnline() {
 }
 export async function loadRemoteProfile() {
   if (!state.online.client || !state.online.session) return null;
-  const { data, error } = await state.online.client.from('profiles').select('id,username,total_points,miles_total,sites_discovered,updated_at').eq('id', state.online.session.user.id).maybeSingle();
+  const { data, error } = await state.online.client.from('profiles').select('id,username,display_name,avatar_icon,total_points,miles_total,sites_discovered,updated_at').eq('id', state.online.session.user.id).maybeSingle();
   if (error) {
-    if (/total_points|miles_total|sites_discovered|updated_at/.test(error.message || '')) throw new Error('Online profile schema needs migration: run supabase-migration-profiles.sql in the Supabase SQL Editor.');
+    if (/total_points|miles_total|sites_discovered|updated_at|display_name|avatar_icon/.test(error.message || '')) throw new Error('Online profile schema needs migration: run supabase-migration-profiles.sql in the Supabase SQL Editor.');
     throw error;
   }
   state.online.remoteProfile = data || null;
@@ -94,7 +94,9 @@ async function mergeRemoteProfileIntoDevice(remote) {
     totalPoints: Math.max(Number(local.totalPoints) || 0, Number(remote.total_points) || 0),
     milesTotal: Math.max(Number(local.milesTotal) || 0, Number(remote.miles_total) || 0),
     sitesDiscovered: { ...(local.sitesDiscovered || {}) },
-    remoteMergedAt: new Date().toISOString()
+    remoteMergedAt: new Date().toISOString(),
+    name: local.name || remote.display_name || '',
+    avatarIcon: local.avatarIcon || remote.avatar_icon || '✦'
   };
   // Supabase stores aggregate site counts, so preserve the local site list and
   // never invent site IDs from a remote count.
@@ -253,7 +255,7 @@ export async function refreshCloudJournalEntitlement() {
 export async function syncProfile() {
   if (!state.online.client || !state.online.session || !state.online.remoteProfile?.username) return false;
   const payload = {
-    id: state.online.session.user.id, username: state.online.remoteProfile.username,
+    id: state.online.session.user.id, username: state.online.remoteProfile.username, display_name: state.profile.name || null, avatar_icon: state.profile.avatarIcon || '✦',
     total_points: Math.round(state.profile.totalPoints), miles_total: Number(state.profile.milesTotal.toFixed(3)),
     sites_discovered: Math.max(totalSitesDiscovered(state.profile), Number(state.profile.remoteSitesDiscovered) || 0), updated_at: new Date().toISOString()
   };
@@ -333,6 +335,8 @@ export async function createOnlineProfile(event) {
   const payload = {
     id: state.online.session.user.id,
     username,
+    display_name: state.profile.name || null,
+    avatar_icon: state.profile.avatarIcon || '✦',
     total_points: Math.round(state.profile.totalPoints),
     miles_total: Number(state.profile.milesTotal.toFixed(3)),
     sites_discovered: totalSitesDiscovered(state.profile),

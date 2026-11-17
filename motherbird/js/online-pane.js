@@ -4,7 +4,7 @@ import { el } from './utils.js';
 import { toast } from './ui.js';
 import { setupOnline, signInWithPasskey } from './online.js';
 import { createPasskeyWrap, unlockPasskeyWrap, sealJson, openSealedJson, journalPayloadToBytea, journalPayloadFromBytea } from './cloud-journal.js';
-import { setProfileAvatar } from './profile.js';
+import { setProfileAvatar, updateProfile } from './profile.js';
 import { SEAL_DEFAULTS, SEALED_STORES, buildSelectedBackup, mergeSubset } from './sealed-data.js';
 import { openOfflinePreview, closeOfflinePreview, saveOfflineView, validateViewConditions } from './offline-view.js';
 import { normalizeCountyAddition } from './county-additions.js';
@@ -156,6 +156,5 @@ export async function initOnlinePane() {
 
 async function updateLocalProfileName() {
   const name = el('deviceProfileNameInput')?.value.trim() || '';
-  state.profile = { ...state.profile, name };
-  await db.put('profile', state.profile);
+  await updateProfile((profile) => { profile.name = name; return null; });
 }

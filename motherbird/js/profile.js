@@ -34,6 +34,7 @@ export async function setProfileAvatar({ icon = null, image = null } = {}) {
   state.profile = normalizeProfile({ ...state.profile, avatarIcon: icon || state.profile.avatarIcon || '✦', avatarImage: image || null });
   await db.put('profile', state.profile);
   renderProfile();
+  if (state.online.session) import('./online.js').then(({ syncProfile }) => syncProfile().catch(() => {})).catch(() => {});
 }
 
 export async function updateProfile(mutator) {
