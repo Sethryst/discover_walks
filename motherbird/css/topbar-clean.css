@@ -12,6 +12,8 @@
   position: relative !important;
 }
 .top-cluster > .profile-control { order: 1 !important; width: 38px !important; flex: 0 0 38px !important; margin: 0 !important; }
+.top-cluster > .profile-control { overflow: visible !important; position: relative !important; z-index: 1600 !important; }
+.top-cluster > .profile-control .profile-menu { z-index: 1601 !important; }
 .top-cluster > .locate-stack { order: 2 !important; width: 90px !important; flex: 0 0 90px !important; margin: 0 !important; }
 .top-cluster > .locate-stack { width: max-content !important; flex-basis: auto !important; }
 .top-cluster > .map-search { order: 3 !important; width: 30px !important; flex: 0 0 30px !important; margin: 0 !important; }
