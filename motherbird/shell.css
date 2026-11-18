@@ -1575,3 +1575,38 @@ body.draw-pane-open .draw-tool-rail { display: flex !important; }
 #mapLights .map-light[data-light="recreation"] { background: linear-gradient(105deg, #2c5b40 0%, #467858 100%) !important; background-image: linear-gradient(105deg, #2c5b40 0%, #467858 100%) !important; color: #fffaf0 !important; }
 #mapLights .map-light[data-light="cuisine"] { background: linear-gradient(105deg, #8c4b1d 0%, #b86b2c 100%) !important; background-image: linear-gradient(105deg, #8c4b1d 0%, #b86b2c 100%) !important; color: #fffaf0 !important; }
 
+/* Recreation returns to the blue map-action language. Keep its category
+   bubbles compact now that Nature owns trail-related places. */
+#mapLights .map-light[data-light="recreation"],
+.map-workspace-panel[data-destination="explore"] [data-map-light="recreation"] .map-light,
+.map-workspace-panel[data-destination="explore"] [data-light="recreation"] {
+  --light-color: #4d7ea6 !important;
+  background: linear-gradient(105deg, #356589 0%, #4d7ea6 100%) !important;
+  background-image: linear-gradient(105deg, #356589 0%, #4d7ea6 100%) !important;
+  border-color: #234c6b !important;
+  color: #fffaf0 !important;
+}
+.map-workspace-panel[data-destination="explore"] [data-map-light="recreation"] .map-light-chips {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 4px !important;
+  max-height: none !important;
+}
+.map-workspace-panel[data-destination="explore"] [data-map-light="recreation"] .map-light-chip {
+  min-height: 30px !important;
+  padding: 5px 4px !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* Final cascade guard for the blue REC bubble. */
+#mapLights .map-light[data-light="recreation"],
+.map-workspace-panel[data-destination="explore"] [data-map-light="recreation"] .map-light {
+  --light-color: #4d7ea6 !important;
+  background: linear-gradient(105deg, #356589 0%, #4d7ea6 100%) !important;
+  background-image: linear-gradient(105deg, #356589 0%, #4d7ea6 100%) !important;
+  color: #fffaf0 !important;
+}
+
