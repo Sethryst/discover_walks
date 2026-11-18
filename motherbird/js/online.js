@@ -41,9 +41,6 @@ export async function setupOnline() {
   state.online.client = window.supabase.createClient(config.url, config.anonKey, {
     auth: { experimental: { passkey: true } }
   });
-  const { data } = await state.online.client.auth.getSession();
-  state.online.session = data.session;
-  if (state.online.session) { try { await loadRemoteProfile(); } catch (error) { console.warn('Profile unavailable:', error.message); } }
   try {
     await readSupabaseHeartbeat(state.online.client, state.settings, (settings) => db.put('settings', settings));
   } catch (error) {
@@ -51,6 +48,9 @@ export async function setupOnline() {
     console.warn('Supabase heartbeat unavailable:', error.message);
   }
   if (!SUPABASE_APP_SYNC_ENABLED) return;
+  const { data } = await state.online.client.auth.getSession();
+  state.online.session = data.session;
+  if (state.online.session) { try { await loadRemoteProfile(); } catch (error) { console.warn('Profile unavailable:', error.message); } }
   state.online.client.auth.onAuthStateChange((_event, session) => {
     state.online.session = session;
     setTimeout(async () => {
