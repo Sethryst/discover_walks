@@ -63,10 +63,12 @@ export function initPrimaryShell() {
       return;
     }
     if (tab === 'library') {
+      const mapWorkspace = document.getElementById('mapWorkspacePanel');
+      const workspaceOpen = !initial && mapWorkspace?.dataset.destination === 'maps' && !mapWorkspace.classList.contains('hidden');
       panel.classList.add('hidden');
       state.settings.myPlacesSection = 'workspace';
       window.dispatchEvent(new CustomEvent('map-workspace-open-requested', {
-        detail: { destination: 'maps', forceOpen: true }
+        detail: { destination: workspaceOpen ? '' : 'maps', forceOpen: !workspaceOpen }
       }));
       return;
     }
