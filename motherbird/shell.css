@@ -1601,6 +1601,10 @@ body.draw-pane-open .draw-tool-rail { display: flex !important; }
   text-overflow: ellipsis !important;
 }
 
+.map-workspace-panel[data-destination="explore"] [data-map-light="recreation"] .map-light-chip {
+  flex: 0 0 auto !important;
+}
+
 /* Final cascade guard for the blue REC bubble. */
 #mapLights .map-light[data-light="recreation"],
 .map-workspace-panel[data-destination="explore"] [data-map-light="recreation"] .map-light {
