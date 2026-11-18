@@ -2,7 +2,7 @@ import { state } from './state.js';
 import db from './storage.js';
 import { el } from './utils.js';
 import { toast } from './ui.js';
-import { setupOnline, signInWithPasskey } from './online.js';
+import { setupOnline, signInWithPasskey, SUPABASE_APP_SYNC_ENABLED } from './online.js';
 import { createPasskeyWrap, unlockPasskeyWrap, sealJson, openSealedJson, journalPayloadToBytea, journalPayloadFromBytea } from './cloud-journal.js';
 import { setProfileAvatar, updateProfile } from './profile.js';
 import { SEAL_DEFAULTS, SEALED_STORES, buildSelectedBackup, mergeSubset } from './sealed-data.js';
@@ -42,6 +42,7 @@ export async function importJournalSubset(payload, mode = 'add') {
   return merged;
 }
 export async function requireOnlineSession() {
+  if (!SUPABASE_APP_SYNC_ENABLED) throw new Error('This app is running in local-only mode. Device memory stays on this device.');
   if (navigator.onLine === false) throw new Error('You are offline. Your data stays on this device.');
   await setupOnline();
   if (!state.online.client) throw new Error('Online service is not configured.');
@@ -112,6 +113,14 @@ export async function savePersonalSeal({ interactive = false } = {}) {
   } finally { busy = false; }
 }
 export function renderOnlinePane() {
+  if (!SUPABASE_APP_SYNC_ENABLED) {
+    if (el('sealedCopyStatus')) el('sealedCopyStatus').textContent = 'Local-only mode · device memory is not uploaded.';
+    if (el('goOnlineButton')) el('goOnlineButton').classList.add('hidden');
+    if (el('onlineGateNote')) { el('onlineGateNote').textContent = 'Supabase sync is temporarily paused. Your journal and walks stay on this device.'; el('onlineGateNote').classList.remove('hidden'); }
+    el('onlineSealPanel')?.classList.add('hidden');
+    el('syncDeviceDataButton')?.classList.add('hidden');
+    return;
+  }
   if (el('sealedCopyStatus')) el('sealedCopyStatus').textContent = state.settings.sealedCopyAt ? `Sealed copy: ${new Date(state.settings.sealedCopyAt).toLocaleString()}` : 'Sealed copy: not saved';
   if (el('goOnlineButton')) el('goOnlineButton').textContent = unlocked ? 'Seal now' : 'Online';
   el('onlineSealPanel')?.classList.toggle('hidden', !unlocked);
@@ -144,8 +153,10 @@ export async function initOnlinePane() {
     else if (state.settings.sealClasses?.offline !== true) closeOfflinePreview();
   });
   el('saveOfflineViewButton')?.addEventListener('click', () => void saveOfflineView().catch(reportOnlineError));
-  el('goOnlineButton')?.addEventListener('click', () => void savePersonalSeal({ interactive: true }).catch(reportOnlineError));
-  el('syncDeviceDataButton')?.addEventListener('click', () => void savePersonalSeal({ interactive: true }).catch(reportOnlineError));
+  if (SUPABASE_APP_SYNC_ENABLED) {
+    el('goOnlineButton')?.addEventListener('click', () => void savePersonalSeal({ interactive: true }).catch(reportOnlineError));
+    el('syncDeviceDataButton')?.addEventListener('click', () => void savePersonalSeal({ interactive: true }).catch(reportOnlineError));
+  }
   document.querySelectorAll('[data-avatar-icon]').forEach((button) => button.addEventListener('click', () => void setProfileAvatar({ icon: button.dataset.avatarIcon })));
   el('profileAvatarInput')?.addEventListener('change', (event) => { const file = event.target.files?.[0]; if (!file) return; const reader = new FileReader(); reader.onload = () => void setProfileAvatar({ image: String(reader.result || '') }); reader.readAsDataURL(file); });
   el('deviceProfileNameInput')?.addEventListener('change', () => void updateLocalProfileName());

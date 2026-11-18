@@ -15,6 +15,9 @@ import { normalizedEntitlements } from './entitlements.js';
 import { activeFieldEditionSubscription } from './cloud-journal.js';
 
 const PUBLIC_MARKER_FIELDS = 'id,creator_id,creator_username,pack_id,name,description,latitude,longitude,light,chip_id,personal_category_label,status,upvote_count,created_at,updated_at';
+// Temporary local-first mode. Keep the health check, but do not authenticate,
+// read/write profiles, publish markers, or sync private device memory.
+export const SUPABASE_APP_SYNC_ENABLED = false;
 let publicMarkerEventsBound = false;
 let supabaseClientPromise = null;
 
@@ -47,6 +50,7 @@ export async function setupOnline() {
     // Heartbeat availability must never prevent local use or online sign-in.
     console.warn('Supabase heartbeat unavailable:', error.message);
   }
+  if (!SUPABASE_APP_SYNC_ENABLED) return;
   state.online.client.auth.onAuthStateChange((_event, session) => {
     state.online.session = session;
     setTimeout(async () => {
@@ -76,6 +80,7 @@ export async function setupOnline() {
   await renderFieldGuide('online');
 }
 export async function loadRemoteProfile() {
+  if (!SUPABASE_APP_SYNC_ENABLED) return null;
   if (!state.online.client || !state.online.session) return null;
   const { data, error } = await state.online.client.from('profiles').select('id,username,display_name,avatar_icon,total_points,miles_total,sites_discovered,updated_at').eq('id', state.online.session.user.id).maybeSingle();
   if (error) {
@@ -125,7 +130,7 @@ function markerError(message, code) {
 }
 
 export function publicMarkerIdentityReady() {
-  return Boolean(state.online.client && state.online.session && state.online.remoteProfile?.username);
+  return SUPABASE_APP_SYNC_ENABLED && Boolean(state.online.client && state.online.session && state.online.remoteProfile?.username);
 }
 
 export async function requestPublicMarkerSignIn() {
@@ -134,6 +139,7 @@ export async function requestPublicMarkerSignIn() {
 }
 
 export async function refreshPublicMarkers(packId = state.activeCity) {
+  if (!SUPABASE_APP_SYNC_ENABLED) return state.publicMarkers;
   if (!state.online.client) return state.publicMarkers;
   const { data, error } = await state.online.client
     .from('public_markers')
@@ -256,6 +262,7 @@ export async function refreshCloudJournalEntitlement() {
   return active;
 }
 export async function syncProfile() {
+  if (!SUPABASE_APP_SYNC_ENABLED) return false;
   if (!state.online.client || !state.online.session || !state.online.remoteProfile?.username) return false;
   const payload = {
     id: state.online.session.user.id, username: state.online.remoteProfile.username, display_name: state.profile.name || null, avatar_icon: state.profile.avatarIcon || '✦',
@@ -288,6 +295,7 @@ export async function signIn() {
 }
 
 export async function signInWithPasskey() {
+  if (!SUPABASE_APP_SYNC_ENABLED) { toast('This app is running in local-only mode.'); return false; }
   await setupOnline();
   if (!state.online.client) { toast('Online sign-in is not configured yet.'); return false; }
   if (!state.online.client.auth.signInWithPasskey) {
@@ -304,6 +312,7 @@ export async function signInWithPasskey() {
 }
 
 export async function registerPasskey() {
+  if (!SUPABASE_APP_SYNC_ENABLED) { toast('This app is running in local-only mode.'); return false; }
   await setupOnline();
   if (!state.online.session || !state.online.client?.auth.registerPasskey) {
     toast('Sign in with email first, then add Face ID.');
@@ -317,6 +326,7 @@ export async function registerPasskey() {
 }
 
 export async function signUp() {
+  if (!SUPABASE_APP_SYNC_ENABLED) { toast('This app is running in local-only mode.'); return; }
   if (!onlineConfigured()) return;
   const email = el('onlineEmail').value.trim();
   const password = el('onlinePassword').value;
