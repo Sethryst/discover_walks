@@ -65,9 +65,18 @@ export async function routeOnFoot(points, {
     catch (error) { return failure('GRAPH_VERSION_UNAVAILABLE', error.message); }
     if (!activeWalkingCell?.id) return failure('NO_CELL_FOR_COORDINATE', activeWalkingCell?.reason, activeWalkingCell);
     if (activeWalkingCell.availability !== 'routing_available') return failure('GRAPH_VERSION_UNAVAILABLE', activeWalkingCell?.reason);
-    const request = (cell, origin = routePoints[index], destination = routePoints[index + 1]) => requestRouteWithRetry({ city, profile, origin, destination, maxSnapMeters: 3000, maxVisitedNodes: 300000, avoid: { stairs: false, unverified_edges: false }, avoidEdges, graphVersion, cell, cellId: cell?.id, cellRelease: cellRelease || cell?.release });
+    const request = (cell, origin = routePoints[index], destination = routePoints[index + 1], requestedProfile = profile, engineId = null) => requestRouteWithRetry({ city, profile: requestedProfile, origin, destination, maxSnapMeters: 3000, maxVisitedNodes: 300000, avoid: { stairs: false, unverified_edges: false }, avoidEdges, graphVersion, cell, cellId: cell?.id, cellRelease: cellRelease || cell?.release }, { engineId });
     let result = await request(activeWalkingCell);
-    if (result.ok) legs.push(result);
+    if (!result.ok && isWalkingProfile(profile) && activeWalkingCell.artifacts?.valhalla_manifest) {
+      // A pedestrian graph can legitimately have no route between two points
+      // even when the same endpoints are connected by roads. Ask Valhalla for
+      // real driving geometry; never manufacture a straight-line segment.
+      const driving = await request(activeWalkingCell, routePoints[index], routePoints[index + 1], 'driving', 'valhalla-wasm');
+      if (driving.ok) {
+        result = { ...driving, routing_fallback: 'driving', fallback_from: profile, fallback_reason: result.status };
+      }
+    }
+    if (result.ok) legs.push({ ...result, routing_fallback: result.routing_fallback || null });
     else if (destinationCell?.id && destinationCell.id !== activeWalkingCell.id && destinationCell.availability === 'routing_available') {
       let registry;
       try { registry = await getWalkingCellRegistry(); } catch (error) { return failure('GRAPH_VERSION_UNAVAILABLE', error.message); }
@@ -100,21 +109,29 @@ export async function routeOnFoot(points, {
     instructions: mergeInstructions(legs),
     routingEngine: legs[0].routing_engine,
     routingExecution: 'device',
+    routeProfile: legs.some((leg) => leg.routing_fallback === 'driving') ? 'driving' : profile,
+    transportationMode: legs.some((leg) => leg.routing_fallback === 'driving') ? 'driving' : 'walking',
+    drivingFallback: legs.some((leg) => leg.routing_fallback === 'driving'),
+    fallbackReason: legs.find((leg) => leg.routing_fallback === 'driving')?.fallback_reason || null,
     graphVersion: legs[0].graph_version,
     policyVersion: legs[0].policy_version,
     confidence: { minimum: Math.min(...legs.map((leg) => leg.confidence.minimum)), average: legs.reduce((sum, leg) => sum + leg.confidence.average, 0) / legs.length }
   };
 }
 
-async function requestRouteWithRetry(payload) {
-  let result = await routeLocalLeg(payload);
+async function requestRouteWithRetry(payload, options = {}) {
+  let result = await routeLocalLeg(payload, options);
   if (result.ok || !['ROUTING_WORKER_ERROR', 'ROUTING_TIMEOUT', 'GRAPH_VERSION_UNAVAILABLE'].includes(result.status)) return result;
   // A worker can die during a large graph decode or transient cache read. The
   // request layer resets it; one retry makes the next route attempt useful
   // without allowing an infinite loop of expensive graph loads.
-  result = await routeLocalLeg(payload);
+  result = await routeLocalLeg(payload, options);
   if (result.ok || !['ROUTING_WORKER_ERROR', 'ROUTING_TIMEOUT', 'GRAPH_VERSION_UNAVAILABLE'].includes(result.status)) return result;
   return failure('ROUTING_GRAPH_UNAVAILABLE', result.failure?.reason || result.failure?.message);
+}
+
+function isWalkingProfile(profile) {
+  return ['walking', 'pedestrian', 'ordinary_walking_beta', 'accessible_verified'].includes(String(profile || '').toLowerCase());
 }
 
 async function stitchCellPath(origin, destination, cells, request, index = 0, current = origin, legs = []) {

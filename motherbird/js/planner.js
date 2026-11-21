@@ -2,7 +2,7 @@ import { state } from './state.js';
 import { setPlannerSelecting } from './planner-selection.js?v=20261004-planner-selection-1';
 import { CITIES } from './constants.js';
 import { poiTags } from './poi.js';
-import { routeOnFoot, routeFailureMessage } from './routing.js?v=20261104-valhalla-wasm-1';
+import { routeOnFoot, routeFailureMessage } from './routing.js?v=20261121-driving-fallback-1';
 import { escapeHtml } from './utils.js';
 import { toast } from './ui.js';
 import { buildAmbientExplanation, generateAmbientOptions, installAmbientLearningListener, readAmbientMemory } from './ambient-mip.js?v=20261104-local-mip-1';
@@ -335,7 +335,7 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
     id: `concept-${Date.now()}`, title: title || (routeMode === 'point-to-point' ? 'A route to your destination' : `${CITIES[state.activeCity]?.name || 'Local'} ${minutes}-minute sketch`),
     reason: reason || conceptReason(stops), city: state.activeCity, routeMode, estimatedDurationMinutes: routed.ok ? Math.round(Number(routed.durationSeconds || 0) / 60) : minutes,
     stops, coordinates: routed.ok ? routed.coordinates : [], journeyId,
-    ...(routed.ok ? { distanceMeters: routed.distanceMeters, distanceMiles: Number((routed.distanceMeters / 1609.344).toFixed(2)), graphStatus: null, graphVersion: routed.graphVersion, cellId: routed.cellId, cellRelease: routed.cellRelease, edgeIds: routed.edgeIds, instructions: routed.instructions } : { graphStatus: routed.status || 'GRAPH_VERSION_UNAVAILABLE', failureMessage: planningFailureMessage(routed, routeMode) })
+    ...(routed.ok ? { distanceMeters: routed.distanceMeters, distanceMiles: Number((routed.distanceMeters / 1609.344).toFixed(2)), graphStatus: null, graphVersion: routed.graphVersion, cellId: routed.cellId, cellRelease: routed.cellRelease, edgeIds: routed.edgeIds, instructions: routed.instructions, routeProfile: routed.routeProfile || routeOptions.profile, transportationMode: routed.transportationMode || 'walking', drivingFallback: routed.drivingFallback === true, fallbackReason: routed.fallbackReason || null } : { graphStatus: routed.status || 'GRAPH_VERSION_UNAVAILABLE', failureMessage: planningFailureMessage(routed, routeMode) })
   };
   state.plannedRoute = plan; state.planOptions = [plan];
   if (routed.ok) await saveWalkPlan(createWalkPlan({ planId: state.walkPlan?.id || null, revision: Number(state.walkPlan?.revision || 0) + 1, request: recipeRequest(recipe, { city: state.activeCity, origin: routeOrigin, durationMinutes: minutes, routeMode, interests: interests() }), route: routed, encounters: stops.map((stop, index) => ({ ...stop, placeId: stop.id, position: index, reason: 'Selected by the route-and-encounter scorer.' })), rationale: { summary: plan.reason, limitations: [] } }));
