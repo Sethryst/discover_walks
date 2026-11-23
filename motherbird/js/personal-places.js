@@ -158,29 +158,29 @@ export async function initPersonalPlaces() {
   renderPersonalPlacesOnMap();
   if (state.currentPosition || state.lastPosition) {
     localStopPending = false;
-    void saveLocalFirstStop().catch((error) => console.warn('Local first stop could not be saved:', error));
+    void autoGenerateLocalUserPoi().catch((error) => console.warn('Automatic local user POI could not be saved:', error));
   }
 }
 
-// Sign-in remembers the current place locally without requiring a second form.
-// The first two sign-ins become the endpoints for the automatic My Paths route.
-export async function saveLocalFirstStop() {
+// Remember the current place locally without requiring login or a form.
+// The first two automatic points become the endpoints for My Paths.
+export async function autoGenerateLocalUserPoi() {
   const point = state.currentPosition || state.lastPosition;
   if (!point || !Number.isFinite(Number(point.lat)) || !Number.isFinite(Number(point.lng))) return null;
   const category = await ensureDefaultPersonalCategory();
   const stops = curatedPersonalPlaces()
-    .filter((place) => place.source === 'login_first_stop')
+    .filter((place) => ['automatic_user_place', 'login_first_stop'].includes(place.source))
     .sort((a, b) => String(a.added).localeCompare(String(b.added)));
   const existing = stops.find((place) => samePersonalPlace(place, { location: point }));
   const place = existing || normalizePersonalPlace({
-    id: uid('login-stop'),
-    name: stops.length ? `Stop ${stops.length + 1}` : 'First stop',
+    id: uid('automatic-user-poi'),
+    name: 'Rename me!',
     location: point,
     categoryId: category.id,
     personalCategoryLabel: category.name,
     visibility: 'private',
-    source: 'login_first_stop',
-    notes: 'Saved automatically when this account signed in on this device.'
+    source: 'automatic_user_place',
+    notes: 'Saved automatically from your local map activity. Rename this place whenever you like.'
   });
   if (!existing) {
     await db.put('personal_places', place);
