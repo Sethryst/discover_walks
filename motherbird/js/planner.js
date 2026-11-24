@@ -8,6 +8,7 @@ import { toast } from './ui.js';
 import { buildAmbientExplanation, generateAmbientOptions, installAmbientLearningListener, readAmbientMemory } from './ambient-mip.js?v=20261104-local-mip-1';
 import { loadMIPPackageForRoute } from './mip-package-loader.js?v=20261104-local-mip-1';
 import { createWalkPlan, saveWalkPlan } from './walk-plan.js';
+import { buildConnectedAreaSnapshot } from './connected-area-snapshot.js?v=20261123-connected-area-1';
 import { recipeFromDocument, recipeCandidateAllowed, recipeRequest } from './walk-recipes.js';
 
 function selectedMinutes() { return Number(document.querySelector('input[name="walkTime"]:checked')?.value || 30); }
@@ -192,8 +193,12 @@ export function paintWalkConcept(plan = state.plannedRoute, { fit = true } = {})
   const style = globalThis.__MOTHERBIRD_MAP_STYLE__;
   const routeColors = { direct: style?.features?.plannedRoute || '#59C36A', discovery: style?.features?.discoveryRoute || '#168AAD', quiet: style?.features?.recordedRoute || '#168AAD' };
   const casingColors = { direct: style?.appearance?.casing || '#1f6b43', discovery: style?.appearance?.casing || '#0d5570', quiet: style?.appearance?.casing || '#123b72' };
-  const routeCasingLines = routePaths.map((coordinates) => L.polyline(coordinates, { pane: 'plannerRoutePane', color: casingColors[mood] || casingColors.direct, weight: 11, opacity: .98, lineCap: 'round', lineJoin: 'round', dashArray: mood === 'quiet' ? '10 8' : null, styleRole: 'plannedCasing' }).addTo(state.map));
-  state.plannedRouteLines = routePaths.map((coordinates) => L.polyline(coordinates, { pane: 'plannerRoutePane', color: routeColors[mood] || routeColors.direct, weight: style?.features?.routeWidth || 8, opacity: style?.features?.routeOpacity || 1, lineCap: 'round', lineJoin: 'round', dashArray: mood === 'quiet' ? '10 8' : null, styleRole: 'plannedRoute' }).addTo(state.map));
+  const isDrivingFallback = plan.transportationMode === 'driving' || plan.drivingFallback === true;
+  const routeColor = isDrivingFallback ? '#D97706' : routeColors[mood] || routeColors.direct;
+  const casingColor = isDrivingFallback ? '#7C3F0A' : casingColors[mood] || casingColors.direct;
+  const routeDash = isDrivingFallback ? '14 8' : mood === 'quiet' ? '10 8' : null;
+  const routeCasingLines = routePaths.map((coordinates) => L.polyline(coordinates, { pane: 'plannerRoutePane', color: casingColor, weight: 11, opacity: .98, lineCap: 'round', lineJoin: 'round', dashArray: routeDash, styleRole: isDrivingFallback ? 'drivingFallbackCasing' : 'plannedCasing' }).addTo(state.map));
+  state.plannedRouteLines = routePaths.map((coordinates) => L.polyline(coordinates, { pane: 'plannerRoutePane', color: routeColor, weight: style?.features?.routeWidth || 8, opacity: style?.features?.routeOpacity || 1, lineCap: 'round', lineJoin: 'round', dashArray: routeDash, styleRole: isDrivingFallback ? 'drivingFallbackRoute' : 'plannedRoute' }).addTo(state.map));
   [...routeCasingLines, ...state.plannedRouteLines].forEach((line) => line.bringToFront());
   state.plannerRouteCasingLines = routeCasingLines;
   // Gap overlays are optional diagnostics. Keep the slot explicit even when
@@ -314,6 +319,18 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
     routed = await routeOnFoot(points, routeOptions).catch((error) => ({ ok: false, status: 'ROUTING_WORKER_ERROR', failure: { message: error?.message || 'Offline routing failed.' } }));
   }
   if (requestGeneration !== generation) return null;
+  if (routed.ok) {
+    try {
+      state.connectedAreaSnapshot = await buildConnectedAreaSnapshot({
+        automaticUserPoints: (state.personalPlaces || []).filter((place) => ['automatic_user_place', 'login_first_stop'].includes(place.source)),
+        selectedStops: stops,
+        pois: state.cityPois[state.activeCity] || [],
+        routeOnFoot,
+        routeOptions
+      });
+      window.dispatchEvent(new CustomEvent('connected-area-snapshot-ready', { detail: state.connectedAreaSnapshot }));
+    } catch (error) { console.warn('Connected area snapshot unavailable:', error); }
+  }
   if (new URLSearchParams(globalThis.location?.search || '').has('diagnose')) {
     globalThis.__lastRouteResult = routed;
     document.body.dataset.routeStatus = routed.ok ? 'ROUTE_FOUND' : (routed.status || 'unknown');
