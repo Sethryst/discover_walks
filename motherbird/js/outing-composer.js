@@ -1,10 +1,11 @@
 import { state } from './state.js';
 import { escapeHtml } from './utils.js';
 import { toast } from './ui.js';
-import { routeOnFoot, routeFailureMessage } from './routing.js?v=20261104-valhalla-wasm-1';
+import { routeOnFoot, routeFailureMessage } from './routing.js?v=20261121-driving-fallback-1';
 import { paintWalkConcept } from './planner.js?v=20261014-single-composed-walk-1';
 import { findInterestingDetour } from './mip-discovery.js?v=20261104-duckdb-mip-1';
 import { startWalk, getCurrentLocation } from './walk.js';
+import { openPersonalPlaceForm } from './personal-places.js';
 import { createWalkPlan, saveWalkPlan } from './walk-plan.js';
 import {
   ACTIVE_OUTING_DRAFT_ID,
@@ -73,7 +74,7 @@ export function renderOutingComposer(draft = state.outingDraft) {
   const items = draft.items || [];
   root.querySelector('[data-outing-place-count]').textContent = `${items.length} place${items.length === 1 ? '' : 's'}`;
   root.querySelector('[data-outing-items]').innerHTML = items.length
-    ? items.map((item) => `<article class="outing-item" data-outing-item="${escapeHtml(item.id)}"><div><strong>${escapeHtml(item.name)}</strong><small>${escapeHtml(itemFacts(item))}</small></div><label><span class="sr-only">Role for ${escapeHtml(item.name)}</span><select data-outing-role><option value="possible-stop" ${item.role === 'possible-stop' ? 'selected' : ''}>Possible stop</option><option value="destination" ${item.role === 'destination' ? 'selected' : ''}>Destination</option><option value="start" ${item.role === 'start' ? 'selected' : ''}>Start point</option><option value="pass-through" ${item.role === 'pass-through' ? 'selected' : ''}>Pass through</option><option value="avoid" ${item.role === 'avoid' ? 'selected' : ''}>Avoid</option></select></label><button type="button" class="text-button" data-outing-remove aria-label="Remove ${escapeHtml(item.name)}">Remove</button></article>`).join('')
+    ? items.map((item) => { const personal = (state.personalPlaces || []).find((place) => String(place.id) === String(item.placeId || item.id)); const rename = personal?.source === 'automatic_user_place' || personal?.source === 'login_first_stop' ? `<button type="button" class="text-button" data-outing-rename>Rename</button>` : ''; return `<article class="outing-item" data-outing-item="${escapeHtml(item.id)}"><div><strong>${escapeHtml(item.name)}</strong><small>${escapeHtml(itemFacts(item))}</small></div><label><span class="sr-only">Role for ${escapeHtml(item.name)}</span><select data-outing-role><option value="possible-stop" ${item.role === 'possible-stop' ? 'selected' : ''}>Possible stop</option><option value="destination" ${item.role === 'destination' ? 'selected' : ''}>Destination</option><option value="start" ${item.role === 'start' ? 'selected' : ''}>Start point</option><option value="pass-through" ${item.role === 'pass-through' ? 'selected' : ''}>Pass through</option><option value="avoid" ${item.role === 'avoid' ? 'selected' : ''}>Avoid</option></select></label>${rename}<button type="button" class="text-button" data-outing-remove aria-label="Remove ${escapeHtml(item.name)}">Remove</button></article>`; }).join('')
     : '<div class="outing-empty"><strong>Your canvas is open.</strong><p>Inspecting a place never adds it. You can also start recording with this draft empty.</p></div>';
   root.querySelector('[data-outing-distance]').textContent = distanceLabel(draft.routePreview?.distanceMeters);
   root.querySelector('[data-outing-duration]').textContent = durationLabel(draft.routePreview?.durationSeconds, draft.travelMode);
@@ -142,6 +143,9 @@ export async function recalculateOutingRoute(draft = state.outingDraft) {
     distanceMeters: routed.distanceMeters,
     distanceMiles: Number((Number(routed.distanceMeters || 0) / 1609.344).toFixed(2)),
     durationSeconds: routed.durationSeconds,
+    transportationMode: routed.transportationMode || (working.travelMode === 'driving' ? 'driving' : working.travelMode === 'cycling' ? 'cycling' : 'walking'),
+    drivingFallback: routed.drivingFallback === true,
+    fallbackReason: routed.fallbackReason || null,
     estimatedDurationMinutes: Math.round(Number(routed.durationSeconds || 0) / 60),
     graphVersion: routed.graphVersion,
     cellId: routed.cellId,
@@ -283,6 +287,12 @@ export async function initOutingComposer() {
   });
   target.addEventListener('click', async (event) => {
     const item = event.target.closest('[data-outing-item]');
+    if (event.target.closest('[data-outing-rename]') && item) {
+      const draftItem = (state.outingDraft?.items || []).find((candidate) => candidate.id === item.dataset.outingItem);
+      const personal = (state.personalPlaces || []).find((place) => String(place.id) === String(draftItem?.placeId || draftItem?.id));
+      if (personal) openPersonalPlaceForm({ editId: personal.id });
+      return;
+    }
     if (event.target.closest('[data-outing-remove]') && item) { const next = await removeOutingItem(item.dataset.outingItem); renderOutingComposer(next); await recalculateOutingRoute(next); return; }
     if (event.target.closest('[data-outing-map-place]')) { target.classList.add('outing-composer-picking'); toast('Tap anywhere on the map. You can inspect it before adding it.'); return; }
     if (event.target.closest('[data-outing-location]')) {
