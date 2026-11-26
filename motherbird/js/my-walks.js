@@ -120,22 +120,22 @@ export async function reconcileMyWalks({ city = state.activeCity } = {}) {
     const id = pairId(pair.a, pair.b);
     if (existingAuto.has(id)) {
       let current = existingAuto.get(id);
-      // Older releases persisted straight-line geometry after a routing
-      // failure. Rebuild those records before exposing them as saved paths.
-      if (current.metadata?.routingAvailable !== true) {
-        let repaired = null;
-        try {
-          repaired = await routeOnFoot([[pair.aLocation.lat, pair.aLocation.lng], [pair.bLocation.lat, pair.bLocation.lng]], { city, profile: normalizeTransportationMode(pair.a.transportationMode || pair.b.transportationMode || 'walking') === 'cycling' ? 'cycling_beta' : normalizeTransportationMode(pair.a.transportationMode || pair.b.transportationMode || 'walking') === 'driving' ? 'driving_beta' : 'ordinary_walking_beta' });
-        } catch { /* keep the record unrouted until the next reconciliation */ }
-        if (repaired?.ok && repaired.coordinates?.length >= 2) {
-          current = { ...current, coordinates: repaired.coordinates, distanceMeters: Number(repaired.distanceMeters) || current.distanceMeters, durationSeconds: Number(repaired.durationSeconds) || current.durationSeconds, metadata: { ...current.metadata, routingAvailable: true, routingEngine: repaired.routingEngine || null, repairedAt: new Date().toISOString() } };
-          current.sections = fallbackSections(current.coordinates, current.distanceMeters);
-        } else {
-          current = { ...current, coordinates: [], sections: [], metadata: { ...current.metadata, routingAvailable: false, routingFailure: repaired?.status || 'ROUTE_UNAVAILABLE', repairedAt: new Date().toISOString() } };
-        }
-        await db.put('saved_routes', current);
-        state.savedRoutes = [...(state.savedRoutes || []).filter((item) => item.id !== id), current];
+      // Re-route every existing automatic pair. Metadata alone cannot prove
+      // that older geometry was produced by a routing engine: prior releases
+      // could persist a synthetic chord after a failed route attempt.
+      const mode = normalizeTransportationMode(pair.a.transportationMode || pair.b.transportationMode || 'walking');
+      let repaired = null;
+      try {
+        repaired = await routeOnFoot([[pair.aLocation.lat, pair.aLocation.lng], [pair.bLocation.lat, pair.bLocation.lng]], { city, profile: mode === 'cycling' ? 'cycling_beta' : mode === 'driving' ? 'driving_beta' : 'ordinary_walking_beta' });
+      } catch { /* keep the record unrouted until the next reconciliation */ }
+      if (repaired?.ok && repaired.coordinates?.length >= 2) {
+        current = { ...current, coordinates: repaired.coordinates, distanceMeters: Number(repaired.distanceMeters) || current.distanceMeters, durationSeconds: Number(repaired.durationSeconds) || current.durationSeconds, metadata: { ...current.metadata, routingAvailable: true, routingEngine: repaired.routingEngine || null, repairedAt: new Date().toISOString() } };
+        current.sections = fallbackSections(current.coordinates, current.distanceMeters);
+      } else {
+        current = { ...current, coordinates: [], sections: [], metadata: { ...current.metadata, routingAvailable: false, routingFailure: repaired?.status || 'ROUTE_UNAVAILABLE', repairedAt: new Date().toISOString() } };
       }
+      await db.put('saved_routes', current);
+      state.savedRoutes = [...(state.savedRoutes || []).filter((item) => item.id !== id), current];
       const detours = await buildInterestDetours(current, interests, city);
       const mainSections = ensureAutomaticSections(current);
       const previousDetours = new Map((current.sections || []).filter((section) => section.isDetour && section.discoveryId).map((section) => [section.discoveryId, section]));
