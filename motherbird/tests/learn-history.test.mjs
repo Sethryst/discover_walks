@@ -13,6 +13,7 @@ import {
   historicalTopoHtml,
   battlefieldHtml,
   lensHtml
+  , dedupeNearbySites
 } from '../js/learn-history.js';
 
 const museum = { id: 'm1', name: 'Fairfax Museum', lat: 38.84, lng: -77.3, tags: ['history', 'history_museum'] };
@@ -38,6 +39,19 @@ test('Learn pack progress counts remaining sites', () => {
   assert.equal(progress.visited, 1);
   assert.equal(progress.remaining, 1);
   assert.equal(progress.total, 2);
+});
+
+test('Nearby Learn removes duplicate cross-source place records', () => {
+  const unique = dedupeNearbySites([
+    { id: 'authoritative-1', name: 'Creek Park', lat: 38.86, lng: -77.32 },
+    { id: 'osm-copy', name: ' Creek   Park ', lat: 38.860001, lng: -77.320001 },
+    { id: 'different', name: 'Creek Park', lat: 38.87, lng: -77.33 }
+  ]);
+  assert.deepEqual(unique.map((site) => site.id), ['authoritative-1', 'different']);
+  assert.equal(dedupeNearbySites([
+    { name: 'Creek Park', lat: 38.86, lng: -77.32 },
+    { name: ' Creek   Park ', lat: 38.860001, lng: -77.320001 }
+  ]).length, 1);
 });
 
 test('Learn pack splits use a closed bounding box', () => {

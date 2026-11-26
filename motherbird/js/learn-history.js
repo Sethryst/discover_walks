@@ -81,6 +81,22 @@ export function sortSitesByDistance(sites, point) {
   return [...sites].sort((left, right) => distanceMeters(point, left) - distanceMeters(point, right));
 }
 
+export function dedupeNearbySites(sites = []) {
+  const seen = new Set();
+  return (sites || []).filter((site) => {
+    const id = String(site?.id || '').trim();
+    const name = String(site?.name || '').trim().toLocaleLowerCase().replace(/\s+/g, ' ');
+    const lat = Number(site?.lat), lng = Number(site?.lng);
+    const identities = [
+      id ? `id:${id}` : null,
+      name && Number.isFinite(lat) && Number.isFinite(lng) ? `name-location:${name}|${lat.toFixed(5)}|${lng.toFixed(5)}` : null
+    ].filter(Boolean);
+    if (!identities.length || identities.some((identity) => seen.has(identity))) return false;
+    identities.forEach((identity) => seen.add(identity));
+    return true;
+  });
+}
+
 // Learn is driven by the map viewport, not by the currently selected place
 // pack. A regional dataset can therefore remain visible across every area it
 // actually touches without turning the region menu into a switcher.
@@ -487,7 +503,7 @@ export async function renderLearnHistory(target, point, authoredCards = []) {
     const waterJourneys = journeysForCity(catalog.journeys);
     const encounteredIds = new Set((state.walks || []).flatMap((walk) => (walk.waterEncounters || []).map((item) => String(item.journeyId))));
     const pointForPrompt = state.currentPosition || state.lastPosition || state.map?.getCenter?.();
-    const nearbyPlaces = sortSitesByDistance((state.cityPois[state.activeCity] || []).filter((poi) => isWalkNatureSite(poi) || isHistorySite(poi)), pointForPrompt).filter((poi) => !pointForPrompt || distanceMeters(pointForPrompt, poi) <= 8047).slice(0, 12).map((poi) => ({ ...poi, _learnDistance: pointForPrompt ? distanceMeters(pointForPrompt, poi) : null }));
+    const nearbyPlaces = sortSitesByDistance(dedupeNearbySites((state.cityPois[state.activeCity] || []).filter((poi) => isWalkNatureSite(poi) || isHistorySite(poi))), pointForPrompt).filter((poi) => !pointForPrompt || distanceMeters(pointForPrompt, poi) <= 8047).slice(0, 12).map((poi) => ({ ...poi, _learnDistance: pointForPrompt ? distanceMeters(pointForPrompt, poi) : null }));
     target.innerHTML = learnHomeHtml({ somethingNew: somethingNewNearby({ journeys: waterJourneys, encounteredIds, point: pointForPrompt }), nearbyPlaces, authoredCards: orderedAuthoredCards, experienceState: await experienceLibraryState(), areaSnapshot: state.connectedAreaSnapshot });
     state.learnBoundsLayer?.remove(); state.learnBoundsLayer = null;
     return;
