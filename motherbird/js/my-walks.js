@@ -57,13 +57,6 @@ function ensureAutomaticSections(route) {
   return buildAutomaticSections(route.coordinates, Number(route.distanceMeters) || 0).map((section) => ({ ...section, enabled: main[0]?.enabled !== false }));
 }
 
-function straightLine(a, b, steps = 8) {
-  return Array.from({ length: steps + 1 }, (_, index) => [
-    a.lat + ((b.lat - a.lat) * index / steps),
-    a.lng + ((b.lng - a.lng) * index / steps)
-  ]);
-}
-
 function candidatePairs(places) {
   const pairs = [];
   for (let left = 0; left < places.length; left += 1) {
@@ -126,7 +119,23 @@ export async function reconcileMyWalks({ city = state.activeCity } = {}) {
   for (const pair of candidatePairs(places)) {
     const id = pairId(pair.a, pair.b);
     if (existingAuto.has(id)) {
-      const current = existingAuto.get(id);
+      let current = existingAuto.get(id);
+      // Older releases persisted straight-line geometry after a routing
+      // failure. Rebuild those records before exposing them as saved paths.
+      if (current.metadata?.routingAvailable !== true) {
+        let repaired = null;
+        try {
+          repaired = await routeOnFoot([[pair.aLocation.lat, pair.aLocation.lng], [pair.bLocation.lat, pair.bLocation.lng]], { city, profile: normalizeTransportationMode(pair.a.transportationMode || pair.b.transportationMode || 'walking') === 'cycling' ? 'cycling_beta' : normalizeTransportationMode(pair.a.transportationMode || pair.b.transportationMode || 'walking') === 'driving' ? 'driving_beta' : 'ordinary_walking_beta' });
+        } catch { /* keep the record unrouted until the next reconciliation */ }
+        if (repaired?.ok && repaired.coordinates?.length >= 2) {
+          current = { ...current, coordinates: repaired.coordinates, distanceMeters: Number(repaired.distanceMeters) || current.distanceMeters, durationSeconds: Number(repaired.durationSeconds) || current.durationSeconds, metadata: { ...current.metadata, routingAvailable: true, routingEngine: repaired.routingEngine || null, repairedAt: new Date().toISOString() } };
+          current.sections = fallbackSections(current.coordinates, current.distanceMeters);
+        } else {
+          current = { ...current, coordinates: [], sections: [], metadata: { ...current.metadata, routingAvailable: false, routingFailure: repaired?.status || 'ROUTE_UNAVAILABLE', repairedAt: new Date().toISOString() } };
+        }
+        await db.put('saved_routes', current);
+        state.savedRoutes = [...(state.savedRoutes || []).filter((item) => item.id !== id), current];
+      }
       const detours = await buildInterestDetours(current, interests, city);
       const mainSections = ensureAutomaticSections(current);
       const previousDetours = new Map((current.sections || []).filter((section) => section.isDetour && section.discoveryId).map((section) => [section.discoveryId, section]));
@@ -141,8 +150,13 @@ export async function reconcileMyWalks({ city = state.activeCity } = {}) {
     const transportationMode = normalizeTransportationMode(pair.a.transportationMode || pair.b.transportationMode || 'walking');
     let routed = null;
     try { routed = await routeOnFoot([[pair.aLocation.lat, pair.aLocation.lng], [pair.bLocation.lat, pair.bLocation.lng]], { city, profile: transportationMode === 'cycling' ? 'cycling_beta' : transportationMode === 'driving' ? 'driving_beta' : 'ordinary_walking_beta' }); } catch { routed = null; }
-    const coordinates = routed?.ok && routed.coordinates?.length >= 2 ? routed.coordinates : straightLine(pair.aLocation, pair.bLocation);
-    const distance = Number(routed?.distanceMeters) || pair.distance;
+    // Automatic connections must be backed by Valhalla/the installed local
+    // routing engine. Never persist a synthetic chord when routing fails: a
+    // two-place line would look like a valid path even though it ignores the
+    // transport network.
+    if (!routed?.ok || !Array.isArray(routed.coordinates) || routed.coordinates.length < 2) continue;
+    const coordinates = routed.coordinates;
+    const distance = Number(routed.distanceMeters) || pair.distance;
     const route = {
       id, city, title: fallbackTitle(pair.a, pair.b), draft: true, routeMode: 'point-to-point',
       transportationMode,
@@ -154,7 +168,7 @@ export async function reconcileMyWalks({ city = state.activeCity } = {}) {
         { id: pair.b.id, name: pair.b.name || 'Logged place', ...pair.bLocation }
       ], sections: fallbackSections(coordinates, distance), generatedFrom: 'personal-place-pair',
       sourceLocationIds: [String(pair.a.id), String(pair.b.id)],
-      metadata: { automatic: true, routingAvailable: Boolean(routed?.ok), generatedAt: new Date().toISOString() }, interests,
+      metadata: { automatic: true, routingAvailable: true, routingEngine: routed.routingEngine || null, generatedAt: new Date().toISOString() }, interests,
       corridor: buildRouteCorridor({ id, coordinates, transportationMode }), discoveries: []
     };
     route.memoryPalace = buildMemoryPalaceContext({ route, segments: route.sections, places, experiences, memories, observations });
