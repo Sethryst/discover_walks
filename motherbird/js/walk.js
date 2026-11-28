@@ -1,4 +1,4 @@
-import { renderUserLocation } from './map.js?v=20261105-region-control-1';
+import { renderUserLocation } from './map.js?v=20261128-map-popup-1';
 import { distanceMeters } from './geo.js';
 import { state } from './state.js';
 import {
@@ -12,7 +12,7 @@ import { el, uid } from './utils.js';
 import { checkGeofences } from './geofence.js';
 import { toast, setStatus, openJournal, closeSheets } from './ui.js';
 import db from './storage.js';
-import { linkSavedRecord } from './workspace.js?v=20261116-my-walks-6';
+import { linkSavedRecord } from './workspace.js?v=20261128-workspace-new-walk-1';
 import { startWalkSession } from './walk-plan.js';
 import { recordLocationCheckpoint } from './location-checkpoints.js';
 import { updateProfile } from './profile.js';

@@ -7,7 +7,7 @@ import { hydrateInlineIcons } from './icon-loader.js';
 import { markerPinHtml, markerVisual } from './poi-icons.js?v=20261103-standalone-taxonomy-1';
 import { requestCompanionContext } from './companion.js';
 import { updateSavedRoute, deleteSavedRoute, savedRouteEditorHtml } from './saved-routes.js';
-import { renderWorkspacePanel, createWorkspace } from './workspace.js?v=20261116-my-walks-6';
+import { renderWorkspacePanel, createWorkspace } from './workspace.js?v=20261128-workspace-new-walk-1';
 import { addPlaceToJournalRoom } from './journal-room.js';
 import { generateTimeBasedPlan } from './planner.js?v=20261014-single-composed-walk-1';
 import {

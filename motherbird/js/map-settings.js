@@ -1,7 +1,7 @@
 import db from './storage.js';
 import { state } from './state.js';
 import { toast } from './ui.js';
-import { BASEMAP_PRESETS, applyMapCustomization, setOnlineBasemap } from './map.js?v=20261105-region-control-1';
+import { BASEMAP_PRESETS, applyMapCustomization, setOnlineBasemap } from './map.js?v=20261128-map-popup-1';
 import { installedStylePaint } from './offline-map-style.js';
 import { DOMAIN_ICON_CHOICES } from './poi-icons.js?v=20261109-domain-icons-5';
 

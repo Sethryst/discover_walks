@@ -4,7 +4,7 @@ import { state } from './state.js';
 import { DEFAULT_SETTINGS, CITIES, DEFAULT_CITY_ID } from './constants.js';
 import { normalizeProfile, sitesForProfile } from './utils.js';
 import { toast } from './ui.js';
-import { initMap } from './map.js?v=20261105-region-control-1';
+import { initMap } from './map.js?v=20261128-map-popup-1';
 import { applyStaticAppearance } from './ui.js';
 import { loadAllCityData, refreshCityMap } from './city.js?v=20261103-header-repair-2';
 import { renderWeatherBrief } from './weather.js?v=20261105-daylight-refresh-5';
@@ -33,7 +33,7 @@ import { initBiodiversity } from './biodiversity.js?v=20261103-live-biodiversity
 import { initRegionalNavigation } from './regional-navigation.js?v=20261104-subregion-switch-1';
 import { initStorageDiagnostics } from './storage-diagnostics.js';
 import { initStorageHealth } from './storage-health.js';
-import { loadWorkspaceState, initWorkspaceRuntime, seedWorkspaceDemo } from './workspace.js?v=20261116-my-walks-6';
+import { loadWorkspaceState, initWorkspaceRuntime, seedWorkspaceDemo } from './workspace.js?v=20261128-workspace-new-walk-1';
 import { normalizeSavedRoute } from './saved-routes.js';
 import { initMapSettings } from './map-settings.js?v=20261109-domain-customization-2';
 import { initRegionalRoutingPackagesUI } from './regional-routing-packages-ui.js?v=20261104-valhalla-packages-ui-1';
