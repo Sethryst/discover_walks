@@ -14,7 +14,7 @@ import { restoreLocalPoiClosures } from './spatial-closure-reporting.js';
 import { initFieldGuideFilters } from './field-guide.js?v=20261111-pack-story-distances-2';
 import './demo-learn-navigation.js?v=20261111-learn-bubbles-1';
 import { initPersonalPlaces } from './personal-places.js';
-import { initLayerSystem } from './layer-system.js';
+import { initLayerSystem } from './layer-system.js?v=20261128-explore-filters-2';
 import { initMapPaint } from './map-paint.js?v=20261102-crosshair-pin-placement-1';
 import { activateInstalledRegionRuntime } from './installed-region-runtime.js';
 import { initCountyAdditions } from './county-additions.js';

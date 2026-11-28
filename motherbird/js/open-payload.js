@@ -3,7 +3,7 @@ import { CITIES } from './constants.js';
 import { el } from './utils.js';
 import { openSheet, toast } from './ui.js';
 import { normalizeWalkPlan, paintWalkPlan, renderFieldGuide } from './field-guide.js?v=140-live-learn-by-me';
-import { parseFilterImport, flattenImportedFilters } from './layer-system.js';
+import { parseFilterImport, flattenImportedFilters } from './layer-system.js?v=20261128-explore-filters-2';
 import { normalizeCountyAddition, installCountyAddition, COUNTY_ADDITION_FORMAT } from './county-additions.js';
 import { importJournalSubset, openPersonalSeal, reportOnlineError } from './online-pane.js';
 import { unbase64url } from './cloud-journal.js';

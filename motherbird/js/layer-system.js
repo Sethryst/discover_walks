@@ -32,6 +32,7 @@ const STATIC_LABELS = {
 
 let searchQuery = '';
 let pendingImport = null;
+let exploreAdvancedFilters = null;
 let civicAvailability = { news: false, volunteer: false, capability: 'none', notices: [] };
 
 const LIGHT_CHIPS = {
@@ -71,16 +72,24 @@ export async function initLayerSystem() {
   // Explore so My Places never becomes a second category browser.
   document.querySelector('.news-story-dropdown')?.remove();
   const advancedFilters = document.querySelector('.advanced-filters');
+  exploreAdvancedFilters = advancedFilters;
   if (advancedFilters) {
     const advancedSummary = advancedFilters.querySelector('summary');
-    if (advancedSummary) advancedSummary.textContent = 'Customize Explore';
-    advancedFilters.open = false;
+    if (advancedSummary) advancedSummary.textContent = 'Map behavior filters';
+    advancedFilters.open = true;
   }
   const [savedFilters, savedUi] = await Promise.all([
     db.get('layer_settings', 'current-filters'), db.get('layer_settings', 'layer-ui-state')
   ]);
   state.layerFilters = { public: { ...(savedFilters?.public || {}) }, personal: { ...(savedFilters?.personal || {}) } };
-  state.layerLights = { news: true, recreation: true, cuisine: true, more: true, personal: true, ...(savedFilters?.lights || {}) };
+  const savedLights = savedFilters?.lights || {};
+  state.layerLights = {
+    news: savedLights.news ?? true,
+    recreation: savedLights.recreation ?? true,
+    cuisine: savedLights.cuisine ?? true,
+    more: savedLights.more ?? true,
+    personal: savedLights.personal ?? true
+  };
   if (state.offlineView?.layers) {
     state.layerFilters = { public: { ...state.offlineView.layers.public }, personal: { ...state.offlineView.layers.personal } };
     state.layerLights = { ...state.layerLights, ...state.offlineView.layers.lights };
@@ -431,7 +440,9 @@ export function renderMapLights() {
   root.innerHTML = lights.map((light) => {
     const on = state.layerLights[light.id] === true;
     return `<div class="map-light-wrap" data-map-light="${light.id}"><div class="map-light-row"><button type="button" class="map-light ${on ? 'on' : 'off'}" data-light="${light.id}" aria-pressed="${on}"><img src="./icons/${escapeHtml(light.icon)}.svg" alt="" aria-hidden="true"><span class="map-light-label">${escapeHtml(light.label)}</span></button></div></div>`;
-  }).join('') + `<details class="explore-customize"><summary>Customize Explore</summary><div class="explore-simple-filters">${simpleGroups}</div><button type="button" class="map-advanced-controls-link" data-open-advanced-controls>Advanced controls</button></details>`;
+  }).join('') + `<details class="explore-customize"><summary>Customize Explore</summary><div class="explore-simple-filters">${simpleGroups}</div><div class="explore-advanced-filters-slot"></div></details>`;
+  const advancedSlot = root.querySelector('.explore-advanced-filters-slot');
+  if (advancedSlot && exploreAdvancedFilters) advancedSlot.append(exploreAdvancedFilters);
 }
 
 function setChip(chip, enabled) {
