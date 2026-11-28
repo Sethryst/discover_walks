@@ -267,6 +267,36 @@
   </style>
   <link rel="stylesheet" href="./css/mobile-controls-fix.css?v=20261109-safe-area-region-3" />
   <title>Walk & Wildlife</title>
+<style>
+/* Final compact control rail: one shared baseline, one visual order. */
+@media (max-width:720px){
+  .top-cluster{
+    display:grid!important;
+    grid-template-columns:38px minmax(64px,max-content) 34px 38px 38px minmax(0,1fr)!important;
+    grid-template-rows:38px auto!important;
+    grid-template-areas:'profile locate search draw radio region' 'weather weather weather weather weather weather'!important;
+    width:calc(100vw - 16px)!important;
+    max-width:calc(100vw - 16px)!important;
+    height:auto!important;
+    align-items:stretch!important;
+    gap:0!important;
+    border:1px solid #173c35!important;
+    border-radius:10px!important;
+    overflow:visible!important;
+    background:#fff!important;
+  }
+  .top-cluster>.profile-control{grid-area:profile!important;width:38px!important;height:38px!important;display:flex!important;align-items:center!important;justify-content:center!important;border-right:1px solid #173c35!important}
+  .top-cluster>.locate-stack{grid-area:locate!important;width:auto!important;height:38px!important;margin:0!important;border:0!important;border-right:1px solid #173c35!important;background:#fff!important}
+  .top-cluster>.locate-stack .control-row,.top-cluster>.locate-stack .ink-control{width:100%!important;height:38px!important;margin:0!important;border:0!important;box-shadow:none!important;border-radius:0!important;justify-content:center!important}
+  .top-cluster>.map-search{grid-area:search!important;width:34px!important;height:38px!important;margin:0!important;border:0!important;border-right:1px solid #173c35!important;box-shadow:none!important;background:#fff!important}
+  .top-cluster>.map-search>button{width:34px!important;height:38px!important;border:0!important;border-radius:0!important;box-shadow:none!important}
+  .top-cluster>#quickDrawButton{grid-area:draw!important;width:38px!important;height:38px!important;min-width:38px!important;margin:0!important;border:0!important;border-right:1px solid #173c35!important;box-shadow:none!important;border-radius:0!important;transform:none!important}
+  .top-cluster>#quickRadioButton{grid-area:radio!important;width:38px!important;height:38px!important;min-width:38px!important;margin:0!important;border:0!important;border-right:1px solid #173c35!important;box-shadow:none!important;border-radius:0!important;transform:none!important}
+  .top-cluster>.regional-navigation{grid-area:region!important;position:static!important;width:100%!important;min-width:0!important;max-width:none!important;height:38px!important;margin:0!important}
+  .top-cluster>.regional-navigation .regional-navigation-button{width:100%!important;height:38px!important;border-radius:0 9px 0 0!important}
+  .top-cluster>.weather-brief,.top-cluster>#weatherBrief{grid-area:weather!important;width:100%!important;min-width:0!important;max-width:none!important;min-height:42px!important;margin:0!important;border-top:1px solid #173c35!important;border-radius:0 0 9px 9px!important}
+}
+</style>
 </head>
 <body>
   <label class="transport-mode-control">Record as <select name="transportMode" aria-label="Travel mode"><option value="walking">On foot</option><option value="cycling">By bicycle</option><option value="driving">By car</option></select></label>
