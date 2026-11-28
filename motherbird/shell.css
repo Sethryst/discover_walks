@@ -1614,3 +1614,28 @@ body.draw-pane-open .draw-tool-rail { display: flex !important; }
   color: #fffaf0 !important;
 }
 
+/* Desktop scroll contract: let the panel body own scrolling instead of
+   clipping nested workspace sections behind several overflow-hidden wrappers. */
+@media (min-width: 721px) {
+  #mapWorkspacePanel[data-destination="maps"] > [data-map-panel="maps"] {
+    min-height: 0 !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+  }
+  #mapWorkspacePanel[data-destination="maps"] #myMapsPanel,
+  #mapWorkspacePanel[data-destination="maps"] #personalPlacesPanel,
+  #mapWorkspacePanel[data-destination="maps"] .workspace-home,
+  #mapWorkspacePanel[data-destination="maps"] .workspace-experience,
+  #mapWorkspacePanel[data-destination="maps"] .workspace-tool-page {
+    min-height: max-content !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+  #mapWorkspacePanel[data-destination="explore"] > [data-map-panel="explore"] {
+    min-height: 0 !important;
+    max-height: calc(100% - 20px) !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+  }
+}
+
