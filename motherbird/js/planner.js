@@ -251,7 +251,7 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
     return null;
   }
   const count = minutes <= 20 ? 2 : minutes >= 60 ? 4 : 3;
-  const selectedStops = (state.plannerStops || []).map((point, index) => normalizeStop({ name: `Stop ${index + 1}`, ...point }, index)).filter(Boolean);
+  const selectedStops = (state.plannerStops || []).filter((point) => point.hidden !== true).map((point, index) => normalizeStop({ name: `Point ${index + 1}`, ...point }, index)).filter(Boolean);
   const autoCandidates = candidateStops(center, interests());
   const autoRadiusKm = Math.max(1.5, minutes * 0.08);
   const nearbyAutoCandidates = autoCandidates.filter((stop) => {
@@ -309,13 +309,13 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
   }
   const routeOptions = { city: state.activeCity, profile: recipe.profile === 'accessible_verified' ? 'accessible_verified' : 'ordinary_walking_beta' };
   let routed;
-  if (routeMode === 'auto-round-trip') {
+  if (routeMode === 'auto-round-trip' && !seededStops?.length) {
     const candidatePool = (seededStops?.length ? stops : nearbyAutoCandidates.length ? nearbyAutoCandidates : autoCandidates).slice(0, AUTO_ROUTE_MAX_CANDIDATES);
     const autoRoute = await routeAutoRoundTrip(stops, center, routeOptions, { candidatePool, minutes, interests: interests() });
     routed = autoRoute.routed;
     stops = autoRoute.stops;
   } else {
-    const points = routeMode === 'round-trip' ? [center, ...stops, center] : [routeOrigin, ...stops];
+    const points = routeMode === 'round-trip' || routeMode === 'auto-round-trip' ? [center, ...stops, center] : [routeOrigin, ...stops];
     routed = await routeOnFoot(points, routeOptions).catch((error) => ({ ok: false, status: 'ROUTING_WORKER_ERROR', failure: { message: error?.message || 'Offline routing failed.' } }));
   }
   if (requestGeneration !== generation) return null;

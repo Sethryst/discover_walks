@@ -621,6 +621,50 @@ function renderRoutePointControls() {
   ].join('');
 }
 
+function ensureWalkPointsPanel() {
+  const startPanel = el('startPanel');
+  if (!startPanel || startPanel.querySelector('.walk-points-panel')) return;
+  const template = el('walkPointsPanelTemplate');
+  if (!template) return;
+  const panel = template.cloneNode(true);
+  panel.hidden = false; panel.removeAttribute('id'); panel.className = 'walk-points-panel';
+  startPanel.querySelector('#plannerSummary')?.before(panel);
+  const strip = panel.querySelector('#walkPointStrip');
+  const render = () => {
+    const points = (state.plannerStops || []).map((point, index) => ({ ...point, hidden: point.hidden === true, name: point.name || `Point ${index + 1}` }));
+    state.plannerStops = points;
+    panel.querySelector('#walkPointsCount').textContent = String(points.filter((point) => !point.hidden).length);
+    strip.innerHTML = points.length ? points.map((point, index) => `<div class="walk-point-chip ${point.hidden ? 'is-hidden' : ''}" data-point-index="${index}"><span class="walk-point-chip-label">${escapeHtml(point.name)}</span><button type="button" data-point-action="rename" aria-label="Rename ${escapeHtml(point.name)}">✎</button><button type="button" data-point-action="up" aria-label="Move ${escapeHtml(point.name)} earlier">‹</button><button type="button" data-point-action="down" aria-label="Move ${escapeHtml(point.name)} later">›</button><button type="button" data-point-action="hide" aria-label="${point.hidden ? 'Show' : 'Hide'} ${escapeHtml(point.name)}">${point.hidden ? '○' : '●'}</button></div>`).join('') : '<span class="walk-point-empty">No points yet</span>';
+  };
+  strip.addEventListener('click', (event) => {
+    const button = event.target.closest('[data-point-action]'); const chip = button?.closest('[data-point-index]');
+    if (!button || !chip) return;
+    const index = Number(chip.dataset.pointIndex); const points = [...state.plannerStops]; const action = button.dataset.pointAction;
+    if (action === 'rename') { const name = window.prompt('Name this point', points[index].name || `Point ${index + 1}`); if (name?.trim()) points[index] = { ...points[index], name: name.trim() }; }
+    if (action === 'hide') points[index] = { ...points[index], hidden: !points[index].hidden };
+    if (action === 'up' && index) [points[index - 1], points[index]] = [points[index], points[index - 1]];
+    if (action === 'down' && index < points.length - 1) [points[index + 1], points[index]] = [points[index], points[index + 1]];
+    state.plannerStops = points; render();
+  });
+  panel.querySelector('#addDirectPointButton').addEventListener('click', () => {
+    setPlannerSelecting('Stop');
+    document.body.classList.add('route-selection-active');
+    setPlanningMode(true);
+    startPanel.classList.add('hidden');
+    toast('Tap the map to add a point.');
+  });
+  panel.querySelector('#addInterestPointButton').addEventListener('click', () => {
+    const origin = state.currentPosition || state.map?.getCenter();
+    const candidates = (state.cityPois[state.activeCity] || []).filter((poi) => poi.lat && poi.lng).slice(0, 12);
+    const choice = window.prompt(`Add an interest point:\n${candidates.map((poi, index) => `${index + 1}. ${poi.name}`).join('\n')}`, '1');
+    const poi = candidates[Number(choice) - 1];
+    if (poi) { state.plannerStops = [...(state.plannerStops || []), { name: poi.name, lat: Number(poi.lat), lng: Number(poi.lng), source: 'interest' }]; render(); }
+  });
+  window.addEventListener('location-checkpoints-changed', render);
+  window.addEventListener('walk-points-refresh', render);
+  render();
+}
+
 function bindWalkControls() {
   // Keep walk planning with the persistent bottom walk control so the map's
   // top edge stays reserved for search and location controls.
@@ -630,6 +674,7 @@ function bindWalkControls() {
     el('endWalkButton')?.insertAdjacentHTML('afterend', '<button class="ink-control hidden" id="liveWalkOptionsButton" type="button">Walk options</button>');
   }
   decorateWalkPlanner();
+  ensureWalkPointsPanel();
   void initOutingComposer();
   if (bottomWalkBar && startPanel && !bottomWalkBar.contains(startPanel)) bottomWalkBar.append(startPanel);
   el('endWalkButton')?.addEventListener('click', () => void stopWalk());
@@ -644,6 +689,14 @@ function bindWalkControls() {
   });
   const routeOptionsButton = el('radialRouteOptionsButton');
   const openRouteOptions = () => {
+    void db.all('moments').then((moments) => {
+      const automatic = moments.filter((moment) => moment.locationCheckpoint && moment.location).sort((a, b) => (a.checkpointNumber || 0) - (b.checkpointNumber || 0));
+      if (!state.plannerStops?.length && automatic.length) {
+        state.plannerStops = automatic.map((moment, index) => ({ name: moment.title || `Point ${index + 1}`, lat: moment.location.lat, lng: moment.location.lng, checkpointId: moment.id }));
+        renderRoutePointControls();
+        window.dispatchEvent(new CustomEvent('walk-points-refresh'));
+      }
+    }).catch(() => {});
     const panel = el('startPanel');
     const open = panel?.classList.contains('hidden');
     document.querySelectorAll('.drop-panel').forEach((item) => item.classList.add('hidden'));
@@ -726,7 +779,9 @@ function bindWalkControls() {
     toast('Start and destination swapped.');
   });
   el('generateWalkButton')?.addEventListener('click', async () => {
-    const plan = await generateTimeBasedPlan();
+    const selectedPoints = (state.plannerStops || []).filter((point) => point.hidden !== true);
+    if (selectedPoints.length && !state.plannerEnd) { const loopMode = document.querySelector('input[name="routeMode"][value="auto-round-trip"]'); if (loopMode) loopMode.checked = true; }
+    const plan = await generateTimeBasedPlan({ stops: selectedPoints.length ? selectedPoints : null });
     if (state.activeWalk && plan) {
       await updateActiveWalkDirection(plan);
       el('startPanel')?.classList.add('hidden');
